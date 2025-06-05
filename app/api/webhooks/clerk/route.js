@@ -3,6 +3,7 @@
 import { Webhook } from 'svix';
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
+import { db } from '@/app/db/FirebaseConfig';
 import { addDocument } from '@/app/db/firestoreService';
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 
