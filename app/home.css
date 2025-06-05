@@ -86,7 +86,8 @@
 }
 
 .headerMenuBtn:focus .popUpLinkCntn,
-.headerMenuBtn:focus-within .popUpLinkCntn {
+.headerMenuBtn:focus-within .popUpLinkCntn,
+.headerMenuBtn.focus .popUpLinkCntn{
   opacity: 1;
   pointer-events: all;
   transform: translateY(0);
@@ -280,7 +281,8 @@
 }
 
 .motherBtn:focus .childDisplay,
-.motherBtn:focus-within .childDisplay {
+.motherBtn:focus-within .childDisplay,
+.motherBtn.focus .childDisplay{
   opacity: 1;
   pointer-events: all;
   transform: translateY(0);
@@ -670,6 +672,16 @@ body:has(.noOverflow) {
 @media screen and (max-width: 500px){
   .modal-content {
     max-width: 250px;
+  }
+
+  .storyArticleCntn p {
+    font-weight: 1.39em;
+  }
+
+  .storyArticleCntn ul li {
+    gap: 0px;
+    font-size: 1.25em;
+    padding-left: 20px;
   }
 }
 

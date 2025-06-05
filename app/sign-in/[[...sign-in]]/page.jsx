@@ -13,7 +13,6 @@ const Page = () => {
             <div className="right">
                 <div className="theNav">
                     <Link className="black_logo" href={"/"}><img src="/Kwiva1.png" alt="Kwiva logo" /></Link>
-                    <Link className="white_logo" href={"/"}><img src="/Kwiva2.png" alt="Kwiva logo" /></Link>
                 </div>
                 <SignIn
                     appearance={{

@@ -34,6 +34,31 @@ const Navbar = () => {
     // }, []);
 
     useEffect(() => {
+        console.log('firing!!!');
+        
+        const handleClick = (e) => {
+            console.log('works fine');
+            
+            const buttons = document.querySelectorAll('button');
+
+            // Remove .focus from all buttons
+            buttons.forEach((btn) => btn.classList.remove('focus'));
+
+            // If a button was clicked, add .focus
+            if (e.target.closest('button')) {
+                e.target.closest('button').classList.add('focus');
+            }
+        };
+
+        document.addEventListener('click', handleClick);
+
+        return () => {
+            document.removeEventListener('click', handleClick);
+        };
+    }, []);
+
+
+    useEffect(() => {
         const lastReadingComplete = localStorage.getItem('lastPageReadingComplete');
         const hasJustNavigatedBack = localStorage.getItem('hasJustNavigatedBack');
 
