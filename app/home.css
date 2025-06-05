@@ -1,0 +1,719 @@
+:root {
+  --max-width: 1100px;
+
+  --sec-hue-1: #000000;
+  --sec-hue-2: #303030;
+
+  --primary-clr-1: #ffffff;
+  --primary-clr-2: #faf8ff;
+
+  --gray-hue-1: #5e5e5e;
+  --gray-hue-2: #919191;
+  --gray-hue-3: #c6c6c6;
+
+  --accent-clr-1: #a126a0;
+  --accent-clr-2: #ac84a8;
+
+  --border-clr: #30303086;
+
+  --danger-clr: #fe2739;
+  --safe-clr: #97ff5b;
+
+  --nav-height: 100px;
+
+  --gen-border-radius: 10px;
+  --font-al: --font-a;
+
+  --gen-padding: 15%;
+  --small-padding: 5%;
+
+  --primary-gradient-clr: linear-gradient(180deg, #b4079d 0%, #ffcc70 146.9%);
+}
+
+.storyGrandCntn {
+  --small-header-height: 55px;
+  width: 100%;
+}
+
+.storyGrandCntn header {
+  padding-top: var(--small-header-height);
+  padding-bottom: calc(var(--nav-height) + 0em);
+  background: linear-gradient(
+    to bottom,
+    var(--gray-hue-3),
+    var(--gray-hue-3),
+    var(--primary-clr-1)
+  );
+  padding-inline: var(--gen-padding);
+}
+
+.storyGrandCntn .smallHeaderSect {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--small-header-height);
+  padding: 5px var(--small-padding);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background-color: var(--gray-hue-3);
+  /* overflow: hidden; */
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+
+  z-index: 999;
+}
+
+.smallHeaderSect .headerMenuBtn {
+  height: 18px;
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1px;
+  position: relative;
+}
+
+.headerMenuBtn > span {
+  width: 100%;
+  height: 1.5px;
+  background-color: var(--primary-clr-1);
+  border-radius: 5px;
+  pointer-events: none;
+  display: inline-block;
+}
+
+.headerMenuBtn:focus .popUpLinkCntn,
+.headerMenuBtn:focus-within .popUpLinkCntn {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.headerMenuBtn .popUpLinkCntn {
+  position: absolute;
+  top: 180%;
+  left: 0;
+  background-color: var(--primary-clr-1);
+  border: 1px dashed var(--sec-hue-2);
+  box-shadow: 0 0 6px #6b676c71;
+  border-radius: 5px;
+  padding: 14px 10px;
+  min-width: 120px;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  transform: translateY(20px);
+
+  transition: all 0.3s ease;
+}
+
+.popUpLinkCntn > a:hover {
+  text-decoration: dotted;
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-underline-offset: 3px;
+}
+
+.smallHeaderSect > a img {
+  height: 45px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.smallHeaderSect > .smallShareBtn {
+  height: 35px;
+  padding-inline: 10px;
+  border-radius: 5px;
+  background-color: var(--sec-hue-1);
+  color: var(--primary-clr-1);
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+.smallHeaderSect .black_logo,
+.smallHeaderSect .pageShareButton {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: transform 0.08s ease, opacity 0.08s ease;
+  pointer-events: none;
+}
+
+/* Active visible state — we'll toggle this with JS */
+.smallHeaderSect.active {
+  background-color: var(--gray-hue-3);
+}
+
+.smallHeaderSect.active .black_logo,
+.smallHeaderSect.active .pageShareButton {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.mainHeaderSect {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.mainHeaderSect .toptop {
+  width: 100%;
+  padding-top: 30px;
+  padding-block: 15px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* Fading toptop section */
+.mainHeaderSect .toptop {
+  transition: opacity 0.08s ease, transform 0.08s ease;
+}
+
+.mainHeaderSect .toptop img {
+  width: 350px;
+  min-width: 250px;
+  aspect-ratio: 1;
+  min-width: 150px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 5px;
+}
+
+.mainHeaderSect .toptop .text {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainHeaderSect .toptop .text h1 {
+  font-size: 7em;
+  font-weight: 400;
+  color: var(--sec-hue-1);
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Change this number to how many lines you want */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-clamp: 2;
+}
+
+.mainHeaderSect .toptop .text p {
+  font-family: var(--font-c);
+  font-weight: 500;
+  color: var(--sec-hue-2);
+  text-transform: capitalize;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Change this number to how many lines you want */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-clamp: 1;
+}
+
+.mainHeaderSect > p {
+  font-size: 1.1em;
+  font-weight: 400;
+  color: var(--sec-hue-1);
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Change this number to how many lines you want */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-clamp: 3;
+}
+
+.historiesGrandCntn {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 70svh;
+}
+
+.historyListHeader {
+  position: sticky;
+  top: var(--small-header-height);
+
+  width: 100%;
+  background-color: transparent;
+  padding: 15px var(--gen-padding);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.historyListHeader h2 {
+  font-size: 1.8em;
+  font-weight: 500;
+  color: var(--sec-hue-1);
+}
+
+.blackBtn {
+  padding: 0.5em 0.65em;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--primary-clr-1);
+  background-color: var(--sec-hue-1);
+  border-radius: 5px;
+
+  transition: background-color 0.3s ease-in-out;
+}
+
+.blackBtn:hover {
+  background-color: var(--sec-hue-2);
+}
+
+.motherBtn {
+  position: relative;
+}
+
+.motherBtn:focus .childDisplay,
+.motherBtn:focus-within .childDisplay {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.motherBtn .childDisplay {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background-color: var(--primary-clr-1);
+  border: 1px dashed var(--sec-hue-2);
+  box-shadow: 0 0 6px #6b676c71;
+  border-radius: 5px;
+  padding: 14px 10px;
+  min-width: 150px;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transform: translateY(20px);
+
+  transition: all 0.3s ease;
+}
+
+.childDisplay > h3 {
+  font-size: 1.02em;
+  font-weight: 600;
+  color: var(--sec-hue-1);
+  margin-bottom: 10px;
+}
+
+.childDisplay > div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  padding-block: 8px;
+  color: var(--sec-hue-1);
+  font-size: 0.9em;
+  min-height: 35px;
+  font-weight: 500;
+}
+
+.childDisplay > div i {
+  font-size: 1.4em;
+}
+
+.historiesCntn {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  width: 100%;
+  padding: 2em var(--gen-padding);
+}
+
+.unitHistoryCntn {
+  width: 100%;
+  padding: 25px 20px;
+  background-color: var(--primary-clr-1);
+  border-bottom: 1px dashed var(--sec-hue-2);
+  border-right: 1px dashed var(--sec-hue-2);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.unitHistoryCntn:nth-child(2n) {
+  /* background-color: var(--gray-hue-3); */
+  border-right: 1px dashed transparent;
+}
+
+@media screen and (max-width: 1000px) {
+  body {
+    --gen-padding: 5%;
+  }
+  .mainHeaderSect {
+    overflow-x: hidden;
+  }
+  .mainHeaderSect .toptop .text h1 {
+    font-size: 4.5em;
+  }
+  .unitHistoryCntn {
+    border-right: 1px dashed transparent;
+  }
+}
+
+.historyHead {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.historyHead img {
+  width: 40px;
+  aspect-ratio: 1;
+  border-radius: 5px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.historyheadings {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+
+.historyheadings h3 {
+  font-size: 1.4em;
+  font-weight: 600;
+  color: var(--sec-hue-1);
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Change this number to how many lines you want */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-clamp: 1;
+}
+.historyheadings h4 {
+  font-size: 0.95em;
+  font-weight: 400;
+  color: var(--sec-hue-1);
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Change this number to how many lines you want */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-clamp: 1;
+}
+
+.unitHistoryCntn > p {
+  font-size: 1.15em;
+  font-weight: 400;
+  color: var(--sec-hue-2);
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Change this number to how many lines you want */
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  min-height: 7ch;
+}
+
+.historyFooter {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+@media screen and (max-width: 500px) {
+  .storyGrandCntn {
+    padding-bottom: calc(var(--nav-height) + 0px);
+  }
+  .historiesCntn {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .mainHeaderSect .toptop .text h1 {
+    font-size: 3.5em;
+  }
+
+  .mainHeaderSect .toptop img {
+    width: 120px;
+    min-width: 120px;
+  }
+
+  .unitHistoryCntn {
+    padding: 25px 10px;
+  }
+
+  .historiesGrandCntn {
+    padding-bottom: 3em;
+  }
+
+  .historyFooter {
+    align-items: center;
+  }
+
+  .historyListHeader {
+    padding: 10px var(--gen-padding);
+  }
+
+  .smallHeaderSect > a img {
+    height: 35px;
+  }
+
+  .smallHeaderSect > .smallShareBtn {
+    height: 28px;
+    padding-inline: 8px;
+    font-size: 0.9em;
+  }
+}
+
+.historyFooter > p {
+  font-size: 0.86em;
+  color: var(--gray-hue-1);
+  font-weight: 500;
+}
+.historyFooter > p span {
+  font-size: 1.05em;
+  color: var(--sec-hue-1);
+}
+
+.historyFooter a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 35px;
+  aspect-ratio: 1;
+  background-color: var(--sec-hue-1);
+  font-size: 1.7em;
+  color: var(--primary-clr-1);
+  border-radius: 5px;
+  cursor: pointer;
+
+  transition: all 0.11s ease-in-out;
+}
+
+.historyFooter a:hover {
+  background-color: var(--sec-hue-2);
+}
+
+/**** STYLI\\NG FOR UNIT STORY ARTICLE SECTION STARTS HERE*****/
+.mainContentCntn {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2em;
+  padding-inline: var(--gen-padding);
+  width: 100%;
+}
+
+.temporaryAdDisplay {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  align-items: center;
+  font-size: 0.93em;
+  color: var(--gray-hue-1);
+  font-weight: 500;
+}
+
+.temporaryAdDisplay span {
+  height: 30px;
+  width: 4px;
+  background-color: var(--sec-hue-1);
+  border-radius: 1px;
+  display: inline-block;
+}
+
+.storyArticleCntn {
+  width: 100%;
+  padding-block: 15px;
+  display: flex;
+  flex-direction: column;
+  font-weight: 400;
+  color: var(--sec-hue-1);
+  border-top: 1px dashed var(--sec-hue-1);
+}
+
+.storyArticleCntn p {
+  margin-bottom: 20px;
+  font-weight: 400;
+  color: var(--sec-hue-1);
+  font-weight: 1.25em;
+}
+
+.storyArticleCntn h2 {
+  font-size: 2em;
+  font-weight: 400;
+  color: var(--sec-hue-1);
+  margin-bottom: 8px;
+}
+.storyArticleCntn h3 {
+  font-size: 1.5em;
+}
+.storyArticleCntn h4 {
+  font-size: 1.25em;
+}
+
+.storyArticleCntn ul {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+}
+
+.storyArticleCntn ul li {
+  list-style: disc;
+  width: 100%;
+  gap: 20px;
+  color: var(--sec-hue-1);
+  font-size: 0.95em;
+  padding-left: 20px;
+}
+
+.prevNextCntn {
+  width: 100%;
+  padding-block: 2em;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+}
+
+.unitPrevNext {
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px;
+  max-width: 200px;
+  border: 2px solid var(--gray-hue-3);
+  border-radius: var(--gen-border-radius);
+  transition: border-color 0.25s ease;
+}
+
+.unitPrevNext:hover {
+  border-color: var(--sec-hue-1);
+}
+
+.unitPrevNext h4 {
+  font-size: 0.95em;
+  font-weight: 600;
+  font-family: var(--font-p);
+  color: var(--sec-hue-1);
+}
+
+.unitPrevNext.prev {
+  margin-right: auto;
+}
+.unitPrevNext.next {
+  margin-left: auto;
+  align-items: flex-end;
+}
+
+.unitPrevNext p {
+  font-size: 1.05em;
+  font-family: var(--font-g);
+  font-weight: 400;
+  color: var(--sec-hue-1);
+  display: -webkit-box;
+  line-clamp: 1;
+  -webkit-line-clamp: 1; /* Change this number to how many lines you want */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body:has(.noOverflow) {
+  overflow: hidden;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(139, 139, 139, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1099;
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: var(--primary-clr-1);
+  border-radius: 5px;
+  max-width: 350px;
+  text-align: center;
+  overflow: hidden;
+  border: 1px dashed var(--sec-hue-1);
+
+
+  transform: translateY(30px);
+
+  transition: all 0.3s ease-in 0.15s;
+}
+
+@media screen and (max-width: 500px){
+  .modal-content {
+    max-width: 250px;
+  }
+}
+
+.modal-content b{
+  padding: 1em;
+  width: 100%;
+  font-size: 1.05em;
+  font-weight: 400;
+  color: var(--sec-hue-1);
+  min-height: 100px;
+  display: grid;
+  place-items: center;
+}
+
+.modal-overlay.noOverflow .modal-content{
+  transform: translateY(0px);
+}
+
+.modal-buttons{
+  width: 100%;
+  display: flex;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px dashed var(--sec-hue-1);
+}
+
+.modal-buttons button {
+  width: 50%;
+  min-width: 80px;
+  display: grid;
+  place-items: center;
+  padding-block: 0.65em;
+  padding-inline: 0.6em;
+  font-weight: 600;
+  color: var(--sec-hue-1);
+  font-size: 0.9em;
+  background-color: transparent;
+
+  transition: background-color 0.3s ease;
+}
+
+.modal-buttons button:hover{
+  background-color: var(--gray-hue-3);
+}
+
+.modal-buttons button:nth-child(1){
+  border-right: 1px dashed var(--sec-hue-1);
+}
