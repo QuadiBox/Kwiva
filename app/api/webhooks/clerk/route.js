@@ -121,9 +121,9 @@ export async function POST(req) {
   const toUsers = {
     ...eventData,
     points: 0,
-    referrer: undefined,
+    referrer: null,
     referrals: [],
-    summaryDocId: undefined, // Will be set below
+    summaryDocId: null, // Will be set below
   };
 
   // Here you can add your logic to save the user data to the database
