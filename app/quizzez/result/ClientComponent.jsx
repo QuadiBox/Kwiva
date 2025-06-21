@@ -26,12 +26,15 @@ export default function QuizResultPage() {
         }
 
         const correct = storedQuiz.questions.reduce((acc, q, i) => {
-            return acc + (storedAnswers[i] === q.answer ? 1 : 0);
+            return acc + (storedAnswers[i] === parseInt(q.answer) ? 1 : 0);
         }, 0);
 
         const basePoints = 20;
         const earnedPoints = correct * 2;
         const total = basePoints + earnedPoints;
+
+        console.log(correct);
+        
 
         setPoints(total);
         setCorrectCount(correct);
@@ -64,8 +67,8 @@ export default function QuizResultPage() {
                 }
             }
 
-            localStorage.setItem('currentQuiz', JSON.stringify({}));
-            localStorage.setItem('quizAnswer', JSON.stringify([]));
+            // localStorage.setItem('currentQuiz', JSON.stringify({}));
+            // localStorage.setItem('quizAnswer', JSON.stringify([]));
         };
 
         updatePoints();
@@ -78,8 +81,7 @@ export default function QuizResultPage() {
             <div className='fancyPointDIV'>
                 <h1>
                     <strong>
-                        {/* {points} */}
-                        80
+                        {points}
                     </strong> 
                     <b>Total Points</b>
                 </h1>
