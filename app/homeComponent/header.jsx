@@ -93,7 +93,7 @@ export default function HomeHeader({ headerTitle, headerSubTitle, headerImgSrc, 
                             transform: `translateY(${(1 - scroll2Progress) * 30 * -1}px)`
                         }}
                     >
-                        <img src={headerImgType === "story" ? "/stories_1.png" : "/blogs_1.png"} alt="Short Histories Image" />
+                        <img src={headerImgType} alt="Short Histories Image" />
                         <div className="text">
                             <h1>{headerTitle}</h1>
                             <p>{headerSubTitle ? headerSubTitle : "Kwiva."}</p>

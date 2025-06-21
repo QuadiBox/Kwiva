@@ -148,13 +148,13 @@ footer{
     text-underline-offset: 1px;
 }
 
-.socials h2{
+.justFlex h2{
     margin-bottom: 10px;
     font-size: 1.15em;
     color: var(--sec-hue-1);
     font-weight: 500;
 }
-.socials a{
+.justFlex a{
     width: 45px;
     aspect-ratio: 1;
     border-radius: 5px;
@@ -167,11 +167,11 @@ footer{
     transition: opacity 0.3s ease;
 }
 
-.socials a:hover{
+.justFlex a:hover{
     opacity: 0.69;
 }
 
-.socials a img{
+.justFlex a img{
     width: 30px;
     object-fit: contain;
     object-position: center;

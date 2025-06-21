@@ -36,8 +36,8 @@ export default async function Page() {
   }
   const data = await fetchFromFirestore();
   return (
-    <div className="storyGrandCntn histories">
-      <HomeHeader headerTitle={"Blogposts - DIY / How-To"} headerSubTitle={null} headerImgSrc={"/Kwiva1.png"} headerText={"Our Blog section is your daily dose of DIY brilliance and 'How to' magic. Discover clever tricks, creative projects, and step-by-step guides that make life a little simpler and a lot more fun. Explore, learn, and create—one post at a time."} headerImgType={"blog"}></HomeHeader>
+    <div className="storyGrandCntn blogs">
+      <HomeHeader headerTitle={"Blogposts - DIY / How-To"} headerSubTitle={null} headerImgSrc={"/Kwiva1.png"} headerText={"Our Blog section is your daily dose of DIY brilliance and 'How to' magic. Discover clever tricks, creative projects, and step-by-step guides that make life a little simpler and a lot more fun. Explore, learn, and create—one post at a time."} headerImgType={"/blogs_1.png"}></HomeHeader>
       <ArticleWrapper serverData={data}></ArticleWrapper>
       <Footer></Footer>
     </div>

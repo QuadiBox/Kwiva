@@ -43,7 +43,7 @@ const Page = async () => {
         <div className='dashmainCntn blogs'>
             <h1 className="textEditorHeader">All Blogposts</h1>
             <div className="newArticleLinkCntn">
-                <Link href={"/dashboard/new_blog"}>Add a New Blogpost <i className="icofont-plus"></i></Link>
+                <Link href={"/dashboard__/new_blog"}>Add a New Blogpost <i className="icofont-plus"></i></Link>
             </div>
             <div className="storiesCntn">
                 {
@@ -63,7 +63,10 @@ const Page = async () => {
                                         day: "numeric",
                                     }).format(elem?.createdAt)}
                                     </p>
-                                    <button className='unitStoryOptionsBtn' type="button">
+                                    <Link href={`/dashboard__/edit_blog/${elem?.id}`} className='unitStoryOptionsBtn mobile' type="button">
+                                        Edit
+                                    </Link>
+                                    <button className='unitStoryOptionsBtn desktop' type="button">
                                         <i className="icofont-settings"></i>
 
                                         <Link href={`/dashboard__/edit_blog/${elem?.id}`}>Edit</Link>

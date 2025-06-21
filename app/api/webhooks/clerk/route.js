@@ -116,6 +116,7 @@ export async function POST(req) {
     referrals: [],
     fullname: `${eventData?.last_name || ""} ${eventData?.first_name || ""}`,
     user_id: eventData?.id,
+    m_points: 0
   };
 
   const toUsers = {

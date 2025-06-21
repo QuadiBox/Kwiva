@@ -43,6 +43,10 @@ a.white_logo{
   text-decoration: none;
 }
 
+i{
+  pointer-events: none;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -63,7 +67,7 @@ body {
 
 body {
   color: var(--sec-hue-1);
-  font-family: var(--font-a);
+  font-family: var(--font-b);
 }
 
 a {

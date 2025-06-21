@@ -20,6 +20,7 @@ export default async function RootLayout({ children }) {
                     <Link className="two" href={"/dashboard__/new_story"}><i className="icofont-quill-pen"></i>New Story</Link>
                     <Link className="three" href={"/dashboard__/blogs"}><i className="icofont-paper"></i>Blogs</Link>
                     <Link className="four" href={"/dashboard__/new_blog"}><i className="icofont-plus"></i>New Blog</Link>
+                    <Link className="six" href={"/dashboard__/new_quiz"}><i className="icofont-abc"></i>New Quiz</Link>
                     <Link className="five" href={"/dashboard__/functions"}><i className="icofont-tools-bag"></i>Functions</Link>
                 </div>
 

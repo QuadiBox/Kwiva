@@ -7,13 +7,15 @@ import "./signup.css";
 import "./home.css";
 import "./navbar.css";
 import "./footer.css";
+import "./invite.css";
+import "./contact.css";
 import "../icofont/icofont.min.css"
 
 import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "./homeComponent/Navbar";
 
 
-const aleg = Alegreya_Sans({ subsets: ["latin"], weight: ['100', '300', '400', '500', '800', '700', '900'], variable: "--font-a" })
+const aleg = Alegreya_Sans({ subsets: ["latin"], weight: ['100', '300', '400', '500', '800', '700', '900'], variable: "--font-b" })
 const play = Playfair_Display({ subsets: ["latin"], weight: ['400', '500', '800', '700'], variable: "--font-p" })
 const cinzel = Cinzel({ subsets: ["latin"], weight: ['400', '500', '800', '700'], variable: "--font-c" })
 

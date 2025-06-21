@@ -181,7 +181,7 @@
 .sticky-bar.opened .desktopDisplay a[data-label="Blogs"] {
   transform: translate(-65px, -60px); 
 }
-.sticky-bar.opened .desktopDisplay a[data-label="Meme Bank"] {
+.sticky-bar.opened .desktopDisplay a[data-label="Quizzez"] {
   transform: translateX(-95px); 
 }
 .sticky-bar.opened .desktopDisplay a[data-label="Invite"] {
@@ -225,7 +225,7 @@
   gap: 6px;
   font-weight: 500;
 
-  color: var(--gray-hue-1);
+  color: var(--gray-hue-2);
   min-width: 50px;
 
   transition: all 0.35s ease;
@@ -244,10 +244,11 @@
 
 body:has(.histories) .unitNavLink._h,
 body:has(.blogs) .unitNavLink._hh,
-body:has(.meme) .unitNavLink._hhh,
+body:has(.quizzez) .unitNavLink._hhh,
 body:has(.invite) .unitNavLink._hhhh,
 body:has(.me) .unitNavLink._hhhhh{
   color: var(--sec-hue-1);
+  scale: 1.1;
 }
 
 

@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import React, { useState, useEffect } from 'react'
 import { usePathname, useRouter } from 'next/navigation';
+import ProgressBarWrapper from '../ProgressBarWrapper';
 
 const Navbar = () => {
     const [openMenu, setOpenMenu] = useState(false);
@@ -34,10 +35,8 @@ const Navbar = () => {
     // }, []);
 
     useEffect(() => {
-        console.log('firing!!!');
         
         const handleClick = (e) => {
-            console.log('works fine');
             
             const buttons = document.querySelectorAll('button');
 
@@ -93,7 +92,7 @@ const Navbar = () => {
                 </button>
                 <Link href={"/"} data-label="Histories"><i className="icofont-education"></i></Link>
                 <Link href={"/blogs"} data-label="Blogs"><i className="icofont-paper"></i></Link>
-                <Link href={"/meme_bank"} data-label="Meme Bank"><i className="icofont-halloween-pumpkin"></i></Link>
+                <Link href={"/quizzez"} data-label="Quizzez"><i className="icofont-electron"></i></Link>
                 <Link href={"/invite"} data-label="Invite"><i className="icofont-users-alt-5"></i></Link>
                 <Link href={"/me"} data-label="Me"><i className="icofont-ui-user"></i></Link>
             </div>
@@ -107,9 +106,9 @@ const Navbar = () => {
                     <i className="icofont-paper"></i>
                     <span>Blogs</span>
                 </Link>
-                <Link href={"/meme_bank"} className="unitNavLink _hhh" data-label="Meme Bank">
-                    <i className="icofont-halloween-pumpkin"></i>
-                    <span>Meme Bank</span>
+                <Link href={"/quizzez"} className="unitNavLink _hhh" data-label="Quizzez">
+                    <i className="icofont-electron"></i>
+                    <span>Quizzez</span>
                 </Link>
                 <Link href={"/invite"} className="unitNavLink _hhhh" data-label="Invite">
                     <i className="icofont-users-alt-5"></i>
@@ -136,6 +135,7 @@ const Navbar = () => {
                     </div>
                 </div>
             )}
+            <ProgressBarWrapper></ProgressBarWrapper>
         </div>
     )
 }
