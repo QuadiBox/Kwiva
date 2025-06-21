@@ -67,8 +67,8 @@ export default function QuizResultPage() {
                 }
             }
 
-            // localStorage.setItem('currentQuiz', JSON.stringify({}));
-            // localStorage.setItem('quizAnswer', JSON.stringify([]));
+            localStorage.setItem('currentQuiz', JSON.stringify({}));
+            localStorage.setItem('quizAnswer', JSON.stringify([]));
         };
 
         updatePoints();
