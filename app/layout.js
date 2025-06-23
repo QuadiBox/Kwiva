@@ -28,7 +28,7 @@ export const metadata = {
     type: "website",
     url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
     title: 'Kwiva',
-    description: 'Discover',
+    description: 'A learning community with rewards, stories, blogs, quizzez and laughter — and rewarding our most active users along the way.',
     images: [
       {
         url: "https://kwiva.online/opengraph-image.png"
@@ -40,10 +40,10 @@ export const metadata = {
     creator: "@QuadVox",
     url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
     title: 'Kwiva',
-    description: 'Discover ',
+    description: 'A learning community with rewards, stories, blogs, quizzez and laughter — and rewarding our most active users along the way.',
     images: [
       {
-        url: "https://kwiva.online/opengraph-image.png"
+        url: "https://kwiva.online/kwiva_large.png"
       }
     ]
   },

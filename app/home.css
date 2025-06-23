@@ -802,6 +802,17 @@ body:has(.noOverflow) {
   display: flex;
   justify-content: flex-end;
 }
+@media screen and (max-width: 500px) {
+  .quizTimer{
+    font-size: 1.1em;
+  }
+
+  .quizTimer strong{
+    font-size: 2.15em;
+    min-width: 55px;
+    width: max-content;
+  }
+}
 .quizTimer strong.alert{
   color: #d51361;
 }
