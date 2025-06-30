@@ -23,7 +23,7 @@ export default function InviteClientPage() {
     useEffect(() => {
         if (!isLoaded || !user) return;
 
-        const currentUserId = user.id;
+        const currentUserId = user?.id;
         const localKey = `user_${currentUserId}`;
 
         const handleReferral = async () => {
@@ -43,6 +43,12 @@ export default function InviteClientPage() {
             } catch { }
 
             const referrerAlreadySet = localUserData?.referrer;
+            console.log('refferer already set value (negative)', referrerAlreadySet);
+            console.log('refferer id value (positive)', referrerId);
+            console.log('refferer first name value (positive)', refFirst);
+            console.log('refferer last name value (positive)', refFirst);
+            console.log('current user is not the referrer (positive)', referrerId !== currentUserId);
+            
 
             if (!referrerAlreadySet && referrerId && refFirst && refLast && referrerId !== currentUserId) {
                 // Show who invited you
