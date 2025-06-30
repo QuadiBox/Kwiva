@@ -186,7 +186,7 @@ const ProfileBodyCntn = () => {
             };
 
             localStorage.setItem('leaderboard', JSON.stringify(finalObject));
-            setToExprire(finalObject.expiryTime)
+            setToExprire(finalObject?.expiryTime)
             setPreview(sliced);
         };
 
@@ -335,7 +335,7 @@ const ProfileBodyCntn = () => {
                 <div className="leaderboardList">
 
                     {preview?.length > 0 ? preview?.map((userObj, i) => {
-                        const isCurrentUser = userObj?.user_id === user.id;
+                        const isCurrentUser = userObj?.user_id === user?.id;
 
                         if (i === 0 && preview[i + 1]?.position > 3) {
                             return (
