@@ -51,7 +51,7 @@
   padding-inline: var(--gen-padding);
   display: flex;
   flex-direction: column;
-  align-content: center;
+  align-items: center;
   padding-bottom: 1em;
 }
 
@@ -93,6 +93,8 @@
   font-weight: 400;
   color: var(--sec-hue-1);
   margin-top: 1em;
+  width: 100%;
+  text-align: center;
 }
 
 .invitePageCntn > h2 span{

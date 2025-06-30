@@ -65,7 +65,8 @@
   place-items: center;
   width: max-content;
   height: 35px;
-  font-size: 1.1em;
+  padding-inline: 0.6em;
+  font-size: 0.85em;
   background-color: #250000;
   border-radius: 5px;
   color: var(--primary-clr-2);
