@@ -27,8 +27,8 @@ export default function WithdrawPage() {
 
     const rewardMap = {
         1: 1500000,
-        2: 500000,
-        3: 200000,
+        2: 700000,
+        3: 500000,
         4: 100000,
         5: 100000,
         6: 100000,

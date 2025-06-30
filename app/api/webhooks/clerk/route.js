@@ -114,7 +114,7 @@ export async function POST(req) {
   const toUserlist = {
     points: 0,
     referrals: [],
-    fullname: `${eventData?.last_name || ""} ${eventData?.first_name || ""}`,
+    fullname: `${eventData?.first_name || ""} ${eventData?.last_name || ""}`,
     user_id: eventData?.id,
     username: eventData?.username,
     last_month_points: 0,

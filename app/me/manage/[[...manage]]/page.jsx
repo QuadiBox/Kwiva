@@ -16,9 +16,6 @@ const Page = () => {
                 <p>Manage Profile</p>
             </div>
             <div className="theManageCntn">
-                <div className="theNav">
-                    <Link href={"/"}><img src="/Kwiva1.png" alt="Kwiva logo" /></Link>
-                </div>
                 <UserProfile
                     appearance={{
                         baseTheme: light,

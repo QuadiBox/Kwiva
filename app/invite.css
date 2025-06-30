@@ -51,6 +51,7 @@
   padding-inline: var(--gen-padding);
   display: flex;
   flex-direction: column;
+  align-content: center;
   padding-bottom: 1em;
 }
 
@@ -200,8 +201,8 @@
 .invitationDetails{
   width: 100%;
   max-width: 500px;
-  height: 400px;
-  max-height: 400px;
+  height: 150px;
+  max-height: 150px;
   margin-inline: auto;
   margin-top: 3em;
   border-radius:  5px;

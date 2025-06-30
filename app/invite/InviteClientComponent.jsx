@@ -28,7 +28,7 @@ export default function InviteClientPage() {
 
         const handleReferral = async () => {
             const refParam = searchParams.get('ref'); // ref=userId%first%last
-            const [referrerId, refFirst, refLast] = refParam ? refParam.split('%') : [];
+            const [referrerId, refFirst, refLast] = refParam ? refParam.split('+') : [];
 
             // Fetch local user data or fallback to Firestore
             let localUserData = {};
@@ -111,12 +111,12 @@ export default function InviteClientPage() {
     useEffect(() => {
         if (!isLoaded || !user) return;
 
-        const fullName = `${user.firstName || ''}%${user.lastName || ''}`;
+        const fullName = `${user.firstName || ''}+${user.lastName || ''}`;
         const baseUrl =
             typeof window !== 'undefined'
                 ? window.location.origin
                 : process.env.NEXT_PUBLIC_BASE_URL;
-        const link = `${baseUrl}/invite?ref=${user.id}%${fullName}`;
+        const link = `${baseUrl}/invite?ref=${user.id}+${fullName}`;
         setReferralLink(link);
     }, [isLoaded, user]);
 
@@ -162,7 +162,7 @@ export default function InviteClientPage() {
         <div className="invitePageCntn">
             {inviterName && (
                 <p className="invitationCardNote">
-                    <i className="icofont-info-square"></i> You were invited by <span className="font-semibold">{inviterName ? inviterName : "John Doe"}</span>
+                    <i className="icofont-info-square"></i> You were invited by <span className="font-semibold">{inviterName ? inviterName.replace("%27", "'") : "John Doe"}</span>
                 </p>
             )}
 

@@ -21,8 +21,8 @@ const ProfileBodyCntn = () => {
 
     const rewardMap = {
         1: 1500000,
-        2: 500000,
-        3: 200000,
+        2: 700000,
+        3: 500000,
         4: 100000,
         5: 100000,
         6: 100000,
@@ -58,7 +58,7 @@ const ProfileBodyCntn = () => {
         const today = new Date();
         const day = today.getDate();        
 
-        if (day >= 25 && day <= 30) {
+        if (day >= 0 && day <= 30) {
             const month = String(today.getMonth() + 1).padStart(2, '0');
             const year = today.getFullYear();
             const docId = `${month}-${year}`;
@@ -132,6 +132,7 @@ const ProfileBodyCntn = () => {
             const parsed = JSON.parse(localData);
             if (localData && Date.now() < parsed?.expiryTime) {
                 try {
+                    console.log("setting expiry from local storage", finalObject?.expiryTime);
                     setToExprire(parsed?.expiryTime)
                     
                     if (parsed.expiryTime && Date.now() < parsed.expiryTime) {
@@ -182,6 +183,8 @@ const ProfileBodyCntn = () => {
             };
 
             localStorage.setItem('leaderboard', JSON.stringify(finalObject));
+            console.log("setting expiry from DB", finalObject?.expiryTime);
+            
             setToExprire(finalObject?.expiryTime)
             setPreview(sliced);
         };
@@ -190,7 +193,7 @@ const ProfileBodyCntn = () => {
     }, [user?.id]);
 
     useEffect(() => {
-        if (!preview?.expiryTime) return;
+        if (!preview && !toExpiry) return;
 
         const interval = setInterval(() => {
             const now = Date.now();
@@ -308,7 +311,7 @@ const ProfileBodyCntn = () => {
                                             <span className="fullname">
                                                 {isCurrentUser ? 'YOU' : `${userObj?.fullname ? userObj?.fullname : 'John Doe'}`}
                                             </span>
-                                            <span className="points">{formatNumber(userObj?.points)} pts</span>
+                                            <span className="points"><b>{formatNumber(userObj?.points)}</b> pts</span>
                                             <span className="reward">
                                                 {rewardMap[`${userObj?.position}`]
                                                     ? <b>{`₦${formatNumber(rewardMap[`${userObj?.position}`])}`}</b>
@@ -342,7 +345,7 @@ const ProfileBodyCntn = () => {
                                     >
                                         <span className="position">#{(userObj?.position).toLocaleString()}</span>
                                         <span className="fullname">
-                                            {isCurrentUser ? 'YOU' : `${userObj?.fullname} || John Doe`}
+                                            {isCurrentUser ? 'YOU' : `${userObj?.fullname ? userObj?.fullname : 'John Doe'}`}
                                         </span>
                                         <span className="points">{formatNumber(userObj?.points)} pts</span>
                                         <span className="reward">
@@ -364,7 +367,7 @@ const ProfileBodyCntn = () => {
                                 >
                                     <span className="position">#{(userObj?.position).toLocaleString()}</span>
                                     <span className="fullname">
-                                        {isCurrentUser ? 'YOU' : `${userObj?.fullname} || John Doe`}
+                                        {isCurrentUser ? 'YOU' : `${userObj?.fullname ? userObj?.fullname : 'John Doe'}`}
                                     </span>
                                     <span className="points"><b>{formatNumber(userObj?.points)}</b> pts</span>
                                     <span className="reward">
