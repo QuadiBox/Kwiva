@@ -131,10 +131,8 @@ const ProfileBodyCntn = () => {
             if (localData) {
                 try {
                     const parsed = JSON.parse(localData);
-                    console.log("parsing properly", parsed);
                     
                     if (parsed.expiryTime && Date.now() < parsed.expiryTime) {
-                        console.log("expiry time not exceeded", parsed.data);
                         setPreview(parsed.data);
                         return;
                     }
@@ -182,7 +180,6 @@ const ProfileBodyCntn = () => {
             };
 
             localStorage.setItem('leaderboard', JSON.stringify(finalObject));
-            console.log("data fecthed and is working fine", sliced);
             
             setPreview(sliced);
         };
@@ -331,10 +328,10 @@ const ProfileBodyCntn = () => {
 
                 <div className="leaderboardList">
 
-                    {preview?.data?.length > 0 ? preview?.data?.map((userObj, i) => {
+                    {preview?.length > 0 ? preview?.map((userObj, i) => {
                         const isCurrentUser = userObj?.user_id === user.id;
 
-                        if (i === 0 && preview?.data[i + 1]?.position > 3) {
+                        if (i === 0 && preview[i + 1]?.position > 3) {
                             return (
                                 <>
                                     <div
