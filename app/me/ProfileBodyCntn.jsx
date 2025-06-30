@@ -133,7 +133,7 @@ const ProfileBodyCntn = () => {
     useEffect(() => {
         const fetchLeaderboardPreview = async () => {
             const localData = localStorage.getItem('leaderboard');
-            const parsed = JSON.parse(localData || {});
+            const parsed = JSON.parse(localData);
             if (localData && Date.now() < parsed?.expiryTime) {
                 try {
                     setToExprire(parsed?.expiryTime)
