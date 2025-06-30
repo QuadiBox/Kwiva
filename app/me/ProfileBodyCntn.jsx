@@ -131,7 +131,10 @@ const ProfileBodyCntn = () => {
             if (localData) {
                 try {
                     const parsed = JSON.parse(localData);
+                    console.log("parsing properly", parsed);
+                    
                     if (parsed.expiryTime && Date.now() < parsed.expiryTime) {
+                        console.log("expiry time not exceeded", parsed.data);
                         setPreview(parsed.data);
                         return;
                     }
@@ -179,6 +182,8 @@ const ProfileBodyCntn = () => {
             };
 
             localStorage.setItem('leaderboard', JSON.stringify(finalObject));
+            console.log("data fecthed and is working fine", sliced);
+            
             setPreview(sliced);
         };
 
