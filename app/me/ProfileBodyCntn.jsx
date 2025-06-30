@@ -11,6 +11,7 @@ import Link from "next/link";
 const ProfileBodyCntn = () => {
     const { user } = useUser();
     const [preview, setPreview] = useState(null);
+    const [toExpiry, setToExprire] = useState(null);
     const [monthlyPoints, setMonthlyPoints] = useState(null);
     const [userData, setUserData] = useState(null);
     const [remainingTime, setRemainingTime] = useState(null);
@@ -56,17 +57,21 @@ const ProfileBodyCntn = () => {
         if (!user) return;
         const today = new Date();
         const day = today.getDate();
+        console.log("strting to fetch winners");
+        
 
         if (day >= 25 && day <= 30) {
             const month = String(today.getMonth() + 1).padStart(2, '0');
             const year = today.getFullYear();
             const docId = `${month}-${year}`;
             const ref = doc(db, 'winners', docId);
+            console.log("it's withdrawal days!!!!");
 
             getDoc(ref)
                 .then((snap) => {
                     if (snap.exists()) {
                         setWinners(snap.data());
+                        console.log("winners fetched", snap.data());
                         const winners = docSnap.data()?.winners || [];
                         const winnerEntry = winners.find(w => w.user_id === user.id);
 
@@ -128,9 +133,10 @@ const ProfileBodyCntn = () => {
     useEffect(() => {
         const fetchLeaderboardPreview = async () => {
             const localData = localStorage.getItem('leaderboard');
-            if (localData) {
+            const parsed = JSON.parse(localData || {});
+            if (localData && Date.now() < parsed?.expiryTime) {
                 try {
-                    const parsed = JSON.parse(localData);
+                    setToExprire(parsed?.expiryTime)
                     
                     if (parsed.expiryTime && Date.now() < parsed.expiryTime) {
                         setPreview(parsed.data);
@@ -180,7 +186,7 @@ const ProfileBodyCntn = () => {
             };
 
             localStorage.setItem('leaderboard', JSON.stringify(finalObject));
-            
+            setToExprire(finalObject.expiryTime)
             setPreview(sliced);
         };
 
@@ -364,7 +370,7 @@ const ProfileBodyCntn = () => {
                                     <span className="fullname">
                                         {isCurrentUser ? 'YOU' : `${userObj?.fullname} || John Doe`}
                                     </span>
-                                    <span className="points">{formatNumber(userObj?.points)} pts</span>
+                                    <span className="points"><b>{formatNumber(userObj?.points)}</b> pts</span>
                                     <span className="reward">
                                         {rewardMap[`${userObj?.position}`]
                                             ? <b>{`₦${formatNumber(rewardMap[`${userObj?.position}`])}`}</b>

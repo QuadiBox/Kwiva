@@ -45,7 +45,7 @@ export default function GoogleAd({ slot = "1234567890", adKey }) {
         return (
             <>
                 {visible && (
-                    <div className="temporaryAdDisplay">
+                    <div ref={adRef} className="temporaryAdDisplay">
                         <span></span>
                         This section will display ad.
                     </div>
