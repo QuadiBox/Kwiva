@@ -72,7 +72,7 @@ const ProfileBodyCntn = () => {
                     if (snap.exists()) {
                         setWinners(snap.data());
                         console.log("winners fetched", snap.data());
-                        const winners = docSnap.data()?.winners || [];
+                        const winners = snap.data()?.winners || [];
                         const winnerEntry = winners.find(w => w.user_id === user.id);
 
                         if (winnerEntry) {
