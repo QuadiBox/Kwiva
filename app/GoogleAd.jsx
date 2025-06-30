@@ -1,28 +1,72 @@
 "use client";
 
-import React from "react";
+import { useEffect, useState, useRef } from "react";
 
 const isAdEnabled = false; // Change to true when Google verifies your site
 
-export default function GoogleAd() {
+export default function GoogleAd({ slot = "1234567890", adKey }) {
+    const adRef = useRef(null);
+    const [visible, setVisible] = useState(false);
+
+    useEffect(() => {
+        if (!adRef.current) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setVisible(true);
+                    observer.disconnect(); // load once
+                }
+            },
+            { threshold: 0.15 }
+        );
+
+        observer.observe(adRef.current);
+        return () => observer.disconnect();
+    }, []);
+
+    useEffect(() => {
+        if (
+            isAdEnabled &&
+            visible &&
+            typeof window !== "undefined" &&
+            window.adsbygoogle &&
+            process.env.NODE_ENV === "production"
+        ) {
+            try {
+                (window.adsbygoogle = window.adsbygoogle || []).push({});
+            } catch (e) {
+                console.error("Adsense push error:", e);
+            }
+        }
+    }, [visible, adKey]);
+
     if (!isAdEnabled) {
         return (
-            <div className="temporaryAdDisplay">
-                <span></span>
-                This section will display ad.
-            </div>
+            <>
+                {visible && (
+                    <div className="temporaryAdDisplay">
+                        <span></span>
+                        This section will display ad.
+                    </div>
+                )}
+            </>
         );
     }
 
     return (
-        // Example Google AdSense snippet (adjust according to your actual ad slot)
-        <ins
-            className="adsbygoogle"
-            style={{ display: "block" }}
-            data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-            data-ad-slot="1234567890"
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-        ></ins>
+        <>
+            {visible && (
+                <ins
+                    className="adsbygoogle"
+                    style={{ display: "block", margin: "0.1rem auto" }}
+                    data-ad-client="ca-pub-xxxxxxxxxxxxxxxx" // Replace with your actual ad client ID
+                    data-ad-slot={slot}
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"
+                    ref={adRef}
+                ></ins>
+            )}
+        </>
     );
 }

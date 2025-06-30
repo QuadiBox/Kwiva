@@ -4,12 +4,12 @@ import HomeHeader from "./homeComponent/header";
 import ArticleWrapper from "./homeComponent/ArticleList";
 import Footer from "./homeComponent/Footer";
 
-export const revalidate = 60 * 60 * 4; // Cache for 4 hours
+export const revalidate = 60 * 60 * 12; // Cache for 4 hours
 
 export async function generateMetadata() {
 
   return {
-    title: 'Short Histories...',
+    title: 'Kwiva | Short Histories...',
     description: "History is littered with the extraordinary; moments that shook empires, lives that defied expectations, and events that continue to echo through time. On this page, you'll find our growing collection of captivating historical stories, each one broken into rich, episodic narratives that bring the past vividly to life. We publish new stories every day, and when a new historical tale is released, all its episodes are posted at once.",
   };
 }

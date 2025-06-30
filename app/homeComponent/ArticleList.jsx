@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 export default function ArticleWrapper({ serverData }) {
     const [story, setStory] = useState(serverData);
-    const [storyOrder, setStoryOrder] = useState('descending');
+    const [storyOrder, setStoryOrder] = useState('ascending');
 
     const sortHistoryList = () => {
 
@@ -49,8 +49,8 @@ export default function ArticleWrapper({ serverData }) {
 
                     <div className="childDisplay">
                         <h3>Sort By:</h3>
-                        <div onClick={() => {setStoryOrder('descending')}}>Newest to Oldest {storyOrder === 'descending' && (<i className="icofont-check-alt"></i>)}</div>
                         <div onClick={() => {setStoryOrder('ascending')}}>Oldest to Newest {storyOrder === 'ascending' && (<i className="icofont-check-alt"></i>)}</div>
+                        <div onClick={() => {setStoryOrder('descending')}}>Newest to Oldest {storyOrder === 'descending' && (<i className="icofont-check-alt"></i>)}</div>
                     </div>
                 </button>
             </div>

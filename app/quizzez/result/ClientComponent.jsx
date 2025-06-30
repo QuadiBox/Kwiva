@@ -29,8 +29,8 @@ export default function QuizResultPage() {
             return acc + (storedAnswers[i] === parseInt(q.answer) ? 1 : 0);
         }, 0);
 
-        const basePoints = 20;
-        const earnedPoints = correct * 2;
+        const basePoints = 10;
+        const earnedPoints = correct * 1;
         const total = basePoints + earnedPoints;
 
         console.log(correct);

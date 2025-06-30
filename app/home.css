@@ -149,6 +149,13 @@
   pointer-events: none;
 }
 
+.smallHeaderSect #noTransform{
+  opacity: 1 !important;
+  transform: translateY(0px) !important;
+  transition: none;
+  pointer-events: all !important;
+}
+
 /* Active visible state — we'll toggle this with JS */
 .smallHeaderSect.active {
   background-color: var(--gray-hue-3);
@@ -338,7 +345,7 @@
 
 .historiesCntn {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
   width: 100%;
   padding: 2em var(--gen-padding);
 }

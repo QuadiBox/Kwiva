@@ -200,6 +200,8 @@
 .invitationDetails{
   width: 100%;
   max-width: 500px;
+  height: 400px;
+  max-height: 400px;
   margin-inline: auto;
   margin-top: 3em;
   border-radius:  5px;

@@ -16,7 +16,7 @@ export default function InviteClientPage() {
     const searchParams = useSearchParams();
     const [inviterName, setInviterName] = useState('');
     const [copySuccess, setCopySuccess] = useState('');
-    const [referralLink, setReferralLink] = useState('localhost:3000/invite/?ref=user_123%Alade%Fatokun');
+    const [referralLink, setReferralLink] = useState('');
     const [currentUserObj, setCurrentUserObj] = useState({});
 
 
@@ -54,7 +54,7 @@ export default function InviteClientPage() {
                 if (referrerSnap.exists()) {
                     const referrerData = referrerSnap.data();
                     const summaryDocId = referrerData.summaryDocId;
-                    const updatedPoints = (referrerData.points || 0) + 20;
+                    const updatedPoints = (referrerData.points || 0) + 15;
 
                     // 1. Update referrer’s user doc
                     await updateDoc(referrerRef, {
@@ -72,7 +72,7 @@ export default function InviteClientPage() {
                             if (u.id === referrerId) {
                                 return {
                                     ...u,
-                                    points: (u.points || 0) + 20,
+                                    points: (u.points || 0) + 15,
                                     referrals: [...(u.referrals || []), user.id],
                                 };
                             }
@@ -84,7 +84,7 @@ export default function InviteClientPage() {
                         });
                     }
 
-                    console.log('referrer details updated', "20 added points");
+                    console.log('referrer details updated', "15 added points");
 
 
                     // 3. Update current user’s referrer field
@@ -166,7 +166,7 @@ export default function InviteClientPage() {
                 </p>
             )}
 
-            <h2 className="text-xl font-bold mb-2">Your Invite Link: <span>Invite your friends & family, earn</span> <b>20 points</b> <span> when they register.</span></h2>
+            <h2 className="text-xl font-bold mb-2">Your Invite Link: <span>Invite your friends & family, earn</span> <b>15 points</b> <span> when they register.</span></h2>
             <div className="inviteLinkCntn">
                 <input
                     type="text"

@@ -91,7 +91,7 @@ export default function QuizQuestionPage({ number }) {
 
             {/* Example ad component */}
             <div className="ad_slot">
-                <GoogleAd></GoogleAd>
+                <GoogleAd key={`ad-qz-${quiz?.id}-${number}`} adKey={`ad-qz-${quiz?.id}-${number}`}></GoogleAd>
             </div>
 
             <div className='theQuestionNavCntn'>

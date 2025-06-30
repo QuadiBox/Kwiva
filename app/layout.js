@@ -9,6 +9,7 @@ import "./navbar.css";
 import "./footer.css";
 import "./invite.css";
 import "./contact.css";
+import "./me.css";
 import "../icofont/icofont.min.css"
 
 import { ClerkProvider } from "@clerk/nextjs";

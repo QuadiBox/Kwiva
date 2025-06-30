@@ -16,6 +16,13 @@ const StoryContent = ({ htmlContent }) => {
     // Split HTML string at each [AD] marker
     const sections = htmlContent;
 
+    const slotIds = [
+        '1234567890', // slot for ad 1
+        '2345678901', // slot for ad 2
+        '3456789012', // slot for ad 3
+        // repeat or add more as needed
+    ];
+
     useEffect(() => {
         const timer = setTimeout(() => {
             setTimerDone(true);
@@ -140,7 +147,7 @@ const StoryContent = ({ htmlContent }) => {
                 <React.Fragment key={index}>
                     <section dangerouslySetInnerHTML={{ __html: section }} />
                     {/* Insert GoogleAd component except after the last section */}
-                    {index < sections.length - 1 && <GoogleAd />}
+                    {index < sections.length - 1 && <GoogleAd key={`google-ad-${index}`} adKey={`google-ad-${index}`} slot={slotIds[index % slotIds.length]}/>}
                 </React.Fragment>
             ))}
 

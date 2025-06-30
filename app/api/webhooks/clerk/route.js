@@ -33,7 +33,7 @@ async function updateUserList(userShortData) {
     : [];
 
   // Create new batch if full
-  if (usersArray.length >= 500) {
+  if (usersArray.length >= 1000) {
     batchNumber++;
     usersArray = [];
   }
@@ -116,7 +116,9 @@ export async function POST(req) {
     referrals: [],
     fullname: `${eventData?.last_name || ""} ${eventData?.first_name || ""}`,
     user_id: eventData?.id,
-    m_points: 0
+    username: eventData?.username,
+    last_month_points: 0,
+    last_month_position: null
   };
 
   const toUsers = {

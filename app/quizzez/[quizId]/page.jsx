@@ -46,7 +46,7 @@ export default async function QuizIntroPage({ params }) {
 
                 {/* Example ad component */}
                 <div className="ad_slot">
-                    <GoogleAd></GoogleAd>
+                    <GoogleAd key={`ad-qz-${params.quizId}-start`} adKey={`ad-qz-${params.quizId}-start`}></GoogleAd>
                 </div>
 
                 <Startbutton dbData={cleanedData} quizId={params.quizId}></Startbutton>

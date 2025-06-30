@@ -1,0 +1,390 @@
+:root {
+  --max-width: 1100px;
+  
+  --sec-hue-1: #000000;
+  --sec-hue-2: #303030;
+
+  --primary-clr-1: #ffffff;
+  --primary-clr-2: #faf8ff;
+
+  --gray-hue-1: #5e5e5e;
+  --gray-hue-2: #919191;
+  --gray-hue-3: #c6c6c6;
+
+  --accent-clr-1: #a126a0;
+  --accent-clr-2: #ac84a8;
+
+  --danger-clr: #ff5b6a;
+  
+  --nav-height: 60px;
+
+  --gen-border-radius: 10px;
+  --font-al: --font-a;
+
+  --gen-padding: 15%;
+  --small-padding: 5%;
+
+  --primary-gradient-clr: linear-gradient(180deg, #B4079D 0%, #FFCC70 146.9%);
+}
+
+.profiletop{
+    margin-top: var(--small-header-height);
+    width: 100%;
+    padding-inline: var(--gen-padding);
+    padding-block: 1em;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.profiletop h1{
+  font-size: 2em;
+  color: var(--sec-hue-1);
+  font-weight: 400;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Change this number to how many lines you want */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-clamp: 1;
+}
+
+
+.profiletop a img{
+  width: 35px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50px;
+}
+
+.profileBodyCntn{
+  width: 100%;
+  padding-inline: var(--gen-padding);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  padding-bottom: 3em;
+}
+
+.theprofileDetail{
+  margin-top: 2.5em;
+  width: 100%;
+  max-width: 500px;
+  border-radius: var(--gen-border-radius);
+  border: 1px dashed var(--sec-hue-1);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+}
+
+.unitDetl{
+  width: 100%;
+  display: grid;
+  grid-template-rows: max-content 110px;
+}
+
+.unitDetl.left{
+  border-right: 1px dashed var(--sec-hue-1);
+}
+
+.unitDetl h2{
+  width: 100%;
+  background-color: var(--sec-hue-1);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 8px 10px;
+  font-size: 1.1em;
+  color: var(--primary-clr-1);
+  font-weight: 500;
+}
+
+.unitDetl p{
+  width: 100%;
+  background-color: transparent;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 8px 10px;
+  font-size: 3em;
+  color: var(--sec-hue-1);
+  font-weight: 400;
+}
+
+.profileLinksGrandCntn{
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.profileLinksCntn{
+  width: 100%;
+  border-radius: var(--gen-border-radius);
+  border: 1px dashed var(--sec-hue-1);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+}
+
+.unitProfileDetlLink{
+  min-height: 40px;
+  font-size: 1.1em;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 10px;
+  color: var(--primary-clr-1);
+  background-color: var(--sec-hue-1);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.unitProfileDetlLink:nth-of-type(1) {
+  border-right: 1px dashed var(--primary-clr-1);
+}
+
+.unitProfileDetlLink:hover{
+  background-color: var(--primary-clr-1);
+  color: var(--sec-hue-1);
+}
+
+.profileWithdrawalInfo{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 5px;
+}
+
+.profileWithdrawalInfo p{
+  font-size: 0.9em;
+  color: var(--gray-hue-1);
+  font-weight: 500;
+}
+.profileWithdrawalInfo p span{
+  color: var(--sec-hue-1);
+  font-weight: 600;
+}
+
+.lastMonthData{
+  width: 100%;
+  max-width: 500px;
+}
+
+.lastMonthData p{
+  font-size: 1.1em;
+  font-weight: 500;
+  color: var(--sec-hue-1);
+}
+
+.monthlyLeaderboardContainer{
+  margin-top: 2.5em;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.monthlyLeaderboardContainer h2{
+  font-size: 1.7em;
+  font-weight: 500;
+  color: var(--sec-hue-1);
+}
+.monthlyLeaderboardContainer > p{
+  font-size: 0.95em;
+  font-weight: 400;
+  color: var(--sec-hue-1);
+}
+.monthlyLeaderboardContainer > p span{
+  font-size: 1.25em;
+  font-weight: 600;
+  color: var(--sec-hue-1);
+}
+
+.leaderboardList{
+  width: 100%;
+  padding: 15px 10px;
+  border: 1px dashed var(--sec-hue-1);
+  border-radius: var(--gen-border-radius);
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.leaderboardItem{
+  background-color: var(--primary-clr-1);
+  display: grid;
+  grid-template-columns: 8ch 1fr 8ch 6ch;
+  border-bottom: 1px dashed var(--sec-hue-1);
+  /* height: 30px; */
+  padding: 10px;
+  align-items: center;
+}
+
+.leaderboardItem.currentUser{
+  background-color: var(--gray-hue-3);
+}
+
+.leaderboardItem > span{
+  display: flex;
+  align-items: center;
+}
+
+.leaderboardItem .position{
+  padding-right: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Change this number to how many lines you want */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-clamp: 1;
+  font-size: 1.1em;
+  font-weight: 400;
+}
+.leaderboardItem .fullname{
+  padding-right: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Change this number to how many lines you want */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-clamp: 1;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+.leaderboardItem.currentUser .fullname{
+  font-weight: 600;
+}
+
+.leaderboardItem span b{
+  font-size: 1.1em;
+}
+
+.spaceLeaderboard{
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-size: 2em;
+  font-weight: 500;
+  padding-block: 0.9em;
+  color: var(--gray-hue-2);
+  border-bottom: 1px dashed var(--sec-hue-1);
+}
+
+.withdrawFormCntn{
+  width: 100%;
+  padding-inline: var(--gen-padding);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-block: 3em 2em;
+}
+
+.withdrawFormCntn .preSect{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-inline: 20px;
+}
+
+.withdrawFormCntn > h2{
+  font-size: 2.2em;
+  color: var(--sec-hue-1);
+  font-weight: 400;
+}
+.withdrawFormCntn > h3{
+  font-size: 1.6em;
+  color: var(--sec-hue-1);
+  font-weight: 500;
+  text-align: center;
+  margin-top: 2.2em;
+}
+.withdrawFormCntn > p{
+  font-size: 1.02em;
+  color: var(--sec-hue-1);
+  font-weight: 400;
+}
+
+.withdrawForm{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-end;
+  margin-top: 15px;
+}
+
+.withdrawInputsCntn{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  align-items: center;
+}
+
+.withdrawInputsCntn input{
+  width: 100%;
+  height: 40px;
+  border: 1px dashed var(--sec-hue-1);
+  /* background-color: var(--gray-hue-3); */
+  border-radius: 5px;
+  font-size: 1.05em;
+  font-weight: 500;
+  color: var(--sec-hue-1);
+  padding-left: 10px;
+}
+
+input::placeholder{
+  color: var(--gray-hue-1);
+  font-family: monospace;
+}
+
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none; 
+  margin: 0;
+}
+
+.withdrawForm button[type="submit"] {
+  width: max-content;
+  max-width: max-content;
+    background-color: var(--sec-hue-1);
+    border-radius: 5px;
+    padding: 0.95em 1.3em;
+    color: var(--primary-clr-1);
+}
+
+
+
+
+
+
+
+
+
+
+
+.theManageCntn{
+    width: 100%;
+    padding-inline: var(--gen-padding);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+

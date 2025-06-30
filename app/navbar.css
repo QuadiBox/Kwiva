@@ -23,7 +23,8 @@
   
     --gen-border-radius: 10px;
     --font-al: --font-a;
-  
+
+    --gen-padding: 15%;
   
     --primary-gradient-clr: linear-gradient(180deg, #B4079D 0%, #FFCC70 146.9%);
 }
@@ -31,7 +32,7 @@
 .sticky-bar {
   position: fixed;
   bottom: 90px;
-  right: 15%;
+  right: var(--gen-padding);
   display: flex;
   flex-direction: column;
   align-items: center;
