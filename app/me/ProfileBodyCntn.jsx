@@ -56,22 +56,18 @@ const ProfileBodyCntn = () => {
     useEffect(() => {
         if (!user) return;
         const today = new Date();
-        const day = today.getDate();
-        console.log("strting to fetch winners");
-        
+        const day = today.getDate();        
 
         if (day >= 25 && day <= 30) {
             const month = String(today.getMonth() + 1).padStart(2, '0');
             const year = today.getFullYear();
             const docId = `${month}-${year}`;
             const ref = doc(db, 'winners', docId);
-            console.log("it's withdrawal days!!!!");
 
             getDoc(ref)
                 .then((snap) => {
                     if (snap.exists()) {
                         setWinners(snap.data());
-                        console.log("winners fetched", snap.data());
                         const winners = snap.data()?.winners || [];
                         const winnerEntry = winners.find(w => w.user_id === user.id);
 
