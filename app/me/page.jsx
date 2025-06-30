@@ -1,11 +1,8 @@
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../db/FirebaseConfig"; // Adjust the import to your actual Firebase setup
 import Footer from "../homeComponent/Footer";
 import { currentUser } from "@clerk/nextjs/server";
 import ProfileHeaderSect from "./ProfileHeaderSect";
 import Link from "next/link";
 import ProfileBodyCntn from "./ProfileBodyCntn";
-import { SignedIn } from "@clerk/nextjs/dist/types/components.server";
 import { SignOutButton } from "@clerk/nextjs";
 
 export async function generateMetadata() {
