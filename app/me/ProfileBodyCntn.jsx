@@ -75,7 +75,7 @@ const ProfileBodyCntn = () => {
                         const winners = snap.data()?.winners || [];
                         const winnerEntry = winners.find(w => w.user_id === user.id);
 
-                        if (winnerEntry) {
+                        if (winnerEntry && parseInt(winnerEntry?.points) > 1050) {
                             setIsWinner(true);
                         }
                     } else {
@@ -198,7 +198,7 @@ const ProfileBodyCntn = () => {
 
         const interval = setInterval(() => {
             const now = Date.now();
-            const diff = preview?.expiryTime - now;
+            const diff = toExpiry - now;
             // const diff = 1751088691636 - now;
             setRemainingTime(formatTime(diff));
         }, 1000);
@@ -288,7 +288,7 @@ const ProfileBodyCntn = () => {
                     </p>
                 ) : (
                     <p>
-                        This is likely your first month. Rack up points to earn exciting rewards at the end of the month. <b>Godspeed!🚀</b>
+                        Looks like it is your first month here. Rack up points to earn exciting rewards at the end of the month. <b>Godspeed!🚀</b>
                     </p>
                 )}
             </div>
@@ -310,7 +310,7 @@ const ProfileBodyCntn = () => {
                                         >
                                             <span className="position">#{(userObj?.position).toLocaleString()}</span>
                                             <span className="fullname">
-                                                {isCurrentUser ? 'YOU' : `${userObj?.fullname} || John Doe`}
+                                                {isCurrentUser ? 'YOU' : `${userObj?.fullname ? userObj?.fullname : 'John Doe'}`}
                                             </span>
                                             <span className="points">{formatNumber(userObj?.points)} pts</span>
                                             <span className="reward">
