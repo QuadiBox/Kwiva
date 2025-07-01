@@ -74,7 +74,7 @@ export default function InviteClientPage() {
                     // 2. Update referrer in userlist summary doc
                     const summaryRef = doc(db, "userlist", summaryDocId);
                     const summarySnap = await getDoc(summaryRef);
-                    console.log('fetching referrer userlist object', summarySnap, summaryDocId);
+                    console.log('fetching referrer userlist object', summarySnap.data(), summaryDocId);
                     
 
                     if (summarySnap.exists()) {
@@ -89,7 +89,7 @@ export default function InviteClientPage() {
                             }
                             return u;
                         });
-                        console.log("userlist referrer object updated succesfully");
+                        console.log("userlist referrer object updated succesfully", updatedUsers);
                         
 
                         await updateDoc(summaryRef, {
