@@ -80,7 +80,7 @@ export default function InviteClientPage() {
                     if (summarySnap.exists()) {
                         const summaryData = summarySnap.data();
                         const updatedUsers = (summaryData.users || []).map((u) => {
-                            if (u.id === referrerId) {
+                            if (u.user_id === referrerId) {
                                 return {
                                     ...u,
                                     points: (u.points || 0) + 15,
