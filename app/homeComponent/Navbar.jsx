@@ -4,6 +4,8 @@ import Link from 'next/link'
 import React, { useState, useEffect } from 'react'
 import { usePathname, useRouter } from 'next/navigation';
 import ProgressBarWrapper from '../ProgressBarWrapper';
+import { useSearchParams } from 'next/navigation';
+
 
 const Navbar = () => {
     const [openMenu, setOpenMenu] = useState(false);
@@ -11,6 +13,7 @@ const Navbar = () => {
 
     const pathname = usePathname();
     const router = useRouter();
+    const searchParams = useSearchParams();
 
     // Helper to detect article page
     const isArticlePage = (path) => path.startsWith('/s_') || path.startsWith('/blogs/b_');
@@ -60,6 +63,11 @@ const Navbar = () => {
     useEffect(() => {
         const lastReadingComplete = localStorage.getItem('lastPageReadingComplete');
         const hasJustNavigatedBack = localStorage.getItem('hasJustNavigatedBack');
+        // // const refParam = `user_2zF9UnxCDI9zUJCX9FyoKyCMBSn+Oladoja+Abd%27Quadri+Damilola`
+        // const refParam = searchParams.get('ref'); // ref=userId%first%last
+        // const refSomething = refParam ? refParam.split(' ') : [];
+        // console.log(refSomething);
+        
 
         if (hasJustNavigatedBack === 'true') {
             // If skip flag is present, remove it and skip modal display

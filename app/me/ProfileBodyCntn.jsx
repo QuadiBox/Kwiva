@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { db } from "../db/FirebaseConfig";
 import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
-import { useUser } from '@clerk/nextjs';
+import { SignOutButton, useUser } from '@clerk/nextjs';
 import Link from "next/link";
 
 
@@ -383,6 +383,7 @@ const ProfileBodyCntn = () => {
                     )}
                 </div>
             </div>
+            <SignOutButton></SignOutButton>
         </div>
     )
 }

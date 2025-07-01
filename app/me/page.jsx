@@ -3,7 +3,6 @@ import { currentUser } from "@clerk/nextjs/server";
 import ProfileHeaderSect from "./ProfileHeaderSect";
 import Link from "next/link";
 import ProfileBodyCntn from "./ProfileBodyCntn";
-import { SignOutButton } from "@clerk/nextjs";
 
 export async function generateMetadata() {
 
@@ -36,7 +35,6 @@ export default async function Page() {
             <div className="profiletop">
                 <h1>Good {getTimeGreeting()}, {user?.username ? user?.username : user?.firstName || 'John Doe'}</h1>
                 <Link href={'/me/manage'}><img src={user?.imageUrl ? user?.imageUrl : "/kwivicon.png"} alt="profile image" /></Link>
-                <SignOutButton></SignOutButton>
             </div>
             <ProfileBodyCntn></ProfileBodyCntn>
             <Footer></Footer>

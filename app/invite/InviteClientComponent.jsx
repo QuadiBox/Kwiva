@@ -28,7 +28,7 @@ export default function InviteClientPage() {
 
         const handleReferral = async () => {
             const refParam = searchParams.get('ref'); // ref=userId%first%last
-            const [referrerId, refFirst, refLast] = refParam ? refParam.split('+') : [];
+            const [referrerId, refFirst, refLast] = refParam ? refParam.split(' ') : [];
 
             // Fetch local user data or fallback to Firestore
             let localUserData = {};
@@ -196,7 +196,7 @@ export default function InviteClientPage() {
                 </div>
                 <div className="gbesi">
                     <h4>Total Referral Points</h4>
-                    <p>{formatNumber((currentUserObj?.referrals?.length || 0) * 20)}</p>
+                    <p>{formatNumber((currentUserObj?.referrals?.length || 0) * 15)}</p>
                 </div>
             </div>
         </div>
