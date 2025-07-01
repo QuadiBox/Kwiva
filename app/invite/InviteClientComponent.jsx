@@ -53,9 +53,12 @@ export default function InviteClientPage() {
             if (!referrerAlreadySet && referrerId && refFirst && refLast && referrerId !== currentUserId) {
                 // Show who invited you
                 setInviterName(`${refFirst} ${refLast}`);
+                console.log();
+                
 
                 const referrerRef = doc(db, "users", referrerId);
                 const referrerSnap = await getDoc(referrerRef);
+                
 
                 if (referrerSnap.exists()) {
                     const referrerData = referrerSnap.data();
@@ -63,14 +66,16 @@ export default function InviteClientPage() {
                     const updatedPoints = (referrerData.points || 0) + 15;
 
                     // 1. Update referrer’s user doc
-                    await updateDoc(referrerRef, {
-                        points: updatedPoints,
-                        referrals: arrayUnion(user.id),
-                    });
+                    // await updateDoc(referrerRef, {
+                    //     points: updatedPoints,
+                    //     referrals: arrayUnion(user.id),
+                    // });
 
                     // 2. Update referrer in userlist summary doc
                     const summaryRef = doc(db, "userlist", summaryDocId);
                     const summarySnap = await getDoc(summaryRef);
+                    console.log('fetching referrer userlist object', summarySnap, summaryDocId);
+                    
 
                     if (summarySnap.exists()) {
                         const summaryData = summarySnap.data();
@@ -84,6 +89,8 @@ export default function InviteClientPage() {
                             }
                             return u;
                         });
+                        console.log("userlist referrer object updated succesfully");
+                        
 
                         await updateDoc(summaryRef, {
                             users: updatedUsers,
@@ -95,9 +102,9 @@ export default function InviteClientPage() {
 
                     // 3. Update current user’s referrer field
                     const newUserRef = doc(db, "users", user.id);
-                    await updateDoc(newUserRef, {
-                        referrer: referrerId,
-                    });
+                    // await updateDoc(newUserRef, {
+                    //     referrer: referrerId,
+                    // });
                     console.log('referree details updated');
 
                     // 4. Update localStorage
