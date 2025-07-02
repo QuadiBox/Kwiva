@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import GoogleAd from '../GoogleAd';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc, increment } from 'firebase/firestore';
 import { db } from '../db/FirebaseConfig';
 
 const StoryContent = ({ htmlContent }) => {
@@ -89,7 +89,7 @@ const StoryContent = ({ htmlContent }) => {
 
                 // 1️⃣ Update in users collection
                 const userDocRef = doc(db, 'users', userId);
-                await updateDoc(userDocRef, { points: newPoints });
+                await updateDoc(userDocRef, { points: increment(10) });
 
                 // 2️⃣ Update in userlist collection using summaryDocId
                 const summaryDocId = userData.summaryDocId;

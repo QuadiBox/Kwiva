@@ -32,7 +32,6 @@ const ProgressBarWrapper = () => {
     };
 
     useEffect(() => {
-        console.log("fvck!!!!");
         stopLoadingBar()
     }, [pathname]);
 

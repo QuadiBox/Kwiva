@@ -6,24 +6,24 @@ const isAdEnabled = false; // Change to true when Google verifies your site
 
 export default function GoogleAd({ slot = "1234567890", adKey }) {
     const adRef = useRef(null);
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState(true);
 
-    useEffect(() => {
-        if (!adRef.current) return;
+    // useEffect(() => {
+    //     if (!adRef.current) return;
 
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setVisible(true);
-                    observer.disconnect(); // load once
-                }
-            },
-            { threshold: 0.15 }
-        );
+    //     const observer = new IntersectionObserver(
+    //         ([entry]) => {
+    //             if (entry.isIntersecting) {
+    //                 setVisible(true);
+    //                 observer.disconnect(); // load once
+    //             }
+    //         },
+    //         { threshold: 0.15 }
+    //     );
 
-        observer.observe(adRef.current);
-        return () => observer.disconnect();
-    }, []);
+    //     observer.observe(adRef.current);
+    //     return () => observer.disconnect();
+    // }, []);
 
     useEffect(() => {
         if (

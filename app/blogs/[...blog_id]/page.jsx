@@ -54,7 +54,7 @@ export default async function Page({ params }) {
 
     return (
         <div className="storyGrandCntn blogs">
-            <HomeHeader headerTitle={story?.title} headerSubTitle={story?.subtitle} headerImgSrc={"/Kwiva1.png"} headerText={story?.previewText} headerImgType={"story"}></HomeHeader>
+            <HomeHeader headerTitle={story?.title} headerSubTitle={story?.subtitle} headerImgSrc={"/Kwiva1.png"} headerText={story?.previewText} headerImgType={"/blogs_1.png"}></HomeHeader>
             <div className="mainContentCntn">
                 <StoryContent htmlContent={story?.mainContent?.split('[AD]')}></StoryContent>
                 <div className="prevNextCntn">

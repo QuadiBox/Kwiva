@@ -56,7 +56,7 @@ const ProfileBodyCntn = () => {
     useEffect(() => {
         if (!user) return;
         const today = new Date();
-        const day = today.getDate();        
+        const day = today.getDate();
 
         if (day >= 0 && day <= 30) {
             const month = String(today.getMonth() + 1).padStart(2, '0');
@@ -128,27 +128,24 @@ const ProfileBodyCntn = () => {
 
     useEffect(() => {
         const fetchLeaderboardPreview = async () => {
+            if (!user?.id) return;
             const localData = localStorage.getItem('leaderboard');
             const parsed = JSON.parse(localData);
-            if (localData && Date.now() < parsed?.expiryTime) {
-                try {
-                    console.log("setting expiry from local storage", finalObject?.expiryTime);
-                    setToExprire(parsed?.expiryTime)
-                    
-                    if (parsed.expiryTime && Date.now() < parsed.expiryTime) {
-                        setPreview(parsed.data);
-                        return;
-                    }
-                } catch (err) {
-                    console.error('Invalid local leaderboard data:', err);
+            if (localData) {
+                const parsed = JSON.parse(localData);
+
+                // If not expired, use local
+                if (parsed?.expiryTime && Date.now() < parsed.expiryTime) {
+                    setToExprire(parsed?.expiryTime);
+                    setPreview(parsed?.data);
+                    return;
                 }
             }
 
-            if (!user?.id) return;
+
 
             const userlistRef = collection(db, 'userlist');
             const snap = await getDocs(userlistRef);
-
             const allUsers = [];
 
             snap.forEach((docSnap) => {
@@ -179,12 +176,12 @@ const ProfileBodyCntn = () => {
 
             const finalObject = {
                 data: sliced,
-                expiryTime: Date.now() + 1000 * 60 * 60 * 6, // 6 hours
+                expiryTime: Date.now() + 1000 * 60 * 60 * 3, // 3 hours
             };
 
             localStorage.setItem('leaderboard', JSON.stringify(finalObject));
             console.log("setting expiry from DB", finalObject?.expiryTime);
-            
+
             setToExprire(finalObject?.expiryTime)
             setPreview(sliced);
         };

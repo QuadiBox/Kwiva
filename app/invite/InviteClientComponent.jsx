@@ -32,15 +32,10 @@ export default function InviteClientPage() {
 
             // Fetch local user data or fallback to Firestore
             let localUserData = {};
-            try {
-                localUserData = JSON.parse(localStorage.getItem(localKey) || '{}');
-                if (!localUserData.summaryDocId) {
-                    const currentSnap = await getDoc(doc(db, 'users', user.id));
-                    localUserData = currentSnap.data();
-                    localStorage.setItem(localKey, JSON.stringify(localUserData));
-                }
-                setCurrentUserObj(localUserData)
-            } catch { }
+            const currentSnap = await getDoc(doc(db, 'users', user.id));
+            localUserData = currentSnap.data();
+            localStorage.setItem(localKey, JSON.stringify(localUserData));
+            setCurrentUserObj(localUserData);
 
             const referrerAlreadySet = localUserData?.referrer;
 

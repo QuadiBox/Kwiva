@@ -63,10 +63,6 @@ const Navbar = () => {
     useEffect(() => {
         const lastReadingComplete = localStorage.getItem('lastPageReadingComplete');
         const hasJustNavigatedBack = localStorage.getItem('hasJustNavigatedBack');
-        // // const refParam = `user_2zF9UnxCDI9zUJCX9FyoKyCMBSn+Oladoja+Abd%27Quadri+Damilola`
-        // const refParam = searchParams.get('ref'); // ref=userId%first%last
-        // const refSomething = refParam ? refParam.split(' ') : [];
-        // console.log(refSomething);
         
 
         if (hasJustNavigatedBack === 'true') {
