@@ -72,7 +72,7 @@ export default function SearchComponent({ onClose, compType }) {
 
                     {query && filteredResults.length === 0 && (
                         <p className="placeholderText">
-                            No search result for "<strong>{query}</strong>"
+                            No search result for &quot;<strong>{query}</strong>&quot;
                         </p>
                     )}
 
