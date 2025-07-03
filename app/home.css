@@ -259,7 +259,7 @@
   background-color: transparent;
   padding: 15px var(--gen-padding);
   display: flex;
-  justify-content: space-between;
+  gap: 15px;
   align-items: center;
 
   backdrop-filter: blur(10px);
@@ -269,6 +269,23 @@
 .historyListHeader h2 {
   font-size: 1.8em;
   font-weight: 500;
+  color: var(--sec-hue-1);
+}
+
+.historyListHeader .searchBtn{
+  width: 35px;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  font-size: 1.5em;
+  color: var(--sec-hue-1);
+  background-color: transparent;
+  border: none;
+  border: 5px;
+  margin-left: auto;
+}
+
+.searchBtn i{
   color: var(--sec-hue-1);
 }
 
@@ -1063,4 +1080,167 @@ body:has(.noOverflow) {
   margin-top: 15px;
 }
 
+/****** SEARCH OVERLAY STYLING STARTS HERE******/
+.searchOverlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background-color: #e2e2e256;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 10px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
 
+.searchBox {
+  width: 100%;
+  height: 100%;
+  max-width: 800px;
+  max-height: 530px;
+  background-color: #ffffffbf;
+  color: var(--primary-clr-2);
+  position: relative;
+  border-radius: var(--gen-border-radius);
+  border: 1px dashed var(--sec-hue-1);
+  padding-block: 12px 25px;
+  padding-inline: 12px 12px;
+  display: grid;
+  grid-template-rows: max-content max-content 1fr;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media screen and (max-width: 600px)  {
+  .searchBox {
+    height: 90%;
+    max-width: 800px;
+    max-height: 700px;
+    background-color: #ffffffbf;
+    color: var(--primary-clr-2);
+    position: relative;
+    border-radius: var(--gen-border-radius);
+    border: 1px dashed var(--sec-hue-1);
+    padding-block: 12px 25px;
+    padding-inline: 12px 12px;
+    display: grid;
+    grid-template-rows: max-content max-content 1fr;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.searchcloseBtn {
+  border: none;
+  color: var(--sec-hue-1);
+  font-size: 2em;
+  cursor: pointer;
+  background-color: #e2e2e256;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  width: 30px;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  margin-left: auto;
+}
+
+.searchcloseBtn i{
+  color: var(--sec-hue-1);
+}
+
+.searchInput {
+  width: 100%;
+  height: 40px;
+  padding: 0.8rem 1rem;
+  font-size: 1.2rem;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  background-color: var(--gray-hue-3);
+  color: var(--sec-hue-1);
+}
+
+.searchResults {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-top: 10px;
+  overscroll-behavior: contain;
+  
+  gap: 10px;
+}
+
+.searchResults::-webkit-scrollbar{
+  width: 3.5px;
+}
+
+.placeholderText {
+  text-align: center;
+  color: var(--gray-hue-1);
+  font-size: 2em;
+  font-weight: 400;
+  font-weight: 400;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+}
+.placeholderText strong{
+  text-align: center;
+  color: var(--sec-hue-1);
+  font-weight: 400;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.resultItem {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #bbbbbbe0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* .resultTitle, .resultSubtitle {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  color: #ccc;
+} */
+
+#highlight {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--sec-hue-1);
+}
+
+#normal {
+  color: var(--gray-hue-1);
+}
+
+.searchSpinner{
+  transform-origin: center;
+  animation: spinspin 0.5s ease-in-out infinite;
+}
+
+@keyframes spinspin {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}

@@ -2,6 +2,34 @@ import { SignIn } from '@clerk/nextjs'
 import Link from 'next/link'
 import { light } from '@clerk/themes'
 
+export const metadata = {
+  title: 'Kwiva | Sign In',
+  description: "Join our community today to live, laugh, learn & earn.  __QuadBox's Kwiva__",
+  openGraph: {
+    type: "website",
+    url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
+    title: 'Kwiva | Sign In',
+    description: "Join our community today to live, laugh, learn & earn.  __QuadBox's Kwiva__",
+    images: [
+      {
+        url: "https://kwiva.online/kwiva_large.png"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_image_large",
+    creator: "@QuadVox",
+    url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
+    title: 'Kwiva | Sign In',
+    description: "Join our community today to live, laugh, learn & earn.  __QuadBox's Kwiva__",
+    images: [
+      {
+        url: "https://kwiva.online/kwiva_large.png"
+      }
+    ]
+  },
+}
+
 const Page = () => {
     return (
         <div className='signInCntn'>

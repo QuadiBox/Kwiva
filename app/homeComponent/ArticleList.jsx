@@ -1,10 +1,12 @@
 'use client';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import SearchBtn from './SearchBtn';
+import SearchComponent from './SearchComponent';
 
-export default function ArticleWrapper({ serverData }) {
-    const [story, setStory] = useState(serverData);
+export default function ArticleWrapper({ serverData, compType }) {
     const [storyOrder, setStoryOrder] = useState('ascending');
+    const [showSearch, setShowSearch] = useState(false);
 
     const sortHistoryList = () => {
 
@@ -15,76 +17,72 @@ export default function ArticleWrapper({ serverData }) {
             return 0;
         };
 
-        return story.sort((a, b) => {
+        return serverData.sort((a, b) => {
             const timeA = getTime(a.createdAt);
             const timeB = getTime(b.createdAt);
             return storyOrder === "ascending" ? timeA - timeB : timeB - timeA;
         });
     }
 
+    useEffect(() => {
+        if (showSearch) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = 'visible'
+        }
+    }, [showSearch]);
+
     const sortedHistoryList = sortHistoryList();
 
-    // useEffect(() => {
-    //     const cached = localStorage.getItem(`all_stories`);
-    //     const cacheTime = localStorage.getItem(`all_stories_time`);
-
-    //     const isExpired = !cacheTime || (Date.now() - parseInt(cacheTime)) > 1000 * 60 * 60 * 4;
-
-    //     if (cached && !isExpired) {
-    //         setStory(JSON.parse(cached));
-    //     } else {
-    //         localStorage.setItem(`all_stories`, JSON.stringify(serverData));
-    //         localStorage.setItem(`all_stories_time`, Date.now().toString());
-    //     }
-    // }, [serverData]);
-
-    
-
     return (
-        <article className='historiesGrandCntn'>
-            <div className="historyListHeader">
-                <h2>All Episodes</h2>
-                <button type="button" className='blackBtn motherBtn'>
-                    Sort
+        <>
+            <article className='historiesGrandCntn'>
+                <div className="historyListHeader">
+                    <h2>All Episodes</h2>
+                    <SearchBtn setShowSearch={setShowSearch} compType={compType}></SearchBtn>
+                    <button type="button" className='blackBtn motherBtn'>
+                        Sort
 
-                    <div className="childDisplay">
-                        <h3>Sort By:</h3>
-                        <div onClick={() => {setStoryOrder('ascending')}}>Oldest to Newest {storyOrder === 'ascending' && (<i className="icofont-check-alt"></i>)}</div>
-                        <div onClick={() => {setStoryOrder('descending')}}>Newest to Oldest {storyOrder === 'descending' && (<i className="icofont-check-alt"></i>)}</div>
-                    </div>
-                </button>
-            </div>
-            <div className="historiesCntn">
-                {
-                    sortedHistoryList.map((elem) => (
-                        <div key={`historyList_${elem?.id}`} className="unitHistoryCntn">
-                            <div className="historyHead">
-                                <img src="/stories_1.png" alt="history image" />
-                                <Link href={`/${elem?.id}`} className="historyheadings">
-                                    <h3>{elem?.title}</h3>
-                                    {
-                                        elem?.subtitle && (
-                                            <h4>{elem?.subtitle}</h4>
-                                        )
-                                    }
-                                </Link>
-                            </div>
-                            <p>{elem?.previewText}</p>
-                            <div className="historyFooter">
-                                <p>Posted On: <span>{new Intl.DateTimeFormat("en-US", {
+                        <div className="childDisplay">
+                            <h3>Sort By:</h3>
+                            <div onClick={() => { setStoryOrder('ascending') }}>Oldest to Newest {storyOrder === 'ascending' && (<i className="icofont-check-alt"></i>)}</div>
+                            <div onClick={() => { setStoryOrder('descending') }}>Newest to Oldest {storyOrder === 'descending' && (<i className="icofont-check-alt"></i>)}</div>
+                        </div>
+                    </button>
+                </div>
+                <div className="historiesCntn">
+                    {
+                        sortedHistoryList.map((elem) => (
+                            <div key={`historyList_${elem?.id}`} className="unitHistoryCntn">
+                                <div className="historyHead">
+                                    <img src="/stories_1.png" alt="history image" />
+                                    <Link href={`/${elem?.id}`} className="historyheadings">
+                                        <h3>{elem?.title}</h3>
+                                        {
+                                            elem?.subtitle && (
+                                                <h4>{elem?.subtitle}</h4>
+                                            )
+                                        }
+                                    </Link>
+                                </div>
+                                <p>{elem?.previewText}</p>
+                                <div className="historyFooter">
+                                    <p>Posted On: <span>{new Intl.DateTimeFormat("en-US", {
                                         weekday: "long",
                                         year: "numeric",
                                         month: "long",
                                         day: "numeric",
                                     }).format(elem?.createdAt)}</span></p>
-                                <Link href={`${elem?.id.startsWith("s") ? `/${elem?.id}`: `/blogs/${elem?.id}`}`}><i className="icofont-readernaut"></i></Link>
+                                    <Link href={`${elem?.id.startsWith("s") ? `/${elem?.id}` : `/blogs/${elem?.id}`}`}><i className="icofont-readernaut"></i></Link>
+                                </div>
                             </div>
-                        </div>
 
-                    ))
-                }
-                
-            </div>
-        </article>
+                        ))
+                    }
+
+                </div>
+            </article>
+            {showSearch && <SearchComponent onClose={() => setShowSearch(false)} compType={compType}/>}
+        </>
     );
 }

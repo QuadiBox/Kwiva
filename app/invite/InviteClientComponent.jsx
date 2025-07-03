@@ -39,12 +39,13 @@ export default function InviteClientPage() {
 
             const referrerAlreadySet = localUserData?.referrer;
 
-            
-
-            if (!referrerAlreadySet && referrerId && refFirst && refLast && referrerId !== currentUserId) {
+            if (referrerId && refFirst && refLast) {
                 // Show who invited you
                 setInviterName(`${refFirst} ${refLast}`);
-                
+            }
+
+
+            if (!referrerAlreadySet && referrerId && refFirst && refLast && referrerId !== currentUserId) {
 
                 const referrerRef = doc(db, "users", referrerId);
                 const referrerSnap = await getDoc(referrerRef);

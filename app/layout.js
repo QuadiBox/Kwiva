@@ -32,7 +32,7 @@ export const metadata = {
     description: 'A learning community with rewards, stories, blogs, quizzez and laughter — and rewarding our most active users along the way.',
     images: [
       {
-        url: "https://kwiva.online/opengraph-image.png"
+        url: "https://kwiva.online/kwiva_large.png"
       }
     ]
   },
