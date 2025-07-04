@@ -4,13 +4,38 @@ import HomeHeader from "../homeComponent/header";
 import ArticleWrapper from "../homeComponent/ArticleList";
 import Footer from "../homeComponent/Footer";
 
+
 export const revalidate = 60 * 60 * 4; // Cache for 4 hours
+
 
 export async function generateMetadata() {
 
   return {
-    title: 'Blogposts - DIY / How-To',
-    description: "Our Blog section is your daily dose of DIY brilliance and 'How to' magic. Discover clever tricks, creative projects, and step-by-step guides that make life a little simpler and a lot more fun. Explore, learn, and create—one post at a time.",
+    title: 'Blogposts - DIY & How-To',
+    description: "Welcome to QuadBox's Kwiva",
+    openGraph: {
+      type: "website",
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
+      title: 'Blogposts - DIYs & How-Tos',
+      description: "Our Blog section is your daily dose of DIY brilliance and How-to magics. Discover clever tricks, creative projects, and step-by-step guides that make life a little simpler and a lot more fun. Explore, learn, and create; one post at a time.",
+      images: [
+        {
+          url: "https://kwiva.online/blogs_1.png"
+        }
+      ]
+    },
+    twitter: {
+      card: "summary_image_large",
+      creator: "@QuadVox",
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
+      title: 'Blogposts - DIYs & How-Tos',
+      description: "Our Blog section is your daily dose of DIY brilliance and 'How to' magic. Discover clever tricks, creative projects, and step-by-step guides that make life a little simpler and a lot more fun. Explore, learn, and creat; one post at a time.",
+      images: [
+        {
+          url: "https://kwiva.online/blogs_1.png"
+        }
+      ]
+    },
   };
 }
 

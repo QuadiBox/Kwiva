@@ -10,7 +10,30 @@ export async function generateMetadata() {
 
   return {
     title: 'Kwiva | Short Histories...',
-    description: "History is littered with the extraordinary; moments that shook empires, lives that defied expectations, and events that continue to echo through time. On this page, you'll find our growing collection of captivating historical stories, each one broken into rich, episodic narratives that bring the past vividly to life. We publish new stories every day, and when a new historical tale is released, all its episodes are posted at once.",
+    description: "Welcome to QuadBox's Kwiva",
+    openGraph: {
+      type: "website",
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
+      title: 'Kwiva | Short Histories...',
+      description: "History is littered with the extraordinary; moments that shook empires, lives that defied expectations, and events that continue to echo through time. On this page, you'll find our growing collection of captivating historical stories, each one broken into rich, episodic narratives that bring the past vividly to life. We publish new stories every day, and when a new historical tale is released, all its episodes are posted at once.",
+      images: [
+        {
+          url: "https://kwiva.online/stories_1.png"
+        }
+      ]
+    },
+    twitter: {
+      card: "summary_image_large",
+      creator: "@QuadVox",
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
+      title: 'Kwiva | Short Histories...',
+      description: "History is littered with the extraordinary; moments that shook empires, lives that defied expectations, and events that continue to echo through time. On this page, you'll find our growing collection of captivating historical stories, each one broken into rich, episodic narratives that bring the past vividly to life. We publish new stories every day, and when a new historical tale is released, all its episodes are posted at once.",
+      images: [
+        {
+          url: "https://kwiva.online/stories_1.png"
+        }
+      ]
+    },
   };
 }
 
@@ -40,7 +63,7 @@ export default async function Page() {
       <HomeHeader headerTitle={"Short Histories..."} headerSubTitle={null} headerImgSrc={"/Kwiva1.png"} headerText={"History is littered with the extraordinary; moments that shook empires, lives that defied expectations, and events that continue to echo through time. On this page, you'll find our growing collection of captivating historical stories, each one broken into rich, episodic narratives that bring the past vividly to life. We publish new stories every day, and when a new historical tale is released, all its episodes are posted at once."} headerImgType={"/stories_1.png"}></HomeHeader>
       <ArticleWrapper serverData={data} compType={'story'}></ArticleWrapper>
       <Footer></Footer>
-      
+
     </div>
   );
 }

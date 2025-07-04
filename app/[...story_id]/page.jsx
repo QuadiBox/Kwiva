@@ -39,7 +39,30 @@ export async function generateMetadata({ params }) {
 
     return {
         title: story.title || "Untitled Story",
-        description: story.previewText || "",
+        description: "Welcome to QuadBox's Kwiva",
+        openGraph: {
+            type: "website",
+            url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
+            title: story.title || "Untitled Story",
+            description: story.previewText || "",
+            images: [
+                {
+                    url: "https://kwiva.online/stories_1.png"
+                }
+            ]
+        },
+        twitter: {
+            card: "summary_image_large",
+            creator: "@QuadVox",
+            url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
+            title: story.title || "Untitled Story",
+            description: story.previewText || "",
+            images: [
+                {
+                    url: "https://kwiva.online/stories_1.png"
+                }
+            ]
+        },
     };
 }
 
