@@ -5,7 +5,7 @@ import ArticleWrapper from "../homeComponent/ArticleList";
 import Footer from "../homeComponent/Footer";
 
 
-export const revalidate = 60 * 60 * 4; // Cache for 4 hours
+export const revalidate = 60 * 60 * 12; // Cache for 12 hours
 
 
 export async function generateMetadata() {
@@ -15,7 +15,7 @@ export async function generateMetadata() {
     description: "Welcome to QuadBox's Kwiva",
     openGraph: {
       type: "website",
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/blogs`,
       title: 'Blogposts - DIYs & How-Tos',
       description: "Our Blog section is your daily dose of DIY brilliance and How-to magics. Discover clever tricks, creative projects, and step-by-step guides that make life a little simpler and a lot more fun. Explore, learn, and create; one post at a time.",
       images: [
@@ -25,9 +25,9 @@ export async function generateMetadata() {
       ]
     },
     twitter: {
-      card: "summary_image_large",
+      card: "summary_large_image",
       creator: "@QuadVox",
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/blogs`,
       title: 'Blogposts - DIYs & How-Tos',
       description: "Our Blog section is your daily dose of DIY brilliance and 'How to' magic. Discover clever tricks, creative projects, and step-by-step guides that make life a little simpler and a lot more fun. Explore, learn, and creat; one post at a time.",
       images: [

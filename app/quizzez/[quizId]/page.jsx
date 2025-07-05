@@ -3,23 +3,34 @@ import { db } from '@/app/db/FirebaseConfig';
 import { doc, getDoc } from 'firebase/firestore';
 import Startbutton from './Startbutton';
 
-export const revalidate = 60 * 60 * 4; // 4 hours
+export const revalidate = 60 * 60 * 24; // 24 hours
 
 export async function generateMetadata({ params }) {
     return {
-        title: 'Quizzez | Kwiva',
-        description: "Get up to 80 points after finishing any quiz. Have a crack at our well curated 20 questions quizzez. They are based off of our interesting Short Histories & Blogs articles.",
+        title: 'Kwiva | Quizzez',
+        description: "Get up to 60 points after finishing any quiz. Have a crack at our well curated 20 questions quizzez. They are based off of our interesting Short Histories & Blogs articles.",
         openGraph: {
-            title: 'Quizzez | Kwiva',
-            description: 'Get up to 80 points after finishing any quiz. Have a crack at our well curated 20 questions quizzez. They are based off of our interesting Short Histories & Blogs articles.',
+            type: "website",
             url: `https://kwiva.online/quizzez/${params.quizId}`,
-            type: 'website',
+            title: 'Kwiva | Quizzez',
+            description: "Get up to 60 points after finishing any quiz. Have a crack at our well curated 20 questions quizzez. They are based off of our interesting Short Histories & Blogs articles.",
+            images: [
+                {
+                    url: "https://kwiva.online/quizzez_1.png"
+                }
+            ]
         },
         twitter: {
-            title: 'Quizzez | Kwiva',
-            description:
-                'Get up to 80 points after finishing any quiz. Have a crack at our well curated 20 questions quizzez. They are based off of our interesting Short Histories & Blogs articles.',
-            card: 'summary_large_image',
+            card: "summary_large_image",
+            creator: "@QuadVox",
+            url: `https://kwiva.online/quizzez/${params.quizId}`,
+            title: 'Kwiva | Quizzez',
+            description: "Get up to 60 points after finishing any quiz. Have a crack at our well curated 20 questions quizzez. They are based off of our interesting Short Histories & Blogs articles.",
+            images: [
+                {
+                    url: "https://kwiva.online/quizzez_1.png"
+                }
+            ]
         },
     };
 }

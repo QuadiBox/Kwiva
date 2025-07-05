@@ -4,14 +4,34 @@ import HomeHeader from "../homeComponent/header";
 import Footer from "../homeComponent/Footer";
 import QuizWrapper from "./QuizzezList";
 
-export const revalidate = 60 * 60 * 4; // Cache for 4 hours
+export const revalidate = 60 * 60 * 24; // Cache for 24 hours
 
-export async function generateMetadata() {
-
-    return {
-        title: 'Quizzez | Kwiva',
-        description: "Get up to 60 points after finishing any quiz. Have a crack at our well curated 20 questions quizzez. They are based off of our interesting Short Histories & Blogs articles.",
-    };
+export const metadata = {
+  title: 'Kwiva | Quizzez',
+  description: "Get up to 60 points after finishing any quiz. Have a crack at our well curated 20 questions quizzez. They are based off of our interesting Short Histories & Blogs articles.",
+  openGraph: {
+    type: "website",
+    url: `${process.env.NEXT_PUBLIC_BASE_URL}/quizzez`,
+    title: 'Kwiva | Quizzez',
+    description: "Get up to 60 points after finishing any quiz. Have a crack at our well curated 20 questions quizzez. They are based off of our interesting Short Histories & Blogs articles.",
+    images: [
+      {
+        url: "https://kwiva.online/quizzez_1.png"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    creator: "@QuadVox",
+    url: `${process.env.NEXT_PUBLIC_BASE_URL}/quizzez`,
+    title: 'Kwiva | Quizzez',
+    description: "Get up to 60 points after finishing any quiz. Have a crack at our well curated 20 questions quizzez. They are based off of our interesting Short Histories & Blogs articles.",
+    images: [
+      {
+        url: "https://kwiva.online/quizzez_1.png"
+      }
+    ]
+  },
 }
 
 

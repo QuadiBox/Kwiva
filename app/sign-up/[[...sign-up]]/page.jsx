@@ -17,7 +17,7 @@ export const metadata = {
     ]
   },
   twitter: {
-    card: "summary_image_large",
+    card: "summary_large_image",
     creator: "@QuadVox",
     url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
     title: 'Kwiva | Sign Up',

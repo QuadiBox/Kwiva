@@ -1,33 +1,33 @@
 import Footer from "../homeComponent/Footer";
 import Link from "next/link";
 
-
 export const metadata = {
     title: 'About Kwiva | Learn, Laugh, Live',
     description:
-        'Discover the vision behind Kwiva. We\'re building a learning community with stories, how-tos, and laughter — and rewarding our most active users along the way.',
+        "Discover the vision behind Kwiva. We\'re building a learning community with stories, how-tos, and laughter — and rewarding our most active users along the way.",
     openGraph: {
         title: 'About Kwiva | Learn, Laugh, Live',
-        description:
-            'Discover the vision behind Kwiva. We\'re building a learning community with stories, how-tos, and laughter — and rewarding our most active users along the way.',
-        url: 'https://kwiva.com/about',
-        siteName: 'Kwiva',
+        description: 'Discover the vision behind Kwiva. We\'re building a learning community with stories, how-tos, and laughter — and rewarding our most active users along the way.',
+        url: "https://kwiva.online/about",
         type: 'website',
         images: [
             {
-                url: 'https://kwiva.online/opengraph.png',
-                width: 1200,
-                height: 630,
-                alt: 'About Kwiva',
-            },
-        ],
+                url: "https://kwiva.online/kwiva_large.png"
+            }
+        ]
     },
     twitter: {
-        card: 'summary_large_image',
         title: 'About Kwiva | Learn, Laugh, Live',
+        creator: "@QuadVox",
         description:
             'Discover the vision behind Kwiva. We\'re building a learning community with stories, how-tos, and laughter — and rewarding our most active users along the way.',
-        images: ['https://kwiva.online/opengraph.png'],
+        card: 'summary_large_image',
+        url: "https://kwiva.online/about",
+        images: [
+            {
+                url: "https://kwiva.online/kwiva_large.png"
+            }
+        ]
     },
 };
 

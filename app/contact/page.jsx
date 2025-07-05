@@ -3,25 +3,35 @@ import Link from 'next/link'
 import ContactForm from './ContactForm'
 import Footer from '../homeComponent/Footer'
 
-export async function generateMetadata() {
-    return {
+export const metadata = {
+    title: 'Contact Us | Kwiva',
+    description:
+        "Get in touch with Kwiva support group. We're here to help you with any inquiries or support you need.",
+    openGraph: {
         title: 'Contact Us | Kwiva',
-        description: "Get in touch with Kwiva support group. We're here to help you with any inquiries or support you need.",
-        openGraph: {
-            type: "website",
-            url: `${process.env.NEXT_PUBLIC_BASE_URL}/contact`,
-            title: 'Contact Kwiva',
-            description: 'Reach out to us for any questions, support, or feedback. Kwiva is here for you.',
-        },
-        twitter: {
-            card: "Contact",
-            creator: "@QuadVox",
-            url: `${process.env.NEXT_PUBLIC_BASE_URL}/contact`,
-            title: 'Contact Us | Kwiva',
-            description: 'Need help or have a question? Contact Kwiva support today!',
-        },
-    }
-}
+        description: 'Reach out to us for any questions, support, or feedback. Kwiva is here for you.',
+        url: "https://kwiva.online/contact",
+        type: 'website',
+        images: [
+            {
+                url: "https://kwiva.online/kwiva_large.png"
+            }
+        ]
+    },
+    twitter: {
+        title: 'Contact Us | Kwiva',
+        creator: "@QuadVox",
+        description:
+            'Need help or have a question? Contact Kwiva support!',
+        card: 'summary_large_image',
+        url: "https://kwiva.online/contact",
+        images: [
+            {
+                url: "https://kwiva.online/kwiva_large.png"
+            }
+        ]
+    },
+};
 
 
 const Page = () => {

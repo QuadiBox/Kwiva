@@ -11,14 +11,26 @@ export const metadata = {
         description: 'Review how Kwiva collects, uses, and protects your data. Learn about your rights under the GDPR and our commitment to privacy.',
         url: 'https://kwiva.online/privacy_policy',
         type: 'website',
+        images: [
+            {
+                url: "https://kwiva.online/kwiva_large.png"
+            }
+        ]
     },
     twitter: {
         title: 'Privacy Policy | Kwiva',
         description:
             'Review how Kwiva collects, uses, and protects your data. Learn about your rights under the GDPR and our commitment to privacy.',
         card: 'summary_large_image',
+        url: 'https://kwiva.online/privacy_policy',
+        images: [
+            {
+                url: "https://kwiva.online/kwiva_large.png"
+            }
+        ]
     },
 };
+
 
 export default function Page() {
     return (

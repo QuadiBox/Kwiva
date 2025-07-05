@@ -4,13 +4,35 @@ import ProfileHeaderSect from "./ProfileHeaderSect";
 import Link from "next/link";
 import ProfileBodyCntn from "./ProfileBodyCntn";
 
-export async function generateMetadata() {
 
-    return {
+export const metadata = {
+    title: 'ME | Kwiva',
+    description:
+        "User profile - view, update, edit or delete your details as you wish. Make a withdrawal of your rewards as long as you're qualified. Have fun, live, laugh and learn...",
+    openGraph: {
         title: 'ME | Kwiva',
         description: "User profile - view, update, edit or delete your details as you wish. Make a withdrawal of your rewards as long as you're qualified. Have fun, live, laugh and learn...",
-    };
-}
+        url: "https://kwiva.online/me",
+        type: 'website',
+        images: [
+            {
+                url: "https://kwiva.online/kwiva_large.png"
+            }
+        ]
+    },
+    twitter: {
+        title: 'ME | Kwiva',
+        description:
+            "User profile - view, update, edit or delete your details as you wish. Make a withdrawal of your rewards as long as you're qualified. Have fun, live, laugh and learn...",
+        card: 'summary_large_image',
+        url: "https://kwiva.online/me",
+        images: [
+            {
+                url: "https://kwiva.online/kwiva_large.png"
+            }
+        ]
+    },
+};
 
 
 // Server-rendered component

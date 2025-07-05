@@ -9,14 +9,25 @@ export const metadata = {
     openGraph: {
         title: 'Terms of Use | Kwiva',
         description: 'Read our detailed Terms of Use to understand the rights, responsibilities, and acceptable behavior when using Kwiva',
-        url: 'https://kwiva.online/terms_of_use',
+        url: "https://kwiva.online/terms_of_use",
         type: 'website',
+        images: [
+            {
+                url: "https://kwiva.online/kwiva_large.png"
+            }
+        ]
     },
     twitter: {
         title: 'Terms of Use | Kwiva',
         description:
             'Read our detailed Terms of Use to understand the rights, responsibilities, and acceptable behavior when using Kwiva',
         card: 'summary_large_image',
+        url: "https://kwiva.online/terms_of_use",
+        images: [
+            {
+                url: "https://kwiva.online/kwiva_large.png"
+            }
+        ]
     },
 };
 

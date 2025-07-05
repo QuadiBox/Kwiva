@@ -4,7 +4,7 @@ import HomeHeader from "./homeComponent/header";
 import ArticleWrapper from "./homeComponent/ArticleList";
 import Footer from "./homeComponent/Footer";
 
-export const revalidate = 60 * 60 * 12; // Cache for 4 hours
+export const revalidate = 60 * 60 * 12; // Cache for 12 hours
 
 export async function generateMetadata() {
 
@@ -23,7 +23,7 @@ export async function generateMetadata() {
       ]
     },
     twitter: {
-      card: "summary_image_large",
+      card: "summary_large_image",
       creator: "@QuadVox",
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
       title: 'Kwiva | Short Histories...',

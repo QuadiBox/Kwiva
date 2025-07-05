@@ -42,7 +42,7 @@ export async function generateMetadata({ params }) {
         description: "Welcome to QuadBox's Kwiva",
         openGraph: {
             type: "website",
-            url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
+            url: `${process.env.NEXT_PUBLIC_BASE_URL}/${story_id}`,
             title: story.title || "Untitled Story",
             description: story.previewText || "",
             images: [
@@ -52,9 +52,9 @@ export async function generateMetadata({ params }) {
             ]
         },
         twitter: {
-            card: "summary_image_large",
+            card: "summary_large_image",
             creator: "@QuadVox",
-            url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
+            url: `${process.env.NEXT_PUBLIC_BASE_URL}//${story_id}`,
             title: story.title || "Untitled Story",
             description: story.previewText || "",
             images: [
