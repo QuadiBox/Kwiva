@@ -301,6 +301,7 @@ export default function ArticleEditor() {
           />
         </div>
       </div>
+      
 
       {/* Preview Text */}
       <div className="UnitInputCntn">
@@ -411,6 +412,27 @@ export default function ArticleEditor() {
             className="w-full p-2 border rounded"
           />
         </div>
+      </div>
+      <div className="UnitInputCntn">
+        <label className="block font-semibold">Tags:</label>
+        <input
+          value={formData.tags.join(", ")} // join array as comma-separated string for display
+          onChange={(e) => {
+            const input = e.target.value;
+
+            // Split by comma OR space (one or more spaces), trim each, and filter out empty strings
+            const newTags = input
+              .split(/[\s,]+/)
+              .map((tag) => tag.trim())
+              .filter((tag) => tag.length > 0);
+
+            setFormData((prev) => ({
+              ...prev,
+              tags: newTags,
+            }));
+          }}
+          className="w-full p-2 border rounded"
+        />
       </div>
 
       <div className="dualInputCntn">

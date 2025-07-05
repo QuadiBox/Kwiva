@@ -18,6 +18,10 @@ const ProfileBodyCntn = () => {
     const [winners, setWinners] = useState(null);
     const [isWinner, setIsWinner] = useState(false);
 
+    // const user = {
+    //     id: "user_1427882663"
+    // }
+
 
     const rewardMap = {
         1: 1500000,
@@ -175,7 +179,7 @@ const ProfileBodyCntn = () => {
             theLeaderBoardArr.sort((a, b) => a.position - b.position);
 
             const finalObject = {
-                data: sliced,
+                data: theLeaderBoardArr,
                 expiryTime: Date.now() + 1000 * 60 * 60 * 3, // 3 hours
             };
 

@@ -52,7 +52,7 @@ export async function generateMetadata({ params }) {
             ]
         },
         twitter: {
-            card: "summary_image_large",
+            card: "summary_large_image",
             creator: "@QuadVox",
             url: `${process.env.NEXT_PUBLIC_BASE_URL}/blogs/${blog_id}`,
             title: story.title || "Untitled Story",
