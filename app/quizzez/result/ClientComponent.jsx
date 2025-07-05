@@ -97,7 +97,7 @@ export default function QuizResultPage() {
             </div>
             {/* Example ad component */}
             <div className="theResultADSlot">
-                <GoogleAd></GoogleAd>
+                <GoogleAd key={`result-page-ad-card`} adKey={`result-page-ad-card`}></GoogleAd>
             </div>
             <Link href="/quizzez" className='quizDoneBtn'>Done</Link>
 

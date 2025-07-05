@@ -42,8 +42,8 @@ const Challenge = () => {
 
 
     return (
-        <div className='unitFunctionSect'>
-            <h1>Create New Challenge</h1>
+        <section className='unitFunctionSect'>
+            <h2>Create New Challenge</h2>
             <form className="textEditorForm challengeEdition">
                     <div className="UnitInputCntn">
                         <label className="block font-semibold">Title:</label>
@@ -97,7 +97,7 @@ const Challenge = () => {
                         {loading ? "Creating..." : "Create Challenge"}
                     </button>
             </form>
-        </div>
+        </section>
     )
 }
 

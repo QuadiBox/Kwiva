@@ -51,10 +51,10 @@ const Page = () => {
                     <div className="unitAlt">
                         <h3 className='altLabel'><i className="icofont-ui-social-link"></i> Socials:</h3>
                         <div className="justFlex">
-                            <a target='_blank' href='/'><img src="/whatsapp.svg" alt="twitter logo" /></a>
-                            <a target='_blank' href='/'><img src="/telegram.svg" alt="twitter logo" /></a>
-                            <a target='_blank' href='/'><img src="/x.svg" alt="twitter logo" /></a>
-                            <a target='_blank' href='/'><img src="/insta.svg" alt="instagram logo" /></a>
+                            <a target='_blank' href='https://whatsapp.com/channel/0029VbAgAp490x2mpcIAN13P'><img src="/whatsapp.svg" alt="whatsapp logo" /></a>
+                            <a target='_blank' href='https://t.me/kwivaonlineng'><img src="/telegram.svg" alt="telegram logo" /></a>
+                            <a target='_blank' href='https://x.com/Kwivaonline'><img src="/x.svg" alt="twitter logo" /></a>
+                            <a target='_blank' href='https://www.tiktok.com/@kwivaonline'><img src="/tiktok.svg" alt="tiktok logo" /></a>
                         </div>
                     </div>
                 </div>

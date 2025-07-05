@@ -1,6 +1,7 @@
 import { Playfair_Display } from "next/font/google";
 import { Cinzel } from "next/font/google";
 import { Alegreya_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import "./dashboard.css";
 import "./signup.css";
@@ -65,6 +66,20 @@ export default function RootLayout({ children }) {
         <body className={`${aleg.variable} ${cinzel.variable} ${play.variable}`}>
           {children}
           <Navbar></Navbar>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=G-1FGMSYZ8PG`}
+            strategy="afterInteractive"
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-1FGMSYZ8PG', {
+              page_path: window.location.pathname,
+            });
+          `}
+          </Script>
         </body>
       </html>
     </ClerkProvider>

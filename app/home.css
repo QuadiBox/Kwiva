@@ -1244,3 +1244,7 @@ body:has(.noOverflow) {
     transform: rotate(360deg);
   }
 }
+
+#marginAutoLeft{
+  margin-left: auto;
+}

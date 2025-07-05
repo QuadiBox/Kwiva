@@ -274,6 +274,9 @@
 .leaderboardItem span b{
   font-size: 1.1em;
 }
+.leaderboardItem span i{
+  font-size: 0.8em;
+}
 
 .spaceLeaderboard{
   display: grid;

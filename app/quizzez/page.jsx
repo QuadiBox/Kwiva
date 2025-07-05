@@ -1,7 +1,6 @@
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../db/FirebaseConfig";
 import HomeHeader from "../homeComponent/header";
-import ArticleWrapper from "../homeComponent/ArticleList";
 import Footer from "../homeComponent/Footer";
 import QuizWrapper from "./QuizzezList";
 

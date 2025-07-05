@@ -29,7 +29,7 @@ export default function QuizWrapper({ serverData }) {
         <main className='historiesGrandCntn'>
             <div className="historyListHeader">
                 <h2>All Quizzez</h2>
-                <button type="button" className='blackBtn motherBtn'>
+                <button type="button" id='marginAutoLeft' className='blackBtn motherBtn'>
                     Sort
 
                     <div className="childDisplay">
@@ -45,7 +45,7 @@ export default function QuizWrapper({ serverData }) {
                         <div key={`historyList_${elem?.id}`} className="unitHistoryCntn">
                             <div className="historyHead">
                                 <img src="/quizzez_1.png" alt="Quizzez image" />
-                                <Link href={`/${elem?.id}`} className="historyheadings">
+                                <Link href={`/quizzez/${elem?.id}`} className="historyheadings">
                                     <h3>{elem?.title}</h3>
                                 </Link>
                             </div>

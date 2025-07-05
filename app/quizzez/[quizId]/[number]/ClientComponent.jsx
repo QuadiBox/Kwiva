@@ -66,7 +66,7 @@ export default function QuizQuestionPage({ number }) {
     return (
         <main className="quizPreviewCntn gap_var">
             <div className='quizTimer'>
-                Time Left: <strong className={`${timeLeft <= 300 ? "alert" : ''}`}>{minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}</strong>
+                Time Left: <strong className={`${timeLeft <= 55 ? "alert" : ''}`}>{minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}</strong>
             </div>
 
             <div className='theQuestionCntn'>

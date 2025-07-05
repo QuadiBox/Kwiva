@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import SearchBtn from './SearchBtn';
 import SearchComponent from './SearchComponent';
 
-export default function ArticleWrapper({ serverData, compType }) {
+export default function ArticleWrapper({ serverData, compType, ImgType }) {
     const [storyOrder, setStoryOrder] = useState('ascending');
     const [showSearch, setShowSearch] = useState(false);
 
@@ -55,7 +55,7 @@ export default function ArticleWrapper({ serverData, compType }) {
                         sortedHistoryList.map((elem) => (
                             <div key={`historyList_${elem?.id}`} className="unitHistoryCntn">
                                 <div className="historyHead">
-                                    <img src="/stories_1.png" alt="history image" />
+                                    <img src={ImgType} alt="history image" />
                                     <Link href={`/${elem?.id}`} className="historyheadings">
                                         <h3>{elem?.title}</h3>
                                         {

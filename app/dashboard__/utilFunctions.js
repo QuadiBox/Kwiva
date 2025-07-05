@@ -17,7 +17,8 @@ export async function archiveMonthlyLeaderboard() {
                 allUsers.push(...users);
             }
         });
-
+        
+        
         allUsers.sort((a, b) => b.points - a.points);
 
         const top10 = allUsers.slice(0, 10).map((user, index) => ({
@@ -33,6 +34,7 @@ export async function archiveMonthlyLeaderboard() {
             createdAt: now,
             winners: top10,
         };
+
 
         const updatedDocs = summaryDocs.map(({ id, users }) => {
             const updatedUsers = users.map((u) => {
@@ -65,6 +67,7 @@ export async function archiveMonthlyLeaderboard() {
 
             await batch.commit();
         }
+
 
         return {
             success: true,

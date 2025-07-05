@@ -807,7 +807,7 @@ input[type="search"]::-webkit-search-results-decoration {
     max-width: 500px;
 }
 
-.unitFunctionSect h1{
+.unitFunctionSect h2{
     font-size: 1.3em;
     font-weight: 500;
     color: var(--sec-hue-1);
@@ -824,6 +824,78 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
   color: var(--sec-hue-1);
 }
+
+.monthlyWinnersFunctionCntn{
+    width: 100%;
+    min-height: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    border-radius: var(--gen-border-radius);
+    background-color: var(--primary-clr-2);
+    border: 1px dashed var(--sec-hue-2);
+}
+
+.monthlyWinnersFunctionCntn h2{
+    font-size: 1.3em;
+    font-weight: 500;
+    color: var(--sec-hue-1);
+}
+
+.monthlyWinnersDetail{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 100px;
+    align-items: center;
+    justify-content: center;
+}
+
+.monthlyWinnersDetail p{
+    font-size: 1.05em;
+    font-weight: 400;
+    color: var(--sec-hue-2);
+}
+
+#errorMsg{
+    color: #bd0202;
+}
+
+#qualified{
+    color: #4aca00;
+}
+
+.monthlyWinnersDetail p i{
+    font-size: 1.2em;
+    transform-origin: center;
+    animation: spinspin 0.4s ease-in-out infinite;
+}
+
+@keyframes spinspin {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
+.monthlyWinnersFunctionCntn > button{
+    padding: 0.6em 0.95em;
+  font-size: 0.99em;
+  color: var(--primary-clr-1);
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  background-color: var(--sec-hue-1);
+  color: var(--primary-clr-1);
+  width: max-content;
+  margin-left: auto;
+}
+
+
 
 
 
