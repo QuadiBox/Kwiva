@@ -58,7 +58,7 @@ const ProfileBodyCntn = () => {
         const today = new Date();
         const day = today.getDate();
 
-        if (day >= 0 && day <= 30) {
+        if (day >= 25 && day <= 30) {
             const month = String(today.getMonth() + 1).padStart(2, '0');
             const year = today.getFullYear();
             const docId = `${month}-${year}`;

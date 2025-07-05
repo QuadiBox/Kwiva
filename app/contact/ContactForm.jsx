@@ -15,6 +15,7 @@ const ContactForm = () => {
     });
 
     const [toggler, setToggler] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const [mailStatus, setMailStatus] = useState({
         state: "normal",
@@ -84,6 +85,7 @@ const ContactForm = () => {
 
 
         try {
+            setLoading(true)
             await sendWelcomeEmail(
                 `"${formData.fName} from Kwiva." <${process.env.EMAIL_NAME}>`,
                 'kwivaonline@gmail.com',
@@ -91,6 +93,7 @@ const ContactForm = () => {
                 `${formData?.subject !== "" ? formData.subject : 'A New Contact Form Submission'}`,
                 html_to_mail
             );
+            setLoading(false);
             setMailStatus({
                 state: "normal",
                 msg: "Message sent successfully!",
@@ -136,7 +139,7 @@ const ContactForm = () => {
                     <input type="text" placeholder='Subject' value={formData.subject} onChange={(e) => {setFormData(prev => ({...prev, subject: e.target.value}))}}/>
                 </div>
                 <textarea cols="30" rows="10" name="message" className='textarea' placeholder='Message' required value={formData.body} onChange={(e) => {setFormData(prev => ({...prev, body: e.target.value}))}}></textarea>
-                <button type="submit" className='specBtn fillBtn'>Send Message</button>
+                <button type="submit" className='specBtn fillBtn'>{loading ? "Sending..." : "Send Message"}</button>
             </form>
 
             <div className={`toaster ${mailStatus.state === "rouge" ? "rouge": ""} ${mailStatus.active? "active": "inactive"}`}>
