@@ -173,6 +173,7 @@ export default function ArticleEditor() {
       previewText: "",
       mainContent: "",
       tags: [],
+      summaryDocId: '',
       lastUpdated: Date.now(),
     }));
   };
@@ -190,12 +191,12 @@ export default function ArticleEditor() {
     };
 
     let summaryDocId = formData?.summaryDocId;
+    const metaData = await getMetaWithCache();
+    let batchNumber = metaData.lastBatchNumber || 1;
+    let totalArticles = metaData.totalArticles || 0;
 
     // If not provided, fallback to legacy batch logic
     if (!summaryDocId) {
-      const metaData = await getMetaWithCache();
-      let batchNumber = metaData.lastBatchNumber || 1;
-      let totalArticles = metaData.totalArticles || 0;
 
       const currentBatchRef = doc(
         db,
@@ -225,7 +226,26 @@ export default function ArticleEditor() {
         articles: summaries,
       });
 
-      // Update _meta
+      
+
+      return newDocId;
+    } else {
+      // If summaryDocId is already available
+      const batchRef = doc(db, "bloglist", summaryDocId);
+      const snap = await getDoc(batchRef);
+  
+      if (!snap.exists()) {
+        throw new Error(`Summary doc ${summaryDocId} does not exist`);
+      }
+  
+      const existing = snap.data().articles || [];
+      const updated = [...existing, summary];
+  
+      await updateDoc(batchRef, { articles: updated });
+
+    }
+
+    // Update _meta
       const updatedMeta = {
         lastBatchNumber: batchNumber,
         totalArticles: totalArticles + 1,
@@ -238,21 +258,6 @@ export default function ArticleEditor() {
         JSON.stringify({ data: updatedMeta, timestamp: Date.now() })
       );
 
-      return newDocId;
-    }
-
-    // If summaryDocId is already available
-    const batchRef = doc(db, "bloglist", summaryDocId);
-    const snap = await getDoc(batchRef);
-
-    if (!snap.exists()) {
-      throw new Error(`Summary doc ${summaryDocId} does not exist`);
-    }
-
-    const existing = snap.data().articles || [];
-    const updated = [...existing, summary];
-
-    await updateDoc(batchRef, { articles: updated });
     return summaryDocId;
   };
 
