@@ -228,7 +228,6 @@ export default function ArticleEditor() {
 
       
 
-      return newDocId;
     } else {
       // If summaryDocId is already available
       const batchRef = doc(db, "bloglist", summaryDocId);

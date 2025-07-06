@@ -190,11 +190,11 @@ export default function ArticleEditor() {
     };
 
     let summaryDocId = formData?.summaryDocId;
-    const metaRef = doc(db, "storylist", "_meta");
 
     const metaData = await getMetaWithCache();
     let batchNumber = metaData.lastBatchNumber || 1;
     let totalArticles = metaData.totalArticles || 0;
+    
 
     // If not provided, fallback to legacy batch logic
     if (!summaryDocId) {
@@ -218,7 +218,7 @@ export default function ArticleEditor() {
       summaries.push(summary);
 
       const newDocId = `summary_${batchNumber.toString().padStart(3, "0")}`;
-      summaryDocId = newDocId;
+      summaryDocId = newDocId;      
 
       // Save updated batch
       await setDoc(doc(db, "storylist", newDocId), {
@@ -226,7 +226,6 @@ export default function ArticleEditor() {
         articles: summaries,
       });
 
-      return newDocId;
     } else {
 
       // If summaryDocId is already available
@@ -243,12 +242,14 @@ export default function ArticleEditor() {
       await updateDoc(batchRef, { articles: updated });
     }
 
+    const metaRef = doc(db, "storylist", "_meta");
     // Update _meta
       const updatedMeta = {
         lastBatchNumber: batchNumber,
         totalArticles: totalArticles + 1,
         lastUpdated: new Date(),
       };
+
       await setDoc(metaRef, updatedMeta, { merge: true });
       localStorage.setItem(
         "storylist_meta",
@@ -257,75 +258,6 @@ export default function ArticleEditor() {
 
     return summaryDocId;
   };
-
-  // const UpdateStoryList = async () => {
-  //   const summary = {
-  //     id: formData?.contentId,
-  //     title: formData?.title,
-  //     subtitle: formData?.subtitle,
-  //     previewText: formData?.previewText,
-  //     tags: formData?.tags,
-  //     summaryImage: formData?.contentImage,
-  //     createdAt: formData?.createdAt,
-  //   };
-
-  //   let summaryDocId = formData?.summaryDocId;
-
-  //   const metaRef = doc(db, "storylist", "_meta");
-  //   const metaSnap = await getDoc(metaRef);
-  //   const metaData = metaSnap.exists() ? metaSnap.data() : { lastBatchNumber: 1, totalArticles: 0 };
-
-  //   let batchNumber = metaData.lastBatchNumber || 1;
-  //   let totalArticles = metaData.totalArticles || 0;
-
-  //   if (!summaryDocId) {
-  //     // create new batch if needed
-  //     const currentBatchRef = doc(db, "storylist", summary_${batchNumber?.toString().padStart(3, "0") });
-  //     const currentBatchSnap = await getDoc(currentBatchRef);
-
-  //     let summaries = currentBatchSnap.exists() ? currentBatchSnap.data().articles : [];
-  //     if (summaries.length >= 500) {
-  //       batchNumber++;
-  //       summaries = [];
-  //     }
-
-  //     summaries.push(summary);
-
-  //     const newDocId = `summary_${batchNumber.toString().padStart(3, "0")}`;
-  //     summaryDocId = newDocId;
-
-  //     // await setDoc(doc(db, "storylist", newDocId), {
-  //     //   batchNumber,
-  //     //   articles: summaries,
-  //     // });
-
-  //   } else {
-  //     // Push to existing batch
-  //     const batchRef = doc(db, "storylist", summaryDocId);
-  //     const snap = await getDoc(batchRef);
-
-  //     if (!snap.exists()) throw new Error(`Summary doc ${summaryDocId} does not exist`);
-
-  //     const existing = snap.data().articles || [];
-  //     const updated = [...existing, summary];
-
-  //     await updateDoc(batchRef, { articles: updated });
-  //   }
-
-  //   // ✅ Update meta and localStorage (always!)
-  //   const updatedMeta = {
-  //     lastBatchNumber: batchNumber,
-  //     totalArticles: totalArticles + 1,
-  //     lastUpdated: new Date(),
-  //   };
-  //   await setDoc(metaRef, updatedMeta, { merge: true });
-  //   localStorage.setItem(
-  //     "storylist_meta",
-  //     JSON.stringify({ data: updatedMeta, timestamp: Date.now() })
-  //   );
-
-  //   return summaryDocId;
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -349,7 +281,7 @@ export default function ArticleEditor() {
       } else {
         await UpdateStoryList(); // will push to known doc
       }
-
+      
       await addDoc(articlesRef, { ...formData });
 
       setMessage({ type: "success", text: "✅ Article saved successfully!" });
