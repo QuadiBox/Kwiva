@@ -44,81 +44,6 @@ export default function ArticleEditor() {
     setFormData((prev) => ({ ...prev, lastUpdated: Date.now() }));
   };
 
-  useEffect(() => {
-    const fetchLastStory = async () => {
-      try {
-        const storiesRef = collection(db, "blogs");
-        const q = query(storiesRef, orderBy("createdAt", "desc"), limit(1));
-        const snapshot = await getDocs(q);
-
-        if (!snapshot.empty) {
-          const lastDoc = snapshot.docs[0];
-          const lastData = lastDoc.data();
-          const lastIdNum = parseInt(lastData.contentId?.split("_")[1] || "0");
-
-          const newIdNum = lastIdNum + 1;
-          const newContentId = `b_${newIdNum}`;
-          const nextContentId = `b_${lastIdNum + 2}`;
-
-          setFormData((prev) => ({
-            ...prev,
-            contentId: newContentId,
-            prevStory: {
-              title: lastData.title || "",
-              b_id: lastData.contentId || "",
-              subtitle: lastData.subtitle,
-            },
-            nextStory: {
-              title: "",
-              b_id: nextContentId,
-              subtitle: "",
-            },
-          }));
-        } else {
-          setFormData((prev) => ({
-            ...prev,
-            contentId: "b_1",
-            nextStory: {
-              title: "",
-              b_id: "b_2",
-              subtitle: "",
-            },
-          }));
-        }
-      } catch (error) {
-        setMessage({
-          type: "error",
-          text: "Error fetching last story: " + error.message,
-        });
-      }
-    };
-
-    fetchLastStory();
-  }, [formData.lastUpdated]);
-
-  const handleChange = (key, value) => {
-    setFormData((prev) => ({ ...prev, [key]: value }));
-  };
-
-  const validate = () => {
-    if (!formData.title.trim()) return "Title is required.";
-    if (!formData.subtitle.trim()) return "Subtitle is required.";
-    if (!formData.previewText.trim()) return "Preview text is required.";
-    if (!formData.mainContent.trim()) return "Main content is required.";
-    return null;
-  };
-
-  const resetForm = () => {
-    setFormData((prev) => ({
-      ...prev,
-      title: "",
-      subtitle: "",
-      previewText: "",
-      mainContent: "",
-      lastUpdated: Date.now(),
-    }));
-  };
-
   const getMetaWithCache = async () => {
     const CACHE_KEY = "bloglist_meta";
     const EXPIRY_HOURS = 6;
@@ -156,6 +81,99 @@ export default function ArticleEditor() {
       JSON.stringify({ data, timestamp: Date.now() })
     );
     return data;
+  };
+
+  useEffect(() => {
+    const fetchLastStory = async () => {
+      try {
+        const meta = await getMetaWithCache();
+        const totalArticles = meta?.totalArticles || 0;
+
+        if (totalArticles === 0) {
+          setFormData((prev) => ({
+            ...prev,
+            contentId: "b_1",
+            nextStory: {
+              title: "",
+              s_id: 'b_2',
+              subtitle: '',
+            },
+          }));
+          return;
+        }
+
+        const lastContentId = `s_${totalArticles}`;
+        const storiesRef = collection(db, "blogs");
+        const q = query(storiesRef, where("contentId", "==", lastContentId));
+        const snapshot = await getDocs(q);
+
+        if (!snapshot.empty) {
+          const lastDoc = snapshot.docs[0];
+          const lastData = lastDoc.data();
+          const newIdNum = totalArticles + 1;
+          const nextContentId = `b_${totalArticles + 2}`;
+
+          setFormData((prev) => ({
+            ...prev,
+            contentId: `b_${newIdNum}`,
+            prevStory: {
+              title: lastData.title || "",
+              s_id: lastData.contentId || "",
+              subtitle: lastData.subtitle || '',
+            },
+            nextStory: {
+              title: "",
+              s_id: nextContentId,
+              subtitle: '',
+            },
+          }));
+        } else {
+          // fallback if somehow lastContentId doesn't exist
+          setFormData((prev) => ({
+            ...prev,
+            contentId: `b_${totalArticles + 1}`,
+            nextStory: {
+              title: "",
+              s_id: `b_${totalArticles + 2}`,
+              subtitle: '',
+            },
+          }));
+        }
+      } catch (error) {
+        console.error('Error fetching last story:', error);
+        setMessage({
+          type: "error",
+          text: "Error fetching last story: " + error.message,
+        });
+      }
+    };
+
+    fetchLastStory();
+  }, [formData.lastUpdated]);
+
+
+  const handleChange = (key, value) => {
+    setFormData((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const validate = () => {
+    if (!formData.title.trim()) return "Title is required.";
+    if (!formData.subtitle.trim()) return "Subtitle is required.";
+    if (!formData.previewText.trim()) return "Preview text is required.";
+    if (!formData.mainContent.trim()) return "Main content is required.";
+    return null;
+  };
+
+  const resetForm = () => {
+    setFormData((prev) => ({
+      ...prev,
+      title: "",
+      subtitle: "",
+      previewText: "",
+      mainContent: "",
+      tags: [],
+      lastUpdated: Date.now(),
+    }));
   };
 
   const Updatebloglist = async () => {
@@ -509,9 +527,8 @@ export default function ArticleEditor() {
       {message.text && (
         <div
           ref={messageRef}
-          className={`textEditorMsg ${
-            message.type === "error" ? "error" : "msg"
-          }`}
+          className={`textEditorMsg ${message.type === "error" ? "error" : "msg"
+            }`}
         >
           {message.text}
         </div>

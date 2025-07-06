@@ -56,7 +56,7 @@ export default function ArticleWrapper({ serverData, compType, ImgType }) {
                             <div key={`historyList_${elem?.id}`} className="unitHistoryCntn">
                                 <div className="historyHead">
                                     <img src={ImgType} alt="history image" />
-                                    <Link href={`/${elem?.id}`} className="historyheadings">
+                                    <Link href={`${elem?.id.startsWith("s") ? `/${elem?.id}` : `/blogs/${elem?.id}`}`} className="historyheadings">
                                         <h3>{elem?.title}</h3>
                                         {
                                             elem?.subtitle && (
