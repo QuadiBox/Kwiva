@@ -17,7 +17,7 @@ export default function NewQuizPage() {
         id: '',
         title: '',
         description: '',
-        duration: '30',
+        duration: '3',
         questions: [
             { question: '', options: ['', '', '', ''], answer: '' }
         ],
@@ -45,7 +45,7 @@ export default function NewQuizPage() {
             id: `qz_${vlad + 1}`,
             title: '',
             description: '',
-            duration: '30',
+            duration: '3',
             questions: [
                 { question: '', options: ['', '', '', ''], answer: '' }
             ],
@@ -61,7 +61,7 @@ export default function NewQuizPage() {
             setFormData(prev => ({ ...prev, id: nextId }));
         };
         fetchNextId();
-    }, []);
+    }, [formData?.createdAt]);
 
     useEffect(() => {
         if (lastQuestionRef.current) {

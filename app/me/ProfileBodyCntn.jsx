@@ -174,7 +174,7 @@ const ProfileBodyCntn = () => {
                 position: start + idx + 1,
             }));
 
-            const theLeaderBoardArr = [...sliced, { ...allUsers[0], position: 1 }]
+            const theLeaderBoardArr = currentIndex >= 6 ? [...sliced, { ...allUsers[0], position: 1 }] : [...sliced]
 
             theLeaderBoardArr.sort((a, b) => a.position - b.position);
 

@@ -96,14 +96,14 @@ export default function ArticleEditor() {
             contentId: "b_1",
             nextStory: {
               title: "",
-              s_id: 'b_2',
+              b_id: 'b_2',
               subtitle: '',
             },
           }));
           return;
         }
 
-        const lastContentId = `s_${totalArticles}`;
+        const lastContentId = `b_${totalArticles}`;
         const storiesRef = collection(db, "blogs");
         const q = query(storiesRef, where("contentId", "==", lastContentId));
         const snapshot = await getDocs(q);
@@ -119,12 +119,12 @@ export default function ArticleEditor() {
             contentId: `b_${newIdNum}`,
             prevStory: {
               title: lastData.title || "",
-              s_id: lastData.contentId || "",
+              b_id: lastData.contentId || "",
               subtitle: lastData.subtitle || '',
             },
             nextStory: {
               title: "",
-              s_id: nextContentId,
+              b_id: nextContentId,
               subtitle: '',
             },
           }));
@@ -135,7 +135,7 @@ export default function ArticleEditor() {
             contentId: `b_${totalArticles + 1}`,
             nextStory: {
               title: "",
-              s_id: `b_${totalArticles + 2}`,
+              b_id: `b_${totalArticles + 2}`,
               subtitle: '',
             },
           }));
@@ -174,6 +174,7 @@ export default function ArticleEditor() {
       mainContent: "",
       tags: [],
       summaryDocId: '',
+      createdAt: Date.now(),
       lastUpdated: Date.now(),
     }));
   };
@@ -419,7 +420,7 @@ export default function ArticleEditor() {
           </label>
           <input
             value={
-              formData.prevStory.b_id
+              formData.prevStory.subtitle
                 ? formData.prevStory.subtitle
                 : "Unavailable"
             }
