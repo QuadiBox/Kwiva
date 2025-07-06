@@ -18,10 +18,6 @@ const ProfileBodyCntn = () => {
     const [winners, setWinners] = useState(null);
     const [isWinner, setIsWinner] = useState(false);
 
-    // const user = {
-    //     id: "user_1427882663"
-    // }
-
 
     const rewardMap = {
         1: 1500000,
@@ -173,9 +169,8 @@ const ProfileBodyCntn = () => {
                 ...u,
                 position: start + idx + 1,
             }));
-
             const theLeaderBoardArr = currentIndex >= 6 ? [...sliced, { ...allUsers[0], position: 1 }] : [...sliced]
-
+            
             theLeaderBoardArr.sort((a, b) => a.position - b.position);
 
             const finalObject = {
@@ -187,7 +182,7 @@ const ProfileBodyCntn = () => {
             console.log("setting expiry from DB", finalObject?.expiryTime);
 
             setToExprire(finalObject?.expiryTime)
-            setPreview(sliced);
+            setPreview(theLeaderBoardArr);
         };
 
         fetchLeaderboardPreview();
@@ -343,7 +338,8 @@ const ProfileBodyCntn = () => {
 
                     {preview?.length > 0 ? preview?.map((userObj, i) => {
                         const isCurrentUser = userObj?.user_id === user?.id;
-
+                        
+                        
                         if (i === 0 && preview[i + 1]?.position > 3) {
                             return (
                                 <>
@@ -355,7 +351,7 @@ const ProfileBodyCntn = () => {
                                         <span className="fullname">
                                             {isCurrentUser ? 'YOU' : `${userObj?.fullname ? userObj?.fullname : 'John Doe'}`}
                                         </span>
-                                        <span className="points">{formatNumber(userObj?.points)} pts</span>
+                                        <span className="points"><b>{formatNumber(userObj?.points)}</b> pts</span>
                                         <span className="reward">
                                             {rewardMap[`${userObj?.position}`]
                                                 ? <b>{`₦${formatNumber(rewardMap[`${userObj?.position}`])}`}</b>
