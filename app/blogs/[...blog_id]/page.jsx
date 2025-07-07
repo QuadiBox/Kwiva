@@ -9,7 +9,7 @@ import Footer from "@/app/homeComponent/Footer";
 import Link from "next/link";
 // import StoryClientComponent from "../components/StoryClientComponent";
 
-export const revalidate = 60 * 60 * 4; // Cache for 4 hours
+export const revalidate = 60 * 60 * 24; // Cache for 24 hours
 
 // Shared function to fetch story data by contentId
 async function getStoryByContentId(contentId) {

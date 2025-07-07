@@ -113,7 +113,7 @@ export async function POST(req) {
 
   const toUserlist = {
     points: 0,
-    referrals: [],
+    referrals: 0,
     fullname: `${eventData?.first_name || ""} ${eventData?.last_name || ""}`,
     user_id: eventData?.id,
     username: eventData?.username,
@@ -125,7 +125,7 @@ export async function POST(req) {
     ...eventData,
     points: 0,
     referrer: null,
-    referrals: [],
+    referrals: 0,
     summaryDocId: null, // Will be set below
   };
 

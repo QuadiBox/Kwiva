@@ -9,7 +9,9 @@ import {
     getDoc,
     updateDoc,
     arrayUnion,
+    increment
 } from 'firebase/firestore';
+import GoogleAd from '../GoogleAd';
 
 export default function InviteClientPage() {
     const { user, isLoaded } = useUser();
@@ -59,7 +61,7 @@ export default function InviteClientPage() {
                     // 1. Update referrer’s user doc
                     await updateDoc(referrerRef, {
                         points: updatedPoints,
-                        referrals: arrayUnion(user.id),
+                        referrals: increment(1),
                     });
 
                     // 2. Update referrer in userlist summary doc
@@ -74,7 +76,7 @@ export default function InviteClientPage() {
                                 return {
                                     ...u,
                                     points: (u.points || 0) + 15,
-                                    referrals: [...(u.referrals || []), user.id],
+                                    referrals: (u.referrals || 0) + 1,
                                 };
                             }
                             return u;
@@ -181,15 +183,19 @@ export default function InviteClientPage() {
                     {copySuccess && <span className="text-green-600">{copySuccess}</span>}
                 </button>
             </div>
+            {/* Example ad component */}
+            <div className="ad_slot">
+                <GoogleAd key={`ad-invite-page_${Math.random() * 100}`} adKey={`ad-invite-page_${Math.random() * 100}`}></GoogleAd>
+            </div>
 
             <div className="invitationDetails">
                 <div className="gbesi">
                     <h4>Total Referrals</h4>
-                    <p>{currentUserObj?.referrals?.length || 0}</p>
+                    <p>{currentUserObj?.referrals || 0}</p>
                 </div>
                 <div className="gbesi">
                     <h4>Total Referral Points</h4>
-                    <p>{formatNumber((currentUserObj?.referrals?.length || 0) * 15)}</p>
+                    <p>{formatNumber((currentUserObj?.referrals || 0) * 15)}</p>
                 </div>
             </div>
         </div>
