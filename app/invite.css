@@ -206,7 +206,7 @@
   height: 150px;
   max-height: 150px;
   margin-inline: auto;
-  margin-top: 3em;
+  margin-top: 2.5em;
   border-radius:  5px;
   border: 1px dashed var(--sec-hue-1);
   display: grid;
@@ -239,4 +239,9 @@
   font-size: 2.4em;
   font-weight: 600;
   color: var(--sec-hue-1);
+}
+
+
+.inviteAdSlot{
+  margin-block: 1.5em 0.2em;
 }

@@ -184,7 +184,7 @@ export default function InviteClientPage() {
                 </button>
             </div>
             {/* Example ad component */}
-            <div className="ad_slot">
+            <div className="ad_slot" id='inviteAdSlot'>
                 <GoogleAd key={`ad-invite-page_${Math.random() * 100}`} adKey={`ad-invite-page_${Math.random() * 100}`}></GoogleAd>
             </div>
 
