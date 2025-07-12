@@ -261,6 +261,7 @@
   display: flex;
   gap: 15px;
   align-items: center;
+  z-index: 50;
 
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -360,6 +361,68 @@
   font-size: 1.4em;
 }
 
+.typesDecrGrandCntn {
+  padding: 0em var(--gen-padding);
+  width: 100%;
+  margin-top: 10px;
+}
+
+.typesDescriptionCntn{
+  width: 100%;
+  border-radius: 5px;
+  border: 1px dashed var(--sec-hue-1);
+  display: grid;
+  grid-template-columns: 1fr max-content;
+}
+
+.descriptionCntn{
+  width: 100%;
+  padding: 10px;
+}
+
+.descriptionCntn p{
+  font-size: 12px;
+  color: var(--sec-hue-1);
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.typeDescritptionTag{
+  display: inline-flex;
+  width: 21px;
+  aspect-ratio: 1;
+  border-radius: 3px;
+  border: 1.5px dashed var(--sec-hue-1);
+  color: var(--sec-hue-1);
+  font-family: monospace;
+  font-weight: 400;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9em;
+  text-transform: capitalize;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.typesDescriptionCntn button{
+  height: 100%;
+  border-left: 1px dashed var(--sec-hue-1);
+  font-size: 1.5em;
+  color: var(--sec-hue-1);
+  padding-inline: 0.6em;
+  background-color: transparent;
+  display: grid;
+  place-items: center;
+}
+
+.typesDescriptionCntn button i{
+  color: inherit;
+}
+
 .historiesCntn {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
@@ -396,12 +459,19 @@
   .unitHistoryCntn {
     border-right: 1px dashed transparent;
   }
+
+  .typeDescritptionTag{
+    width: 17px;
+    border-radius: 3px;
+    font-size: 0.7em;
+  }
 }
 
 .historyHead {
   display: flex;
   align-items: center;
   gap: 20px;
+  position: relative;
 }
 
 .historyHead img {
@@ -439,6 +509,15 @@
   overflow: hidden;
   text-overflow: ellipsis;
   line-clamp: 1;
+}
+
+.genreTypeCntn{
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  gap: 4px;
+  align-items: center;
 }
 
 .unitHistoryCntn > p {

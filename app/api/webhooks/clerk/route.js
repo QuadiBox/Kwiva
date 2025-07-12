@@ -33,7 +33,7 @@ async function updateUserList(userShortData) {
     : [];
 
   // Create new batch if full
-  if (usersArray.length >= 1000) {
+  if (usersArray.length >= 1500) {
     batchNumber++;
     usersArray = [];
   }

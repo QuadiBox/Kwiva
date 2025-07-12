@@ -186,7 +186,6 @@ export default function ArticleEditor() {
       title: formData?.title,
       subtitle: formData?.subtitle,
       previewText: formData?.previewText,
-      tags: formData?.tags,
       summaryImage: formData?.contentImage,
       createdAt: formData?.createdAt,
     };
@@ -211,7 +210,7 @@ export default function ArticleEditor() {
         : [];
 
       // Create new batch if full
-      if (summaries.length >= 500) {
+      if (summaries.length >= 1500) {
         batchNumber++;
         summaries = [];
       }

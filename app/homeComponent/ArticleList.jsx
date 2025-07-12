@@ -7,6 +7,7 @@ import SearchComponent from './SearchComponent';
 export default function ArticleWrapper({ serverData, compType, ImgType }) {
     const [storyOrder, setStoryOrder] = useState('ascending');
     const [showSearch, setShowSearch] = useState(false);
+    const [showDesc, setShowDesc] = useState(true);
 
     const sortHistoryList = () => {
 
@@ -50,6 +51,26 @@ export default function ArticleWrapper({ serverData, compType, ImgType }) {
                         </div>
                     </button>
                 </div>
+                {
+                    compType === "story" && showDesc && (
+                        <div className="typesDecrGrandCntn">
+                            <div className="typesDescriptionCntn">
+                                <div className="descriptionCntn">
+                                    <p>
+                                        <span>
+                                        <b className='typeDescritptionTag'>Hi</b>- History,</span>
+                                        <span><b className='typeDescritptionTag'>Fo</b>- Folklore,</span><span><b className='typeDescritptionTag'>Fi</b>- Fiction</span>
+                                        <span><b className='typeDescritptionTag'>Fo</b>- Folklore,</span><span><b className='typeDescritptionTag'>Cu</b>- Culture,</span>
+                                        <span><b className='typeDescritptionTag'>Pe</b>- People/Person,</span><span><b className='typeDescritptionTag'>Ha</b>- Happening,</span>
+                                    </p>
+                                </div>
+                                <button type="button" onClick={() => {setShowDesc(false)}}><i className="icofont-close"></i></button>
+                            </div>
+
+                        </div>
+
+                    )
+                }
                 <div className="historiesCntn">
                     {
                         sortedHistoryList.map((elem) => (
@@ -64,6 +85,21 @@ export default function ArticleWrapper({ serverData, compType, ImgType }) {
                                             )
                                         }
                                     </Link>
+
+                                    <div className="genreTypeCntn">
+                                        {
+                                            elem?.genres ? (
+                                                elem?.genres?.map((genre, idx) => (
+                                                    <b key={`${elem?.id}_${idx}`} className='typeDescritptionTag'>{genre?.slice(0, 2)}</b>
+                                                ))
+                                            ) : (
+                                                <>
+                                                    <b className='typeDescritptionTag'>Hi</b>
+                                                    <b className='typeDescritptionTag'>Pe</b>
+                                                </>
+                                            )
+                                        }
+                                    </div>
                                 </div>
                                 <p>{elem?.previewText}</p>
                                 <div className="historyFooter">

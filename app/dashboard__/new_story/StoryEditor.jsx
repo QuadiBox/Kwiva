@@ -33,6 +33,7 @@ export default function ArticleEditor() {
     contentImage: '',
     tags: [],
     summaryDocId: '',
+    genres: []
   });
 
   const [loading, setLoading] = useState(false);
@@ -184,9 +185,9 @@ export default function ArticleEditor() {
       title: formData?.title,
       subtitle: formData?.subtitle,
       previewText: formData?.previewText,
-      tags: formData?.tags,
       summaryImage: formData?.contentImage,
       createdAt: formData?.createdAt,
+      genres: formData?.genres
     };
 
     let summaryDocId = formData?.summaryDocId;
@@ -210,7 +211,7 @@ export default function ArticleEditor() {
         : [];
 
       // Create new batch if full
-      if (summaries.length >= 500) {
+      if (summaries.length >= 1500) {
         batchNumber++;
         summaries = [];
       }
@@ -436,26 +437,50 @@ export default function ArticleEditor() {
           />
         </div>
       </div>
-      <div className="UnitInputCntn">
-        <label className="block font-semibold">Tags:</label>
-        <input
-          value={formData.tags.join(", ")} // join array as comma-separated string for display
-          onChange={(e) => {
-            const input = e.target.value;
+      <div className="dualInputCntn">
+        <div className="UnitInputCntn">
+          <label className="block font-semibold">Tags:</label>
+          <input
+            value={formData.tags.join(", ")} // join array as comma-separated string for display
+            onChange={(e) => {
+              const input = e.target.value;
 
-            // Split by comma OR space (one or more spaces), trim each, and filter out empty strings
-            const newTags = input
-              .split(/[\s,]+/)
-              .map((tag) => tag.trim())
-              .filter((tag) => tag.length > 0);
+              // Split by comma OR space (one or more spaces), trim each, and filter out empty strings
+              const newTags = input
+                .split(/[\s,]+/)
+                .map((tag) => tag.trim())
+                .filter((tag) => tag.length > 0);
 
-            setFormData((prev) => ({
-              ...prev,
-              tags: newTags,
-            }));
-          }}
-          className="w-full p-2 border rounded"
-        />
+              setFormData((prev) => ({
+                ...prev,
+                tags: newTags,
+              }));
+            }}
+            className="w-full p-2 border rounded"
+          />
+        </div>
+        <div className="UnitInputCntn">
+          <label className="block font-semibold">Genres:</label>
+          <input
+            value={formData.genres.join(", ")} // join array as comma-separated string for display
+            onChange={(e) => {
+              const input = e.target.value;
+
+              // Split by comma OR space (one or more spaces), trim each, and filter out empty strings
+              const newGenres = input
+                .split(/[\s,]+/)
+                .map((tag) => tag.trim())
+                .filter((tag) => tag.length > 0);
+
+              setFormData((prev) => ({
+                ...prev,
+                genres: newGenres,
+              }));
+            }}
+            className="w-full p-2 border rounded"
+          />
+        </div>
+        
       </div>
 
       <div className="dualInputCntn">

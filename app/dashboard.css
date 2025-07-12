@@ -164,7 +164,7 @@ input[type="search"]::-webkit-search-results-decoration {
 .dashboardGrandCntn:has(.new_blog) .four,
 .dashboardGrandCntn:has(.functions) .five,
 .dashboardGrandCntn:has(.new_quiz) .six,
-.dashboardGrandCntn:has(.isdeclined) .seven
+.dashboardGrandCntn:has(.new_questions) #seven,
 .dashboardGrandCntn:has(.ispending) .eight
 {
     background-color: transparent;
@@ -173,6 +173,15 @@ input[type="search"]::-webkit-search-results-decoration {
     border: 1px solid var(--sec-hue-1);
     color: var(--sec-hue-1);
 }
+
+.dashboardGrandCntn:has(.new_questions) #newQuestLink{
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--sec-hue-1);
+    color: var(--sec-hue-1);
+}
+
 
 .dashboardGrandCntn .logoutBtnCntn{
     width: 100%;
@@ -286,7 +295,7 @@ input[type="search"]::-webkit-search-results-decoration {
     font-weight: 500;
 }
 
-.UnitInputCntn input{
+.UnitInputCntn input, .UnitInputCntn select{
     height: 40px;
     background-color: transparent;
     border: 1px solid var(--border-clr);
@@ -296,6 +305,14 @@ input[type="search"]::-webkit-search-results-decoration {
     min-width: 100px;
     color: var(--sec-hue-1);
     font-weight: 500;
+}
+
+select option{
+    background-color: var(--primary-clr-1);
+    color: var(--sec-hue-1);
+    width: 100%;
+    padding: 6px 10px;
+    font-size: 0.95em;
 }
 
 .UnitInputCntn.quillCntn{
@@ -865,7 +882,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
 
 #qualified{
     color: #4aca00;
-}
+} 
 
 .monthlyWinnersDetail p i{
     font-size: 1.2em;
