@@ -464,6 +464,7 @@
     width: 17px;
     border-radius: 3px;
     font-size: 0.7em;
+    border: 1.5px dotted var(--sec-hue-1);
   }
 }
 
