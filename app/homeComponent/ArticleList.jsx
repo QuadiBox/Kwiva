@@ -86,20 +86,26 @@ export default function ArticleWrapper({ serverData, compType, ImgType }) {
                                         }
                                     </Link>
 
-                                    <div className="genreTypeCntn">
-                                        {
-                                            elem?.genres ? (
-                                                elem?.genres?.map((genre, idx) => (
-                                                    <b key={`${elem?.id}_${idx}`} className='typeDescritptionTag'>{genre?.slice(0, 2)}</b>
-                                                ))
-                                            ) : (
-                                                <>
-                                                    <b className='typeDescritptionTag'>Hi</b>
-                                                    <b className='typeDescritptionTag'>Pe</b>
-                                                </>
-                                            )
-                                        }
-                                    </div>
+                                    {
+                                        showDesc && (
+                                            <div className="genreTypeCntn">
+                                                {
+                                                    elem?.genres ? (
+                                                        elem?.genres?.map((genre, idx) => (
+                                                            <b key={`${elem?.id}_${idx}`} className='typeDescritptionTag'>{genre?.slice(0, 2)}</b>
+                                                        ))
+                                                    ) : (
+                                                        <>
+                                                            <b className='typeDescritptionTag'>Hi</b>
+                                                            <b className='typeDescritptionTag'>Pe</b>
+                                                        </>
+                                                    )
+                                                }
+                                            </div>
+
+                                        )
+                                    }
+
                                 </div>
                                 <p>{elem?.previewText}</p>
                                 <div className="historyFooter">

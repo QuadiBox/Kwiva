@@ -67,7 +67,7 @@ const StoryContent = ({ htmlContent }) => {
                 const cachedUserStr = localStorage.getItem(`user_${userId}`);
                 let userData;
 
-                if (cachedUserStr) {
+                if (cachedUserStr && cachedUserStr?.id === userId) {
                     userData = JSON.parse(cachedUserStr);
                 } else {
                     // No cached user data, fetch from Firestore
@@ -107,7 +107,7 @@ const StoryContent = ({ htmlContent }) => {
 
                 const summaryData = summaryDocSnap.data();
                 const updatedUsers = summaryData.users.map((u) =>
-                    u.user_id === userId ? { ...u, points: newPoints } : u
+                    u.user_id === userId ? { ...u, points: (u.points || 0) + 10 } : u
                 );
 
                 await updateDoc(summaryDocRef, { users: updatedUsers });

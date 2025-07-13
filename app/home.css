@@ -1328,3 +1328,41 @@ body:has(.noOverflow) {
 #marginAutoLeft{
   margin-left: auto;
 }
+
+.specialQuizGrandCntn{
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-inline: var(--gen-padding);
+  margin-bottom: 1.7em;
+}
+
+.specialQuizGrandCntn h2{
+  font-size: 1.7em;
+  color: var(--sec-hue-1);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.disciplineSelector{
+  display: flex;
+  grid-template-columns: repeat(auto-fit, minmax(max-content, 1fr));
+  gap: 12px;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.unitDisciplineCntn{
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 5px;
+  background-color: var(--gray-hue-3);
+  min-height: 70px;
+}
+
+.unitDisciplineCntn i{
+  font-size: 2em;
+}
