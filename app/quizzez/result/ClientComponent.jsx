@@ -25,6 +25,13 @@ export default function QuizResultPage() {
             return;
         }
 
+        const correctionQuiz = JSON.stringify(storedQuiz);
+        const correctionAnswers = JSON.stringify(storedAnswers);
+
+        localStorage.setItem('correctionQuiz', correctionQuiz);
+        localStorage.setItem('correctionAnswers', correctionAnswers);
+
+
         const correct = storedQuiz.questions.reduce((acc, q, i) => {
             return acc + (storedAnswers[i] === parseInt(q.answer) ? 1 : 0);
         }, 0);
@@ -99,12 +106,13 @@ export default function QuizResultPage() {
             <div className="theResultADSlot">
                 <GoogleAd key={`result-page-ad-card`} adKey={`result-page-ad-card`}></GoogleAd>
             </div>
+            <Link href="/quizzez/correction/1" className='quizDoneBtn'>See Correction</Link>
             <Link href="/quizzez" className='quizDoneBtn'>Done</Link>
 
             <SignedOut>
                 <div className="notLoggedInResultBox">
                     <h2>You&apos;re not signed in!</h2>
-                    <p>You&apos;re missing on incredible prizes, these points earned are not saved and does not accumulate.</p>
+                    <p>You&apos;re missing out on incredible prizes, these points earned are not saved and does not accumulate.</p>
                     <SignInButton></SignInButton>
                 </div>
             </SignedOut>

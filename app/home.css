@@ -856,7 +856,7 @@ body:has(.noOverflow) {
   color: var(--sec-hue-1);
 }
 
-.quizPreviewCntn p{
+.quizPreviewCntn > p{
   font-size: 1.2em;
   font-weight: 400;
   color: var(--sec-hue-1);
@@ -962,6 +962,32 @@ body:has(.noOverflow) {
   border: 1px dashed var(--sec-hue-1);
 }
 
+.theQuestionOptCntn label > span{
+  width: 12px;
+  aspect-ratio: 1;
+  margin-right: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--sec-hue-1);
+  color: var(--primary-clr-1);
+}
+
+.theQuestionOptCntn label.wrong > span {
+  border: 1px solid #a50606;
+  background-color: #a50606;
+}
+
+.theQuestionOptCntn label.right > span {
+  border: 1px solid #06a506;
+  background-color: #06a506;
+}
+
+.theQuestionOptCntn label.right{
+  border: 1px dashed #06a506;
+}
+.theQuestionOptCntn label.wrong{
+  border: 1px dashed #a50606;
+}
+
 .theQuestionOptCntn label p{
   font-size: 0.99em;
   font-weight: 400;
@@ -1011,6 +1037,16 @@ body:has(.noOverflow) {
 .theQuestionnav_box.done{
   background-color: var(--sec-hue-1);
   color: var(--primary-clr-1);
+}
+.theQuestionnav_box.right{
+  background-color: #06a506;
+  color: var(--primary-clr-1);
+  font-weight: 500;
+}
+.theQuestionnav_box.wrong{
+  background-color: #a50606;
+  color: var(--primary-clr-1);
+  font-weight: 500;
 }
 .theQuestionnav_box.currentQuest{
   border: 2px dashed var(--sec-hue-1);
@@ -1346,6 +1382,7 @@ body:has(.noOverflow) {
 
 .disciplineSelector{
   display: flex;
+  flex-wrap: wrap;
   grid-template-columns: repeat(auto-fit, minmax(max-content, 1fr));
   gap: 12px;
   align-items: center;
@@ -1363,6 +1400,100 @@ body:has(.noOverflow) {
   min-height: 70px;
 }
 
+.unitDisciplineCntn:has(.commingSoon) {
+  background-color: var(--primary-clr-2);
+}
+
 .unitDisciplineCntn i{
   font-size: 2em;
+}
+
+.specialDurationCntn{
+  margin-top: 3em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.specialDurationCntn p, 
+.difficultyEditorCntn p{
+  font-size: 1.2em;
+  font-weight: 400;
+}
+
+.durationeditorCntn{
+  display: flex;
+  align-items: center;
+  height: 35px;
+}
+
+.durationeditorCntn button{
+  aspect-ratio: 1;
+  font-size: 0.97em;
+  font-weight: 400;
+  color: var(--sec-hue-1);
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  border: 1px dashed var(--sec-hue-1);
+  height: inherit;
+}
+
+.durationeditorCntn button.subtract {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.durationeditorCntn button.add {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.durationeditorCntn button:hover,
+.durationeditorCntn button:active{
+  background-color: #30303044;
+}
+
+
+.durationeditorCntn input{
+  width: 7ch;
+  padding-inline: 2ch;
+  height: inherit;
+  border: 1px dashed var(--sec-hue-1);
+  font-weight: 400;
+  color: var(--sec-hue-1);
+  background-color: transparent;
+}
+
+.difficultyEditorCntn{
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.difficultyEditorCntn .difficultyCntn{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.difficultyCntn button{
+  padding: 0.7em 1.1em;
+  font-size: 0.9em;
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  margin-inline: auto;
+  margin-top: 20px;
+  background-color: var(--primary-clr-1);
+  color: var(--sec-hue-1);
+  border: 1px dashed var(--sec-hue-1);
+}
+
+.difficultyCntn button.activeDifficulty{
+  background-color: var(--sec-hue-1);
+  color: var(--primary-clr-1);
+  border: 1px dashed var(--sec-hue-1);
 }

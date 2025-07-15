@@ -60,7 +60,7 @@ export default async function Page() {
     return (
         <div className="storyGrandCntn quizzez">
             <HomeHeader headerTitle={"Quizzez"} headerSubTitle={null} headerImgSrc={"/Kwiva1.png"} headerText={"Finish a quiz and get upto 60 points. Each quiz contains atleast 20 questions, get 20 points for finishing the quiz and extra 2 points for each question you answer correctly. They are based off of our interesting Short Histories & Blogs articles."} headerImgType={"/quizzez_1.png"}></HomeHeader>
-            {/* <div className="specialQuizGrandCntn">
+            <div className="specialQuizGrandCntn">
               <h2> <i className="icofont-medal"></i> Are you as smart as you think you are?</h2>
               <p>Interested in more than just story quizzez, test your knowledge with our specials. <b>(I)</b> Choose your discipline, <b>(II)</b> Set how many questions you want, <b>(III)</b> Select the difficulty and get down to business. Godspeed!🚀</p>
               <p></p>
@@ -72,21 +72,21 @@ export default async function Page() {
                     <h3>General Knowledge</h3>
                   </div>
                 </Link>
-                <div href={"/quizzez/science"} className="unitDisciplineCntn">
+                <div  className="unitDisciplineCntn">
                   <i className="icofont-dna"></i>
                   <div className="disciplinetype">
                     <h3>Science</h3>
                     <p className="commingSoon">Coming soon!</p>
                   </div>
                 </div>
-                <div href={"/quizzez/art"} className="unitDisciplineCntn">
+                <div  className="unitDisciplineCntn">
                   <i className="icofont-quill-pen"></i>
                   <div className="disciplinetype">
                     <h3>Arts</h3>
                     <p className="commingSoon">Coming soon!</p>
                   </div>
                 </div>
-                <div href={"/quizzez/commerce"} className="unitDisciplineCntn">
+                <div className="unitDisciplineCntn">
                   <i className="icofont-university"></i>
                   <div className="disciplinetype">
                     <h3>Commerce</h3>
@@ -94,7 +94,7 @@ export default async function Page() {
                   </div>
                 </div>
               </div>
-            </div> */}
+            </div>
             <QuizWrapper serverData={data}></QuizWrapper>
             <Footer></Footer>
         </div>
