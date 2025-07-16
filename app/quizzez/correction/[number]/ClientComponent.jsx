@@ -23,13 +23,14 @@ export default function QuizQuestionPage({ number }) {
         
         setQuiz(storedQuiz);
         setQuizAnswer(storedAnswers);
+
     }, []);
 
-    if (!quiz) return notFound();
+    if (!quiz) return null;
 
-    const question = quiz.questions[questionIndex];
+    const question = quiz?.questions[questionIndex];
     const currentAnswer = quizAnswer[questionIndex];
-    const isLast = questionIndex === quiz.questions.length - 1;
+    const isLast = questionIndex === quiz?.questions.length - 1;
     const isFirst = questionIndex === 0;
 
     return (

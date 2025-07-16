@@ -21,6 +21,7 @@ export async function generateMetadata() {
 
 export default function Page({ params }) {
     const { number } = params;
+    
     return (
         <div className="storyGrandCntn quizzez">
             <QuizQuestionPage number={number}></QuizQuestionPage>

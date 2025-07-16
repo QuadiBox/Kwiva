@@ -1,4 +1,3 @@
-import { notFound } from "next/navigation";
 
 export async function generateMetadata() {
     return {
@@ -19,6 +18,11 @@ export async function generateMetadata() {
     };
 }
 
-export default function Page() {
-    return notFound()
+export default function Page({ params }) {
+    const { number } = params;
+    return (
+        <div className="storyGrandCntn quizzez">
+            
+        </div>
+    )
 }
