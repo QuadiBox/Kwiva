@@ -233,7 +233,7 @@ const ProfileBodyCntn = () => {
             <div className="theprofileDetail">
                 <div className="unitDetl left">
                     <h2>Total Monthly Points</h2>
-                    <p>{formatNumber(monthlyPoints) || '0'}</p>
+                    <p>{parseInt(monthlyPoints).toLocaleString() || '0'}</p>
                 </div>
                 <div className="unitDetl right">
                     <h2>Earned Monthly Reward</h2>
