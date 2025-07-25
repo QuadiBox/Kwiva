@@ -8,9 +8,15 @@ const SetMonthlyWinners = () => {
     const [loading, setLoading] = useState(false);
 
     const handleMonthlyWinnerProcess = async () => {
+        const today = new Date();
+        const date = today.getDate();
+        const withinDateRange = date >= 25 && date <= 31;
+        if (!withinDateRange) return;
         try {
+            setLoading(true)
             const processResult = await archiveMonthlyLeaderboard();
             setMonthlyWinnersStatus(processResult);
+            setLoading(false)
         } catch (error) {
             console.error(error);
         }
@@ -40,7 +46,7 @@ const SetMonthlyWinners = () => {
                     )
                 }
             </div>
-            <button type="button" name="Monthly-Winner-Setter Button" onClick={handleMonthlyWinnerProcess}>Update Winners</button>
+            <button type="button" name="Monthly-Winner-Setter Button" onClick={handleMonthlyWinnerProcess}>{loading? "Updating..." : "Update Winners"}</button>
         </section>
     )
 }

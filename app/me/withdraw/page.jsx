@@ -144,6 +144,10 @@ export default function WithdrawPage() {
         e.preventDefault();
         setSubmitting(true);
         // Logic to submit withdrawal request
+        const today = new Date();
+        const date = today.getDate();
+        const withinDateRange = date >= 25 && date <= 31;
+        if (!withinDateRange) return;
         try {
             await sendWelcomeEmail(
                 `"${formData.fName} from Kwiva." <${process.env.EMAIL_NAME}>`,
@@ -191,7 +195,7 @@ export default function WithdrawPage() {
     };
 
     return (
-        <div className='storyGrandCntn histories'>
+        <div className='storyGrandCntn me'>
             <div className="withdrawFormCntn">
                 <h2>Withdraw Your Reward</h2>
                 <div className="preSect">
