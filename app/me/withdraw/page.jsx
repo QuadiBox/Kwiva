@@ -205,13 +205,17 @@ export default function WithdrawPage() {
                     <span><i className="icofont-rounded-right"></i></span>
                     <p>Withdraw</p>
                 </div>
-                <h3>
-                    {isWinner
-                        ? '🎊Congrats! Your effort this month paid off. Fill the form below to receive your reward.'
-                        : '🚩You didn\'t make it to the top this month. Keep trying, your consistency will pay off!'
-                    }
+                {
+                    !hasBeenPaid && (
+                        <h3>
+                            {isWinner
+                                ? '🎊Congrats! Your effort this month paid off. Fill the form below to receive your reward.'
+                                : '🚩You didn\'t make it to the top this month. Keep trying, your consistency will pay off!'
+                            }
 
-                </h3>
+                        </h3>
+                    )
+                }
                 {
                     hasBeenPaid && (
                         <h3>
