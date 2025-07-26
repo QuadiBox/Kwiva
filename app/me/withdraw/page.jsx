@@ -225,57 +225,61 @@ export default function WithdrawPage() {
                         <p>⚠️ Withdrawals are processed in less than <b>4 hours</b> after submission and are sometimes instant.</p>
                     )
                 }
-                <form onSubmit={handleSubmit} className='withdrawForm'>
-                    <div className="withdrawInputsCntn">
-                        <input
-                            type="text"
-                            name="bankName"
-                            value={formData.bankName}
-                            onChange={handleChange}
-                            placeholder="Bank Name (Opay)"
-                            required
-                        />
-                        <input
-                            type="text"
-                            name="accountNumber"
-                            value={formData.accountNumber}
-                            onChange={handleChange}
-                            placeholder="Account Number (04***90)"
-                            required
-                        />
-                        <input
-                            type="text"
-                            name="accountName"
-                            value={formData.accountName}
-                            onChange={handleChange}
-                            placeholder="Account Name (John Doe)"
-                            required
-                        />
-                        <input
-                            type="number"
-                            name="amount"
-                            value={formData.amount}
-                            readOnly
-                        />
-                        <input
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            placeholder="Email (optional)"
-                        />
-                        <input
-                            type="tel"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleChange}
-                            placeholder="Phone (optional)"
-                        />
-                    </div>
-                    <button type="submit" disabled={submitting}>
-                        {submitting ? 'Processing...' : buttonText}
-                    </button>
-                </form>
+                {
+                    !hasBeenPaid && (
+                        <form onSubmit={handleSubmit} className='withdrawForm'>
+                            <div className="withdrawInputsCntn">
+                                <input
+                                    type="text"
+                                    name="bankName"
+                                    value={formData.bankName}
+                                    onChange={handleChange}
+                                    placeholder="Bank Name (Opay)"
+                                    required
+                                />
+                                <input
+                                    type="text"
+                                    name="accountNumber"
+                                    value={formData.accountNumber}
+                                    onChange={handleChange}
+                                    placeholder="Account Number (04***90)"
+                                    required
+                                />
+                                <input
+                                    type="text"
+                                    name="accountName"
+                                    value={formData.accountName}
+                                    onChange={handleChange}
+                                    placeholder="Account Name (John Doe)"
+                                    required
+                                />
+                                <input
+                                    type="number"
+                                    name="amount"
+                                    value={formData.amount}
+                                    readOnly
+                                />
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    placeholder="Email (optional)"
+                                />
+                                <input
+                                    type="tel"
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                    placeholder="Phone (optional)"
+                                />
+                            </div>
+                            <button type="submit" disabled={submitting}>
+                                {submitting ? 'Processing...' : buttonText}
+                            </button>
+                        </form>
+                    )
+                }
             </div>
 
         </div>
