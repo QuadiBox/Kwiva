@@ -72,13 +72,12 @@ export default async function Page() {
                     <h3>General Knowledge</h3>
                   </div>
                 </Link>
-                <div  className="unitDisciplineCntn">
+                <Link href={"/quizzez/science"} className="unitDisciplineCntn">
                   <i className="icofont-dna"></i>
                   <div className="disciplinetype">
                     <h3>Science</h3>
-                    <p className="commingSoon">Coming soon!</p>
                   </div>
-                </div>
+                </Link>
                 <div  className="unitDisciplineCntn">
                   <i className="icofont-quill-pen"></i>
                   <div className="disciplinetype">

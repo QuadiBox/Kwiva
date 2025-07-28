@@ -8,12 +8,12 @@ export const revalidate = 60 * 60 * 24; // 24 hours
 export async function generateMetadata({ params }) {
     return {
         title: 'Kwiva | Quizzez',
-        description: "Get up to 60 points after finishing any quiz. Have a crack at our well curated quizzez.",
+        description: "Get up to 70 points after finishing any quiz. Have a crack at our well curated quizzez.",
         openGraph: {
             type: "website",
             url: `https://kwiva.online/quizzez/${params.quizId}`,
             title: 'Kwiva | Quizzez',
-            description: "Get up to 60 points after finishing any quiz. Have a crack at our well curated quizzez.",
+            description: "Get up to 70 points after finishing any quiz. Have a crack at our well curated quizzez.",
             images: [
                 {
                     url: "https://kwiva.online/quizzez_1.png"
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }) {
             creator: "@QuadVox",
             url: `https://kwiva.online/quizzez/${params.quizId}`,
             title: 'Kwiva | Quizzez',
-            description: "Get up to 60 points after finishing any quiz. Have a crack at our well curated quizzez.",
+            description: "Get up to 70 points after finishing any quiz. Have a crack at our well curated quizzez.",
             images: [
                 {
                     url: "https://kwiva.online/quizzez_1.png"
@@ -35,13 +35,13 @@ export async function generateMetadata({ params }) {
     };
 }
 
-export default async function Page({ params }) {
+export default async function Page() {
 
     return (
         <div className="storyGrandCntn quizzez">
             <main className="quizPreviewCntn">
-                <h1>Arts Quiz</h1>
-                <p>Test you mental strenth on the knowledge of lifestyle, literature and philosophy amongst others. Select how many question you want in the session and select the difficulty (<b>Random</b>: <b>18 seconds per question</b>, <b>Easy</b>: <b>20s</b>/question, <b>Medium</b>: <b>15s</b>/question, <b>Hard</b>: <b>11s</b>/question). Get down to business.</p>
+                <h1>Science Quiz</h1>
+                <p>Test you mental strenth on the knowledge of life from biology and its disciplines to physics and its principles, chemistry with its advances and many more. Select how many question you want in the session and select the difficulty (<b>Random</b>: <b>18 seconds per question</b>, <b>Easy</b>: <b>20s</b>/question, <b>Medium</b>: <b>15s</b>/question, <b>Hard</b>: <b>11s</b>/question). Get down to business.</p>
                 <GSTClientComponent></GSTClientComponent>
             </main>
         </div>
