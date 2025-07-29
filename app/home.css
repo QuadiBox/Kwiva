@@ -659,6 +659,14 @@
   color: var(--sec-hue-1);
   font-weight: 1.45em;
 }
+.storyArticleCntn a {
+  font-weight: 600;
+  color: var(--gray-hue-1);
+  text-decoration: underline;
+  -moz-text-decoration-style: dashed;
+  text-decoration-style: dashed;
+  font-size: 1.1em;
+}
 
 .storyArticleCntn h2 {
   font-size: 2.15em;
