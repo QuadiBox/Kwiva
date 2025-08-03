@@ -39,7 +39,7 @@ export async function generateMetadata({ params }) {
 
     return {
         title: story.title || "Untitled Story",
-        description: "Welcome to QuadBox's Kwiva",
+        description: story.previewText || "Welcome to QuadBox's Kwiva",
         openGraph: {
             type: "website",
             url: `${process.env.NEXT_PUBLIC_BASE_URL}/${story_id}`,

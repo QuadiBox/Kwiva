@@ -60,7 +60,7 @@ const Page = () => {
     
             console.warn('❌ Question not found in any summary document.');
         }
-        correctQuestionAnswer("What is the longest river in the world?", "1");
+        correctQuestionAnswer("Which chemical element is named after the Norse god of war?", "1");
     }, []);
     return (
         <div style={{ fontSize: "2em", color: "black", width: "100vw" }}>
