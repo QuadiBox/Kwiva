@@ -676,6 +676,7 @@
 }
 .storyArticleCntn h3 {
   font-size: 1.65em;
+  line-height: 1.6;
 }
 .storyArticleCntn h4 {
   font-size: 1.55em;
@@ -689,12 +690,23 @@
 }
 
 .storyArticleCntn ul li {
-  list-style: disc;
+  list-style: none;
   width: 100%;
   gap: 20px;
   color: var(--sec-hue-1);
   font-size: 0.95em;
   padding-left: 20px;
+  position: relative;
+  list-style-position: inside;
+}
+
+.storyArticleCntn ul li::before {
+  content: '•'; /* or use another symbol or image */
+  position: absolute;
+  left: 0;
+  top: 0px; /* adjust vertically as needed */
+  transform: translateY(-30%);
+  font-size: 2.4em;
 }
 
 .prevNextCntn {
