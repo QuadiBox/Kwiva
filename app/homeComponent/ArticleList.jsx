@@ -87,7 +87,7 @@ export default function ArticleWrapper({ serverData, compType, ImgType }) {
                                     </Link>
 
                                     {
-                                        showDesc && (
+                                        compType === "story" && showDesc && (
                                             <div className="genreTypeCntn">
                                                 {
                                                     elem?.genres ? (
