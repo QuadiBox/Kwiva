@@ -26,7 +26,7 @@ const StoryContent = ({ htmlContent }) => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setTimerDone(true);
-        }, 20000);
+        }, 30000);
 
         const handleScroll = () => {
             if (!articleRef.current) return;
