@@ -57,11 +57,8 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <head>
           {/* ✅ Google AdSense verification script */}
-          {/* <script
-            data-ad-client="ca-pub-XXXXXXXXXXXXXXX" // <-- Replace with your own AdSense Publisher ID
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-          ></script> */}
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9336754318917790"
+     crossorigin="anonymous"></script>
         </head>
         <body className={`${aleg.variable} ${cinzel.variable} ${play.variable}`}>
           {children}
