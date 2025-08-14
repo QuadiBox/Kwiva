@@ -54,7 +54,7 @@ export default function Page() {
                     <p>
                         When you create an account with us using Clerk, we collect information such as your name, email address, and
                         authentication metadata. We also track interactions with our content (e.g., article views, referrals) to
-                        reward engagement and improve our services.
+                        give points and improve our services.
                     </p>
                     <p>
                         Additionally, if you contact us using the form on our Contact page, we collect your name, subject, and message

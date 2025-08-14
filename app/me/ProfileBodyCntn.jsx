@@ -20,16 +20,16 @@ const ProfileBodyCntn = () => {
 
 
     const rewardMap = {
-        1: 1500000,
-        2: 700000,
-        3: 500000,
-        4: 100000,
-        5: 100000,
-        6: 100000,
-        7: 100000,
-        8: 100000,
-        9: 100000,
-        10: 100000,
+        1: "☀️",
+        2: "🌑",
+        3: "🌒",
+        4: "☄️",
+        5: "☄️",
+        6: "☄️",
+        7: "☄️",
+        8: "☄️",
+        9: "☄️",
+        10: "☄️",
     };
 
     // 🧠 Utility: Get reward from leaderboard
@@ -226,7 +226,7 @@ const ProfileBodyCntn = () => {
     const withinDateRange = date >= 25 && date <= 30;
     const hasEnoughPoints = monthlyPoints >= 1050;
     const hasReward = reward > 0;
-    const canWithdraw = withinDateRange && isWinner;
+    const canClaim = withinDateRange && isWinner && hasEnoughPoints;
 
     return (
         <div className="profileBodyCntn">
@@ -236,8 +236,8 @@ const ProfileBodyCntn = () => {
                     <p>{parseInt(monthlyPoints).toLocaleString() || '0'}</p>
                 </div>
                 <div className="unitDetl right">
-                    <h2>Earned Monthly Reward</h2>
-                    <p>₦{reward.toLocaleString() || '0'}</p>
+                    <h2>Earned Monthly Prize</h2>
+                    <p>{reward || '--'}</p>
                 </div>
             </div>
             <div className="profileLinksGrandCntn">
@@ -246,21 +246,21 @@ const ProfileBodyCntn = () => {
                         <i className="icofont-ui-settings"></i>Edit Profile
                     </Link>
 
-                    {canWithdraw ? (
-                        <Link className="unitProfileDetlLink" href="/me/withdraw">
-                            <i className="icofont-wallet"></i>Withdraw Reward
+                    {canClaim ? (
+                        <Link className="unitProfileDetlLink" href="/me/claim">
+                            <i className="icofont-wallet"></i>Claim Prize
                         </Link>
                     ) : (
                         <span
                             className="unitProfileDetlLink"
                             style={{ opacity: 0.6, pointerEvents: 'none', cursor: 'not-allowed' }}
                         >
-                            <i className="icofont-wallet"></i>Withdraw Reward
+                            <i className="icofont-wallet"></i>Claim Prize
                         </span>
                     )}
                 </div>
-                <div className="profileWithdrawalInfo">
-                    <p> ⚠️ Withdrawals can only be made between <span>25th</span> to <span>30th</span> of every month if you are eligible.</p>
+                <div className="profileClaimInfo">
+                    <p> ⚠️ Prizes can only be claimed between <span>25th</span> to <span>30th</span> of every month if you are eligible.</p>
                     <p>To be eligible, you must be in the top 10 of the leaderboard and have atleast <span>1,050</span> total monthly points</p>
                 </div>
             </div>
@@ -317,7 +317,7 @@ const ProfileBodyCntn = () => {
                                             <span className="points"><b>{formatNumber(userObj?.points)}</b> pts</span>
                                             <span className="reward">
                                                 {rewardMap[`${userObj?.position}`]
-                                                    ? <b>{`₦${formatNumber(rewardMap[`${userObj?.position}`])}`}</b>
+                                                    ? <b>{`${rewardMap[`${userObj?.position}`]}`}</b>
                                                     : '--'}
                                             </span>
                                         </div>
@@ -354,7 +354,7 @@ const ProfileBodyCntn = () => {
                                         <span className="points"><b>{formatNumber(userObj?.points)}</b> pts</span>
                                         <span className="reward">
                                             {rewardMap[`${userObj?.position}`]
-                                                ? <b>{`₦${formatNumber(rewardMap[`${userObj?.position}`])}`}</b>
+                                                ? <b>{`${rewardMap[`${userObj?.position}`]}`}</b>
                                                 : '--'}
                                         </span>
                                     </div>
@@ -376,7 +376,7 @@ const ProfileBodyCntn = () => {
                                     <span className="points"><b>{formatNumber(userObj?.points)}</b> pts</span>
                                     <span className="reward">
                                         {rewardMap[`${userObj?.position}`]
-                                            ? <b>{`₦${formatNumber(rewardMap[`${userObj?.position}`])}`}</b>
+                                            ? <b>{`${rewardMap[`${userObj?.position}`]}`}</b>
                                             : '--'}
                                     </span>
                                 </div>

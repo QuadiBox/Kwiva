@@ -8,11 +8,9 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useUser } from '@clerk/nextjs';
 import { sendWelcomeEmail } from '@/app/email';
 
-export default function WithdrawPage() {
+export default function ClaimPage() {
     const { user } = useUser();
     const [formData, setFormData] = useState({
-        bankName: '',
-        accountNumber: '',
         accountName: '',
         amount: 0,
         email: '',
@@ -43,7 +41,7 @@ export default function WithdrawPage() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Withdrawal Form Submission</title>
+    <title>Prize Claim Form Submission</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -76,15 +74,9 @@ export default function WithdrawPage() {
 </head>
 <body>
     <div class="container">
-        <h2>A New Withdrawal Request from ${formData.accountName} </h2>
+        <h2>A New Prize Claim Request from ${formData.accountName} </h2>
         <div class="field">
             <span class="label">Account name:</span> <span>${formData.accountName}</span>
-        </div>
-        <div class="field">
-            <span class="label">Account Number:</span> <span>${formData.accountNumber}</span>
-        </div>
-        <div class="field">
-            <span class="label">Bank Name:</span> <span>${formData.bankName}</span>
         </div>
         <div class="field">
             <span class="label">Amount:</span> <span>${formData.amount}</span>
@@ -128,7 +120,7 @@ export default function WithdrawPage() {
             } catch (err) {
                 console.error('Error fetching winners:', err);
             } finally {
-                setButtonText('Withdraw');
+                setButtonText('Claim');
             }
         };
 
@@ -143,7 +135,7 @@ export default function WithdrawPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setSubmitting(true);
-        // Logic to submit withdrawal request
+        // Logic to submit claimal request
         const today = new Date();
         const date = today.getDate();
         const withinDateRange = date >= 25 && date <= 31;
@@ -152,8 +144,8 @@ export default function WithdrawPage() {
             await sendWelcomeEmail(
                 `"${formData.fName} from Kwiva." <${process.env.EMAIL_NAME}>`,
                 'kwivaonline@gmail.com',
-                `${formData?.accountName} wants to withdraw ${formData?.amount} to their ${formData?.bankName}`,
-                `'A New Withdrawal Submission'`,
+                `${formData?.accountName} wants to Claim ${formData?.amount} to their ${formData?.bankName}`,
+                `'A New Prize Claim Submission'`,
                 html_to_mail
             );
 
@@ -178,38 +170,36 @@ export default function WithdrawPage() {
                 setwinnerFromDB(updatedWinnerDoc);
             }
         } catch (error) {
-            console.error('Error sending widthdrawal request', err);
+            console.error('Error sending prize claim request', err);
         }
         setFormData({
-            bankName: '',
-            accountNumber: '',
-            accountName: '',
+            accountName: "",
             amount: 0,
             email: '',
             phone: '',
         });
         router.push("/me")
-        console.log('Submitting withdrawal:', formData);
+        console.log('Submitting Prize Claim:', formData);
         setSubmitting(false);
 
     };
 
     return (
         <div className='storyGrandCntn me'>
-            <div className="withdrawFormCntn">
-                <h2>Withdraw Your Reward</h2>
+            <div className="claimFormCntn">
+                <h2>Claim Your Prize</h2>
                 <div className="preSect">
                     <Link href={"/"}>Home</Link>
                     <span><i className="icofont-rounded-right"></i></span>
                     <Link href={"/me"}>Me</Link>
                     <span><i className="icofont-rounded-right"></i></span>
-                    <p>Withdraw</p>
+                    <p>Claim Prize</p>
                 </div>
                 {
                     !hasBeenPaid && (
                         <h3>
                             {isWinner
-                                ? '🎊Congrats! Your effort this month paid off. Fill the form below to receive your reward.'
+                                ? '🎊Congrats! Your effort this month paid off. Fill the form below to claim your prize for this month\'s Kwiva token.'
                                 : '🚩You didn\'t make it to the top this month. Keep trying, your consistency will pay off!'
                             }
 
@@ -219,56 +209,35 @@ export default function WithdrawPage() {
                 {
                     hasBeenPaid && (
                         <h3>
-                            You&apos;ve already submitted a withdrawal request. If you are yet to receive the money, reach out to us <a href="mailto:kwivaonline@gmail.com">@kwivaonline@gmail.com</a>
+                            You&apos;ve already submitted a prize claim request. If we are yet to contact you, reach out to us directly at <a href="mailto:kwivaonline@gmail.com">kwivaonline@gmail.com</a>
                         </h3>
 
                     )
                 }
                 {
                     isWinner && (
-                        <p>⚠️ Withdrawals are processed in less than <b>4 hours</b> after submission and are sometimes instant.</p>
+                        <p>⚠️ Prize claims are processed in less than <b>4 hours</b> after submission and are sometimes instant.</p>
                     )
                 }
                 {
                     !hasBeenPaid && (
-                        <form onSubmit={handleSubmit} className='withdrawForm'>
-                            <div className="withdrawInputsCntn">
-                                <input
-                                    type="text"
-                                    name="bankName"
-                                    value={formData.bankName}
-                                    onChange={handleChange}
-                                    placeholder="Bank Name (Opay)"
-                                    required
-                                />
-                                <input
-                                    type="text"
-                                    name="accountNumber"
-                                    value={formData.accountNumber}
-                                    onChange={handleChange}
-                                    placeholder="Account Number (04***90)"
-                                    required
-                                />
+                        <form onSubmit={handleSubmit} className='claimForm'>
+                            <div className="claimInputsCntn">
                                 <input
                                     type="text"
                                     name="accountName"
                                     value={formData.accountName}
                                     onChange={handleChange}
-                                    placeholder="Account Name (John Doe)"
+                                    placeholder="Account Name"
                                     required
-                                />
-                                <input
-                                    type="number"
-                                    name="amount"
-                                    value={formData.amount}
-                                    readOnly
                                 />
                                 <input
                                     type="email"
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}
-                                    placeholder="Email (optional)"
+                                    placeholder="Email"
+                                    required
                                 />
                                 <input
                                     type="tel"

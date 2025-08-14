@@ -57,8 +57,7 @@ export default function Page() {
                 </p>
 
                 <p className="mb-4">
-                    We believe that learning should be fun, easy to access, and rewarding; 
-                    literally. That&apos;s why we&apos;ve built Kwiva as a place where your
+                    We believe that learning should be fun, easy to access, and rewarding. That&apos;s why we&apos;ve built Kwiva as a place where your
                     participation earns you more than just knowledge. Every time you read,
                     engage, or share, you&apos;re climbing up our community leaderboard. 
                 </p>
