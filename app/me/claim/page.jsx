@@ -220,7 +220,7 @@ export default function ClaimPage() {
                     )
                 }
                 {
-                    !hasBeenPaid && (
+                    !hasBeenPaid && isWinner && (
                         <form onSubmit={handleSubmit} className='claimForm'>
                             <div className="claimInputsCntn">
                                 <input
