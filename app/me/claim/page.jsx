@@ -7,6 +7,7 @@ import { db } from '@/app/db/FirebaseConfig';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useUser } from '@clerk/nextjs';
 import { sendWelcomeEmail } from '@/app/email';
+import Head from 'next/head';
 
 export default function ClaimPage() {
     const { user } = useUser();
@@ -120,7 +121,7 @@ export default function ClaimPage() {
             } catch (err) {
                 console.error('Error fetching winners:', err);
             } finally {
-                setButtonText('Claim');
+                setButtonText('Claim Prize');
             }
         };
 
@@ -185,76 +186,81 @@ export default function ClaimPage() {
     };
 
     return (
-        <div className='storyGrandCntn me'>
-            <div className="claimFormCntn">
-                <h2>Claim Your Prize</h2>
-                <div className="preSect">
-                    <Link href={"/"}>Home</Link>
-                    <span><i className="icofont-rounded-right"></i></span>
-                    <Link href={"/me"}>Me</Link>
-                    <span><i className="icofont-rounded-right"></i></span>
-                    <p>Claim Prize</p>
+        <>
+            <Head>
+                <meta name="robots" content="noindex, nofollow" />
+            </Head>
+            <div className='storyGrandCntn me'>
+                <div className="claimFormCntn">
+                    <h2>Claim Your Prize</h2>
+                    <div className="preSect">
+                        <Link href={"/"}>Home</Link>
+                        <span><i className="icofont-rounded-right"></i></span>
+                        <Link href={"/me"}>Me</Link>
+                        <span><i className="icofont-rounded-right"></i></span>
+                        <p>Claim Prize</p>
+                    </div>
+                    {
+                        !hasBeenPaid && (
+                            <h3>
+                                {isWinner
+                                    ? '🎊Congrats! Your effort this month paid off. Fill the form below to claim your prize for this month\'s Kwiva token.'
+                                    : '🚩You didn\'t make it to the top this month. Keep trying, your consistency will pay off!'
+                                }
+
+                            </h3>
+                        )
+                    }
+                    {
+                        hasBeenPaid && (
+                            <h3>
+                                You&apos;ve already submitted a prize claim request. If we are yet to contact you, reach out to us directly at <a href="mailto:kwivaonline@gmail.com">kwivaonline@gmail.com</a>
+                            </h3>
+
+                        )
+                    }
+                    {
+                        isWinner && (
+                            <p>⚠️ Prize claims are processed in less than <b>4 hours</b> after submission and are sometimes instant.</p>
+                        )
+                    }
+                    {
+                        !hasBeenPaid && isWinner && (
+                            <form onSubmit={handleSubmit} className='claimForm'>
+                                <div className="claimInputsCntn">
+                                    <input
+                                        type="text"
+                                        name="accountName"
+                                        value={formData.accountName}
+                                        onChange={handleChange}
+                                        placeholder="Account Name"
+                                        required
+                                    />
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        placeholder="Email"
+                                        required
+                                    />
+                                    <input
+                                        type="tel"
+                                        name="phone"
+                                        value={formData.phone}
+                                        onChange={handleChange}
+                                        placeholder="Phone (optional)"
+                                    />
+                                </div>
+                                <button type="submit" disabled={submitting}>
+                                    {submitting ? 'Processing...' : buttonText}
+                                </button>
+                            </form>
+                        )
+                    }
                 </div>
-                {
-                    !hasBeenPaid && (
-                        <h3>
-                            {isWinner
-                                ? '🎊Congrats! Your effort this month paid off. Fill the form below to claim your prize for this month\'s Kwiva token.'
-                                : '🚩You didn\'t make it to the top this month. Keep trying, your consistency will pay off!'
-                            }
 
-                        </h3>
-                    )
-                }
-                {
-                    hasBeenPaid && (
-                        <h3>
-                            You&apos;ve already submitted a prize claim request. If we are yet to contact you, reach out to us directly at <a href="mailto:kwivaonline@gmail.com">kwivaonline@gmail.com</a>
-                        </h3>
-
-                    )
-                }
-                {
-                    isWinner && (
-                        <p>⚠️ Prize claims are processed in less than <b>4 hours</b> after submission and are sometimes instant.</p>
-                    )
-                }
-                {
-                    !hasBeenPaid && isWinner && (
-                        <form onSubmit={handleSubmit} className='claimForm'>
-                            <div className="claimInputsCntn">
-                                <input
-                                    type="text"
-                                    name="accountName"
-                                    value={formData.accountName}
-                                    onChange={handleChange}
-                                    placeholder="Account Name"
-                                    required
-                                />
-                                <input
-                                    type="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    placeholder="Email"
-                                    required
-                                />
-                                <input
-                                    type="tel"
-                                    name="phone"
-                                    value={formData.phone}
-                                    onChange={handleChange}
-                                    placeholder="Phone (optional)"
-                                />
-                            </div>
-                            <button type="submit" disabled={submitting}>
-                                {submitting ? 'Processing...' : buttonText}
-                            </button>
-                        </form>
-                    )
-                }
             </div>
-
-        </div>
+        </>
     );
 }
