@@ -2,9 +2,9 @@
 
 import { useEffect, useState, useRef } from "react";
 
-const isAdEnabled = false; // Change to true when Google verifies your site
+const isAdEnabled = true; // Change to true when Google verifies your site
 
-export default function GoogleAd({ slot = "1234567890", adKey }) {
+export default function GoogleAd({ slot = "5983480416", adKey }) {
     const adRef = useRef(null);
     const [visible, setVisible] = useState(true);
 
@@ -59,10 +59,11 @@ export default function GoogleAd({ slot = "1234567890", adKey }) {
             {visible && (
                 <ins
                     className="adsbygoogle"
-                    style={{ display: "block", margin: "0.1rem auto" }}
-                    data-ad-client="ca-pub-xxxxxxxxxxxxxxxx" // Replace with your actual ad client ID
+                    style={{ display: "block", margin: "0.1rem auto", textAlign: "center" }}
+                    data-ad-client="ca-pub-9336754318917790" // Replace with your actual ad client ID
                     data-ad-slot={slot}
-                    data-ad-format="auto"
+                    data-ad-layout="in-article"
+                    data-ad-format="fluid"
                     data-full-width-responsive="true"
                     ref={adRef}
                 ></ins>
