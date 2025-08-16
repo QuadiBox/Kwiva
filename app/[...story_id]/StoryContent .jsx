@@ -188,7 +188,7 @@ const StoryContent = ({ htmlContent }) => {
                 </React.Fragment>
             ))}
 
-            <span className='goBackToTop'><p>Go back to top & Scroll gently</p></span>
+            {/* <span className='goBackToTop'><p>Go back to top & Scroll gently</p></span> */}
         </article>
     );
 };
