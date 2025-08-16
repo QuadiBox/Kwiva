@@ -65,6 +65,7 @@ export default function GoogleAd({ slot = "5983480416", adKey }) {
                     data-ad-layout="in-article"
                     data-ad-format="fluid"
                     data-full-width-responsive="true"
+                    data-adtest="on"
                     ref={adRef}
                 ></ins>
             )}
