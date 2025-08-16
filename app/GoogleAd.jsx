@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 
-const isAdEnabled = true; // Change to true when Google verifies your site
+const isAdEnabled = false; // Change to true when Google verifies your site
 
 export default function GoogleAd({ slot = "5983480416", adKey }) {
     const adRef = useRef(null);
