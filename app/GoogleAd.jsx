@@ -59,7 +59,7 @@ export default function GoogleAd({ slot = "5983480416", adKey }) {
             {visible && (
                 <ins
                     className="adsbygoogle"
-                    style={{ display: "block", margin: "0.1rem auto", textAlign: "center" }}
+                    style={{ display: "block", width: "100%", minHeight: "200px", margin: "0.1rem auto", textAlign: "center" }}
                     data-ad-client="ca-pub-9336754318917790" // Replace with your actual ad client ID
                     data-ad-slot={slot}
                     data-ad-layout="in-article"

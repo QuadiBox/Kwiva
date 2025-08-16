@@ -12,8 +12,10 @@ const StoryContent = ({ htmlContent }) => {
 
     const slotIds = [
         '5983480416', // slot for ad 1
-        '5983480416', // slot for ad 2
-        '5983480416', // slot for ad 3
+        '3517099174', // slot for ad 2
+        '7129558040', // slot for ad 3
+        '7564155394', // slot for ad 4
+        '6251073721', // slot for ad 5
         // repeat or add more as needed
     ];
 
