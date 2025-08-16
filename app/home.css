@@ -635,6 +635,11 @@
   font-weight: 500;
 }
 
+ins{
+  width: 100% !important;
+  min-height: 200px;
+}
+
 .temporaryAdDisplay span {
   height: 30px;
   width: 4px;
