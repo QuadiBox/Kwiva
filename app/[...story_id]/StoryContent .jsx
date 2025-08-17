@@ -33,12 +33,46 @@ const StoryContent = ({ htmlContent }) => {
     // Whether the user has completed the full reading process
     const [readingComplete, setReadingComplete] = useState(false);
 
+    const [bottomReachedWithoutGentleScroll, setBottomReachedWithoutGentleScroll] = useState(false);
+
     const { user } = useUser();
 
     // 📌 On mount, mark readingComplete as false in localStorage
     useEffect(() => {
         localStorage.setItem('readingComplete', 'false');
     }, []);
+
+
+    useEffect(() => {
+        const handleScrollCheck = () => {
+            if (!articleRef.current) return;
+
+            const rect = articleRef.current.getBoundingClientRect();
+
+            const atBottom = rect.bottom <= window.innerHeight;
+            const atTop = rect.top >= 0; // article top is visible (scrolled back up)
+
+            if (atTop) {
+                // If we are back at the top of the article → always remove popup
+                setBottomReachedWithoutGentleScroll(false);
+            } else if (atBottom) {
+                // If they reached bottom
+                if (!readingComplete) {
+                    setBottomReachedWithoutGentleScroll(true);
+                } else {
+                    setBottomReachedWithoutGentleScroll(false);
+                }
+            }
+        };
+
+        window.addEventListener("scroll", handleScrollCheck);
+        return () => window.removeEventListener("scroll", handleScrollCheck);
+    }, [readingComplete]);
+
+    // Optional: Function to scroll back to top
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     // Main scroll + timer effect
     useEffect(() => {
@@ -190,7 +224,10 @@ const StoryContent = ({ htmlContent }) => {
                 </React.Fragment>
             ))}
 
-            {/* <span className='goBackToTop'><p>Go back to top & Scroll gently</p></span> */}
+            <div onClick={scrollToTop} className={`goBackToTop ${bottomReachedWithoutGentleScroll ? "pullUp" : ""}`}>
+                <p>Please go back to top & scroll gently</p>
+                <button><i className="icofont-arrow-up"></i></button>
+            </div>
         </article>
     );
 };
