@@ -767,6 +767,10 @@ ins{
   list-style-position: inside;
 }
 
+.storyArticleCntn ul li:last-of-type{
+  margin-bottom: 10px;
+}
+
 .storyArticleCntn ul li::before {
   content: '•'; /* or use another symbol or image */
   position: absolute;
