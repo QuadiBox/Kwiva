@@ -243,17 +243,77 @@ const ProfileBodyCntn = () => {
             setUpdateMsg("Loading...");
             // Fallback → API
             try {
-                // const res = await fetch("/api/leaderboard");
-                const res = await fetch(`/api/leaderboard?ts=${Date.now()}`, { cache: "no-store",});
-                const data = await res.json();
-                if (!data.error) {
-                    localStorage.setItem("leaderboard", JSON.stringify(data));
-                    setPreview(data?.top_10);
-                    setToExprire(data?.expiryTime)
-                } else {
-                    console.error(data.error);
-                    setUpdateMsg(`${data.error}`)
+                const winnersDocRef = doc(db, "winners", "leaderboard");
+                const winnersSnap = await getDoc(winnersDocRef);
+
+                // Check if existing doc is fresh
+                if (winnersSnap.exists()) {
+                    const data = winnersSnap.data();
+                    if (data.expiryTime && Date.now() < data.expiryTime) {
+                        localStorage.setItem("leaderboard", JSON.stringify(data));
+                        setPreview(data?.top_10);
+                        setToExprire(data?.expiryTime)
+                        return;
+                    }
                 }
+
+                // Otherwise → rebuild
+                const userlistRef = collection(db, "userlist");
+                const snap = await getDocs(userlistRef);
+                const allUsers = [];
+
+                snap.forEach((docSnap) => {
+                    if (docSnap.id !== "_meta") {
+                        const data = docSnap.data();
+                        if (data.users?.length) {
+                            allUsers.push(...data.users);
+                        }
+                    }
+                });
+
+                // Sort descending by points
+                allUsers.sort((a, b) => b.points - a.points);
+
+                // Assign position
+                const withPosition = allUsers.map((u, idx) => ({
+                    ...u,
+                    position: idx + 1,
+                }));
+
+                // Top 10
+                const top_10 = withPosition.slice(0, 10);
+
+                // Listing thresholds
+                const listing = {};
+                if (withPosition.length >= 100) listing.top_100 = withPosition[99].points;
+                if (withPosition.length >= 1000) listing.top_1000 = withPosition[999].points;
+                if (withPosition.length >= 100000) listing.top_100000 = withPosition[99999].points;
+                if (withPosition.length >= 1000000) listing.top_1000000 = withPosition[999999].points;
+
+                // Build final object
+                const finalObject = {
+                    top_10,
+                    listing,
+                    expiryTime: Date.now() + 1000 * 60 * 60 * 0.1, // 2 hours
+                };
+
+                // Save to Firestore
+                await setDoc(winnersDocRef, finalObject);
+                localStorage.setItem("leaderboard", JSON.stringify(finalObject));
+                setPreview(finalObject?.top_10);
+                setToExprire(finalObject?.expiryTime)
+
+                // const res = await fetch("/api/leaderboard");
+                // const res = await fetch(`/api/leaderboard?ts=${Date.now()}`, { cache: "no-store", });
+                // const data = await res.json();
+                // if (!data.error) {
+                //     localStorage.setItem("leaderboard", JSON.stringify(data));
+                //     setPreview(data?.top_10);
+                //     setToExprire(data?.expiryTime)
+                // } else {
+                //     console.error(data.error);
+                //     setUpdateMsg(`${data.error}`)
+                // }
             } catch (error) {
                 console.error(error);
                 setUpdateMsg(`${error}`)
@@ -282,7 +342,7 @@ const ProfileBodyCntn = () => {
     const reward = getRewardForUser(preview, user?.id);
 
     console.log(Date.now() < 1755800633118);
-    
+
 
     function formatNumber(vlad) {
         if (vlad) {
@@ -356,7 +416,7 @@ const ProfileBodyCntn = () => {
         } catch (err) {
             console.error(err)
         }
-    
+
     };
 
     return (
@@ -378,7 +438,7 @@ const ProfileBodyCntn = () => {
                             <h3><i className="icofont-notification"></i> Kwiva is going <span>premium+</span></h3>
                             <h2>You aren&apos;t <span>active</span> yet <i className="icofont-police-badge"></i></h2>
                         </div>
-                            <p>Get <b>active</b> with just {!isPioneer ? (<span>₦1,500</span>) : (<><del>₦1,500</del> <span>₦500</span></>)} and earn up to <span>₦5M</span> at the end of the month. Get into the groove and start making your millions with Kwiva. Just click on the button, it&apos;s free for now - we are just running tests.</p>
+                        <p>Get <b>active</b> with just {!isPioneer ? (<span>₦1,500</span>) : (<><del>₦1,500</del> <span>₦500</span></>)} and earn up to <span>₦5M</span> at the end of the month. Get into the groove and start making your millions with Kwiva. Just click on the button, it&apos;s free for now - we are just running tests.</p>
                         <PaystackButton {...componentProps}></PaystackButton>
                     </div>
                 )
