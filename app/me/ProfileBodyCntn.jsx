@@ -19,7 +19,7 @@ const ProfileBodyCntn = () => {
     const [remainingTime, setRemainingTime] = useState(null);
     const [winners, setWinners] = useState(null);
     const [isWinner, setIsWinner] = useState(false);
-    const [isActive, setIsActive] = useState(false);
+    const [isActive, setIsActive] = useState(true);
 
     const [updateMsg, setUpdateMsg] = useState("Empty Leaderboard...");
 

@@ -11,7 +11,11 @@ export async function GET() {
         if (winnersSnap.exists()) {
             const data = winnersSnap.data();
             if (data.expiryTime && Date.now() < data.expiryTime) {
-                return NextResponse.json(data); // ✅ return cached leaderboard
+                return NextResponse.json(data, {
+                    headers: {
+                        "Cache-Control": "no-store, max-age=0, must-revalidate",
+                    },
+                }); // ✅ return cached leaderboard
             }
         }
 
@@ -52,13 +56,17 @@ export async function GET() {
         const finalObject = {
             top_10,
             listing,
-            expiryTime: Date.now() + 1000 * 60 * 60 * 2, // 2 hours
+            expiryTime: Date.now() + 1000 * 60 * 60 * 0.1, // 2 hours
         };
 
         // Save to Firestore
         await setDoc(winnersDocRef, finalObject);
 
-        return NextResponse.json(finalObject);
+        return NextResponse.json(finalObject, {
+            headers: {
+                "Cache-Control": "no-store, max-age=0, must-revalidate",
+            },
+        });
 
     } catch (err) {
         console.error("Leaderboard rebuild failed:", err);
