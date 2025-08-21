@@ -768,7 +768,7 @@ ins{
 }
 
 .storyArticleCntn ul li:last-of-type{
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .storyArticleCntn ul li::before {

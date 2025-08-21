@@ -19,6 +19,7 @@
     "nodemailer": "^7.0.3",
     "react": "^18",
     "react-dom": "^18",
+    "react-paystack": "^6.0.0",
     "react-quill": "^2.0.0",
     "svix": "^1.65.0"
   },

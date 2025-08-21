@@ -16,6 +16,11 @@ export default function QuizResultPage() {
     const [details, setDetails] = useState(null);
     const { user } = useUser();
 
+    const today = new Date();
+
+    // Get current month/year in MM-YYYY format
+    const currentMonthYear = `${String(today.getMonth() + 1).padStart(2, "0")}-${today.getFullYear()}`;
+
     useEffect(() => {
         const storedQuiz = JSON.parse(localStorage.getItem('currentQuiz'));
         const storedAnswers = JSON.parse(localStorage.getItem('quizAnswer') || '[]');
@@ -38,20 +43,22 @@ export default function QuizResultPage() {
 
         const basePoints = 10;
         const earnedPoints = correct * 1;
-        const total = basePoints + earnedPoints;
-
-        console.log(correct);
-        
+        const total = basePoints + earnedPoints;        
 
         setPoints(total);
         setCorrectCount(correct);
         setTotalQuestions(storedQuiz.questions.length);
         setDetails({ basePoints, earnedPoints });
 
-        if (!user) {
-            console.log("Kindly log in");
+        // Safely read premium_month from metadata
+        const premiumMonth = user?.publicMetadata?.premium_month;
+
+        // Check if they match
+        const isActive = premiumMonth === currentMonthYear;
+
+        if (!user && !isActive) {
             return;
-        }
+        } 
 
         const updatePoints = async () => {
             const userRef = doc(db, 'users', user.id);

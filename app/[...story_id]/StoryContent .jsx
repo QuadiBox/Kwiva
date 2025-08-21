@@ -19,6 +19,11 @@ const StoryContent = ({ htmlContent }) => {
         // repeat or add more as needed
     ];
 
+    const today = new Date();
+
+    // Get current month/year in MM-YYYY format
+    const currentMonthYear = `${String(today.getMonth() + 1).padStart(2, "0")}-${today.getFullYear()}`;
+
     const articleRef = useRef(null);
 
     // Store which checkpoints have been reached (25%, 50%, 75%, 100%)
@@ -131,7 +136,12 @@ const StoryContent = ({ htmlContent }) => {
             localStorage.setItem('readingComplete', 'true');
 
             const updatePoints = async () => {
-                if (!user) return; // User not logged in, skip
+                // Safely read premium_month from metadata
+                const premiumMonth = user?.publicMetadata?.premium_month;
+
+                // Check if they match
+                const isActive = premiumMonth === currentMonthYear;
+                if (!user && !isActive) return; // User not logged in, skip
 
                 const userId = user.id;
 

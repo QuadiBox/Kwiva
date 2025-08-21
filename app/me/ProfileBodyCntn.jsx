@@ -2,9 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { db } from "../db/FirebaseConfig";
-import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, getDoc, setDoc } from 'firebase/firestore';
 import { SignOutButton, useUser } from '@clerk/nextjs';
 import Link from "next/link";
+import { getPioneers } from "../dashboard__/utilFunctions";
+import { PaystackButton } from "react-paystack";
 
 
 
@@ -17,6 +19,20 @@ const ProfileBodyCntn = () => {
     const [remainingTime, setRemainingTime] = useState(null);
     const [winners, setWinners] = useState(null);
     const [isWinner, setIsWinner] = useState(false);
+    const [isActive, setIsActive] = useState(false);
+
+    const [updateMsg, setUpdateMsg] = useState("Empty Leaderboard...");
+
+    const pioneers = getPioneers() || [];
+    const checkPionner = () => {
+        const findPionner = pioneers.findIndex((elem) => elem.id === user?.id);
+        if (findPionner >= 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    const isPioneer = checkPionner() || false;
 
 
     // const rewardMap = {
@@ -45,6 +61,7 @@ const ProfileBodyCntn = () => {
         10: "🎖️",
     };
 
+
     // 🧠 Utility: Get reward from leaderboard
     const getRewardForUser = (previewList, userId) => {
 
@@ -70,6 +87,16 @@ const ProfileBodyCntn = () => {
         if (!user) return;
         const today = new Date();
         const day = today.getDate();
+
+        // Get current month/year in MM-YYYY format
+        const currentMonthYear = `${String(today.getMonth() + 1).padStart(2, "0")}-${today.getFullYear()}`;
+
+        // Safely read premium_month from metadata
+        const premiumMonth = user?.publicMetadata?.premium_month;
+
+        // Check if they match
+        const isActive = premiumMonth === currentMonthYear;
+        setIsActive(isActive);
 
         if (day >= 25 && day <= 30) {
             const month = String(today.getMonth() + 1).padStart(2, '0');
@@ -139,66 +166,100 @@ const ProfileBodyCntn = () => {
         fetchMonthlyPoints();
     }, [user?.id]);
 
+    // useEffect(() => {
+    //     const fetchLeaderboardPreview = async () => {
+    //         if (!user?.id) return;
+    //         const localData = localStorage.getItem('leaderboard');
+    //         const parsed = JSON.parse(localData);
+    //         if (localData) {
+    //             const parsed = JSON.parse(localData);
+    //             setPreview(parsed?.data);
+    //             // If not expired, use local
+    //             if (parsed?.expiryTime && Date.now() < parsed.expiryTime) {
+    //                 setToExprire(parsed?.expiryTime);
+    //                 setPreview(parsed?.data);
+    //                 return;
+    //             }
+    //         }
+
+
+
+    //         const userlistRef = collection(db, 'userlist');
+    //         const snap = await getDocs(userlistRef);
+    //         const allUsers = [];
+
+    //         snap.forEach((docSnap) => {
+    //             if (docSnap.id !== '_meta') {
+    //                 const data = docSnap.data();
+    //                 if (data.users?.length) {
+    //                     allUsers.push(...data.users);
+    //                 }
+    //             }
+    //         });
+
+    //         allUsers.sort((a, b) => b.points - a.points);
+
+    //         const currentIndex = allUsers.findIndex((u) => u.user_id === user.id);
+    //         if (currentIndex === -1) return;
+
+    //         const start = Math.max(currentIndex - 5, 0);
+    //         const end = Math.min(currentIndex + 6, allUsers.length);
+
+    //         const sliced = allUsers.slice(start, end).map((u, idx) => ({
+    //             ...u,
+    //             position: start + idx + 1,
+    //         }));
+    //         const theLeaderBoardArr = currentIndex >= 6 ? [...sliced, { ...allUsers[0], position: 1 }] : [...sliced]
+
+    //         theLeaderBoardArr.sort((a, b) => a.position - b.position);
+
+    //         const finalObject = {
+    //             data: theLeaderBoardArr,
+    //             expiryTime: Date.now() + 1000 * 60 * 60 * 3, // 3 hours
+    //         };
+
+    //         localStorage.setItem('leaderboard', JSON.stringify(finalObject));
+    //         console.log("setting expiry from DB", finalObject?.expiryTime);
+
+    //         setToExprire(finalObject?.expiryTime)
+    //         setPreview(theLeaderBoardArr);
+    //     };
+
+    //     fetchLeaderboardPreview();
+    // }, [user?.id]);
+
     useEffect(() => {
-        const fetchLeaderboardPreview = async () => {
-            if (!user?.id) return;
-            const localData = localStorage.getItem('leaderboard');
-            const parsed = JSON.parse(localData);
+        const fetchLeaderboard = async () => {
+            const localData = localStorage.getItem("leaderboard");
             if (localData) {
                 const parsed = JSON.parse(localData);
-
-                // If not expired, use local
                 if (parsed?.expiryTime && Date.now() < parsed.expiryTime) {
                     setToExprire(parsed?.expiryTime);
-                    setPreview(parsed?.data);
+                    setPreview(parsed?.top_10);
                     return;
                 }
             }
 
-
-
-            const userlistRef = collection(db, 'userlist');
-            const snap = await getDocs(userlistRef);
-            const allUsers = [];
-
-            snap.forEach((docSnap) => {
-                if (docSnap.id !== '_meta') {
-                    const data = docSnap.data();
-                    if (data.users?.length) {
-                        allUsers.push(...data.users);
-                    }
+            setUpdateMsg("Loading...");
+            // Fallback → API
+            try {
+                const res = await fetch("/api/leaderboard");
+                const data = await res.json();
+                if (!data.error) {
+                    localStorage.setItem("leaderboard", JSON.stringify(data));
+                    setPreview(data?.top_10);
+                    setToExprire(data?.expiryTime)
+                } else {
+                    console.error(data.error);
+                    setUpdateMsg(`${data.error}`)
                 }
-            });
-
-            allUsers.sort((a, b) => b.points - a.points);
-
-            const currentIndex = allUsers.findIndex((u) => u.user_id === user.id);
-            if (currentIndex === -1) return;
-
-            const start = Math.max(currentIndex - 5, 0);
-            const end = Math.min(currentIndex + 6, allUsers.length);
-
-            const sliced = allUsers.slice(start, end).map((u, idx) => ({
-                ...u,
-                position: start + idx + 1,
-            }));
-            const theLeaderBoardArr = currentIndex >= 6 ? [...sliced, { ...allUsers[0], position: 1 }] : [...sliced]
-            
-            theLeaderBoardArr.sort((a, b) => a.position - b.position);
-
-            const finalObject = {
-                data: theLeaderBoardArr,
-                expiryTime: Date.now() + 1000 * 60 * 60 * 3, // 3 hours
-            };
-
-            localStorage.setItem('leaderboard', JSON.stringify(finalObject));
-            console.log("setting expiry from DB", finalObject?.expiryTime);
-
-            setToExprire(finalObject?.expiryTime)
-            setPreview(theLeaderBoardArr);
+            } catch (error) {
+                console.error(error);
+                setUpdateMsg(`${error}`)
+            }
         };
 
-        fetchLeaderboardPreview();
+        fetchLeaderboard();
     }, [user?.id]);
 
     useEffect(() => {
@@ -241,6 +302,58 @@ const ProfileBodyCntn = () => {
     const hasReward = reward > 0;
     const canClaim = withinDateRange && isWinner && hasEnoughPoints;
 
+    //paystack widget configuration
+    const config = {
+        reference: (new Date()).getTime().toString(),
+        email: `${user?.emailAddresses[user?.emailAddresses.length - 1].emailAddress}`,
+        amount: (isPioneer ? 500 : 1500) * 100, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
+        publicKey: 'pk_test_680463a03d8cd455d731195ceb8835ce288d94e9',
+    };
+
+    //action for when the paystack widget payment goes through successfully
+    const handlePaystackSuccessAction = async (reference) => {
+        // Implementation for whatever you want to do with reference and after success call.
+        await handleRequestProcessAfterPayment();
+    };
+
+    // you can call this function anything
+    const handlePaystackCloseAction = () => {
+        // implementation for  whatever you want to do when the Paystack dialog closed.
+        console.log('closed')
+    }
+
+    const componentProps = {
+        ...config,
+        text: 'Get Active',
+        onSuccess: (reference) => handlePaystackSuccessAction(reference),
+        onClose: handlePaystackCloseAction,
+    };
+
+
+    const handleRequestProcessAfterPayment = async () => {
+        // Example: get current month-year
+        const now = new Date();
+        const monthYear = `${(now.getMonth() + 1).toString().padStart(2, "0")}-${now.getFullYear()}`;
+
+        try {
+            const res = await fetch("/api/set-premium", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    userId: user.id,
+                    monthYear,
+                }),
+            });
+
+            const data = await res.json();
+        } catch (err) {
+            console.error(err)
+        }
+    
+    };
+
     return (
         <div className="profileBodyCntn">
             <div className="theprofileDetail">
@@ -253,6 +366,16 @@ const ProfileBodyCntn = () => {
                     <p>{reward || '--'}</p>
                 </div>
             </div>
+
+            <div className="getActiveGrandCntn">
+                <div>
+                    <h3><i className="icofont-notification"></i> Kwiva is going <span>premium+</span></h3>
+                    <h2>You aren&apos;t <span>active</span> yet <i className="icofont-police-badge"></i></h2>
+                </div>
+                    <p>Get <b>active</b> with just {!isPioneer ? (<span>₦1,500</span>) : (<><del>₦1,500</del> <span>₦500</span></>)} and earn up to <span>₦5M</span> at the end of the month. Get into the groove and start making your millions with Kwiva. Just click on the button, it&apos;s free for now - we are just running tests.</p>
+                <PaystackButton {...componentProps}></PaystackButton>
+            </div>
+
             <div className="profileLinksGrandCntn">
                 <div className="profileLinksCntn">
                     <Link className="unitProfileDetlLink" href="/me/manage">
@@ -342,7 +465,7 @@ const ProfileBodyCntn = () => {
                 )
             }
             <div className="monthlyLeaderboardContainer">
-                <h2>Monthly Leaderboard</h2>
+                <h2>Monthly Leaderboard {isActive ? ((<i className="icofont-police-badge"></i>)) : ""}</h2>
                 <p>
                     The board below is a cached (not-recent) preview and will be refreshed in <span>{remainingTime || 'loading...'}</span>
                 </p>
@@ -351,52 +474,29 @@ const ProfileBodyCntn = () => {
 
                     {preview?.length > 0 ? preview?.map((userObj, i) => {
                         const isCurrentUser = userObj?.user_id === user?.id;
-                        
-                        
-                        if (i === 0 && preview[i + 1]?.position > 3) {
-                            return (
-                                <>
-                                    <div
-                                        key={userObj?.user_id}
-                                        className={`leaderboardItem ${isCurrentUser ? ' currentUser' : ''}`}
-                                    >
-                                        <span className="position">#{(userObj?.position).toLocaleString()}</span>
-                                        <span className="fullname">
-                                            {isCurrentUser ? 'YOU' : `${userObj?.fullname ? userObj?.fullname : 'John Doe'}`}
-                                        </span>
-                                        <span className="points"><b>{formatNumber(userObj?.points)}</b> pts</span>
-                                        <span className="reward">
-                                            {rewardMap[`${userObj?.position}`]
-                                                ? <b>{`${rewardMap[`${userObj?.position}`]}`}</b>
-                                                : '--'}
-                                        </span>
-                                    </div>
-                                    <div className="spaceLeaderboard">
-                                        <h2>...</h2>
-                                    </div>
-                                </>
-                            )
-                        } else {
-                            return (
-                                <div
-                                    key={userObj?.user_id}
-                                    className={`leaderboardItem ${isCurrentUser ? ' currentUser' : ''}`}
-                                >
-                                    <span className="position">#{(userObj?.position).toLocaleString()}</span>
-                                    <span className="fullname">
-                                        {isCurrentUser ? 'YOU' : `${userObj?.fullname ? userObj?.fullname : 'John Doe'}`}
-                                    </span>
-                                    <span className="points"><b>{formatNumber(userObj?.points)}</b> pts</span>
-                                    <span className="reward">
-                                        {rewardMap[`${userObj?.position}`]
-                                            ? <b>{`${rewardMap[`${userObj?.position}`]}`}</b>
-                                            : '--'}
-                                    </span>
-                                </div>
-                            )
-                        }
+
+                        return (
+                            <div
+                                key={userObj?.user_id}
+                                className={`leaderboardItem ${isCurrentUser ? ' currentUser' : ''}`}
+                            >
+                                <span className="position">#{(userObj?.position).toLocaleString()}</span>
+                                <span className="fullname">
+                                    {isCurrentUser ? 'YOU' : `${userObj?.fullname ? userObj?.fullname : 'John Doe'}`}
+                                </span>
+                                <span className="points"><b>{formatNumber(userObj?.points)}</b> pts</span>
+                                <span className="reward">
+                                    {rewardMap[`${userObj?.position}`]
+                                        ? <b>{`${rewardMap[`${userObj?.position}`]}`}</b>
+                                        : '--'}
+                                </span>
+                            </div>
+                        )
+
+
+
                     }) : (
-                        <div className='emptyLaederboard'><h2>Empty Leaderboard...</h2></div>
+                        <div className='emptyLaederboard'><h2>{updateMsg}</h2></div>
                     )}
                 </div>
             </div>

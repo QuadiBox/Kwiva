@@ -2,13 +2,14 @@
 import { useEffect, useState, useRef } from "react";
 import { db } from "@/app/db/FirebaseConfig";
 import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  updateDoc,
-  writeBatch,
+    collection,
+    doc,
+    getDoc,
+    getDocs,
+    updateDoc,
+    writeBatch,
 } from 'firebase/firestore';
+import { useUser } from "@clerk/nextjs";
 
 const Challenge = () => {
     const [formData, setFormData] = useState({
@@ -19,6 +20,7 @@ const Challenge = () => {
     });
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState({ type: "", text: "" });
+    const {user} = useUser();
 
     const validate = () => {
         if (!formData.start_date.trim()) return "Start Date is required.";
@@ -39,63 +41,94 @@ const Challenge = () => {
         }));
     };
 
+    const handleSetPremium = async () => {
+        if (!user) return;
 
+        // Example: get current month-year
+        const now = new Date();
+        const monthYear = `${(now.getMonth() + 1).toString().padStart(2, "0")}-${now.getFullYear()}`;
+
+        try {
+            const res = await fetch("/api/set-premium", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    userId: user.id,
+                    monthYear,
+                }),
+            });
+
+            const data = await res.json();
+            if (data.success) alert("Premium Set!!!");
+            // else setMessage(`Error: ${data.error}`);
+        } catch (err) {
+            console.error(err)
+        }
+
+    };
+
+    console.log(user?.publicMetadata?.premium_month);
+    
 
     return (
         <section className='unitFunctionSect'>
             <h2>Create New Challenge</h2>
+            <button type="submit" onClick={handleSetPremium} className="textEditorSubmitBtn">
+                Set Premium
+            </button>
             <form className="textEditorForm challengeEdition">
+                <div className="UnitInputCntn">
+                    <label className="block font-semibold">Title:</label>
+                    <input
+                        value={formData.title}
+                        type="text"
+                        onChange={(e) => handleChange("title", e.target.value)}
+                        className="w-full p-2 border rounded"
+                        maxLength={160}
+                        placeholder="Enter title"
+                    />
+                </div>
+
+                <div className="dualInputCntn">
                     <div className="UnitInputCntn">
-                        <label className="block font-semibold">Title:</label>
+                        <label className="block font-semibold">Start Date:</label>
                         <input
-                            value={formData.title}
-                            type="text"
-                            onChange={(e) => handleChange("title", e.target.value)}
+                            value={formData.start_date}
+                            type="datetime-local"
+                            onChange={(e) => handleChange("start_date", e.target.value)}
                             className="w-full p-2 border rounded"
                             maxLength={160}
-                            placeholder="Enter title"
+                            placeholder="Enter start date"
                         />
                     </div>
-
-                    <div className="dualInputCntn">
-                        <div className="UnitInputCntn">
-                            <label className="block font-semibold">Start Date:</label>
-                            <input
-                                value={formData.start_date}
-                                type="datetime-local"
-                                onChange={(e) => handleChange("start_date", e.target.value)}
-                                className="w-full p-2 border rounded"
-                                maxLength={160}
-                                placeholder="Enter start date"
-                            />
-                        </div>
-                        <div className="UnitInputCntn">
-                            <label className="block font-semibold">End Date:</label>
-                            <input
-                                value={formData.end_date}
-                                type="datetime-local"
-                                onChange={(e) => handleChange("end_date", e.target.value)}
-                                className="w-full p-2 border rounded"
-                                maxLength={160}
-                                placeholder="Enter end date"
-                            />
-                        </div>
+                    <div className="UnitInputCntn">
+                        <label className="block font-semibold">End Date:</label>
+                        <input
+                            value={formData.end_date}
+                            type="datetime-local"
+                            onChange={(e) => handleChange("end_date", e.target.value)}
+                            className="w-full p-2 border rounded"
+                            maxLength={160}
+                            placeholder="Enter end date"
+                        />
                     </div>
+                </div>
 
-                    {message.text && (
-                        <div
-                            ref={messageRef}
-                            className={`textEditorMsg ${
-                            message.type === "error" ? "error" : "msg"
+                {message.text && (
+                    <div
+                        ref={messageRef}
+                        className={`textEditorMsg ${message.type === "error" ? "error" : "msg"
                             }`}
-                        >
-                            {message.text}
-                        </div>
-                    )}
+                    >
+                        {message.text}
+                    </div>
+                )}
 
-                    <button type="submit" disabled={loading} className="textEditorSubmitBtn">
-                        {loading ? "Creating..." : "Create Challenge"}
-                    </button>
+                <button type="submit" disabled={loading} className="textEditorSubmitBtn">
+                    {loading ? "Creating..." : "Create Challenge"}
+                </button>
             </form>
         </section>
     )

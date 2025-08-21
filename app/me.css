@@ -178,6 +178,7 @@
 .profileClaimInfo p span{
   color: var(--sec-hue-1);
   font-weight: 600;
+  font-size: 1.45em;
 }
 
 .lastMonthData{
@@ -211,7 +212,7 @@
   color: var(--sec-hue-1);
 }
 .monthlyLeaderboardContainer > p span{
-  font-size: 1.25em;
+  font-size: 1.55em;
   font-weight: 600;
   color: var(--sec-hue-1);
 }
@@ -413,3 +414,67 @@ input[type="number"]::-webkit-inner-spin-button {
   }
 }
 
+.icofont-police-badge{
+  font-size: inherit;
+  color: #663a97;
+}
+
+.getActiveGrandCntn{
+  --bg-color: #e1e1e1;
+  padding: 20px 20px;
+  background-color: var(--bg-color);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.getActiveGrandCntn h2{
+  font-size: 1.9em;
+  font-weight: 500;
+  color: var(--sec-hue-1);
+}
+.getActiveGrandCntn h3{
+  font-family: var(--font-p);
+  font-size: 1.01em;
+  font-weight: 500;
+  color: var(--sec-hue-2);
+}
+.getActiveGrandCntn h3 span{
+  font-weight: 500;
+  color: green;
+}
+
+
+.getActiveGrandCntn > p{
+  font-size: 1.15em;
+  font-weight: 400;
+  color: var(--sec-hue-2);
+}
+.getActiveGrandCntn > p span{
+  font-size: 1.45em;
+  font-weight: 600;
+  color: var(--sec-hue-1);
+}
+.getActiveGrandCntn > p del{
+  text-decoration: line-through;
+  color: var(--sec-hue-1);
+}
+
+.getActiveGrandCntn button{
+  margin-top: 1.5em;
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  font-size: 0.99em;
+  font-weight: 600;
+  background-color: var(--sec-hue-1);
+  color: var(--bg-color);
+  width: max-content;
+  padding: 0.8em 1.2em;
+}

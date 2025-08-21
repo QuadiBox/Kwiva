@@ -4,9 +4,9 @@
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com", 
-    port: 465, 
-    secure: true,
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.EMAIL_NAME,
     pass: process.env.EMAIL_PASS,
@@ -51,3 +51,5 @@ export async function sendWelcomeEmail(from, to, text, subject, html) {
     console.error('Error sending welcome email:', error);
   }
 }
+
+
