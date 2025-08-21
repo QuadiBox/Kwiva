@@ -243,7 +243,8 @@ const ProfileBodyCntn = () => {
             setUpdateMsg("Loading...");
             // Fallback → API
             try {
-                const res = await fetch("/api/leaderboard");
+                // const res = await fetch("/api/leaderboard");
+                const res = await fetch(`/api/leaderboard?ts=${Date.now()}`, { cache: "no-store",});
                 const data = await res.json();
                 if (!data.error) {
                     localStorage.setItem("leaderboard", JSON.stringify(data));
@@ -279,6 +280,9 @@ const ProfileBodyCntn = () => {
     // if (!preview || monthlyPoints === null) return <p>Loading...</p>;
 
     const reward = getRewardForUser(preview, user?.id);
+
+    console.log(Date.now() < 1755800633118);
+    
 
     function formatNumber(vlad) {
         if (vlad) {
@@ -348,6 +352,7 @@ const ProfileBodyCntn = () => {
             });
 
             const data = await res.json();
+            setIsActive(true);
         } catch (err) {
             console.error(err)
         }
@@ -366,15 +371,18 @@ const ProfileBodyCntn = () => {
                     <p>{reward || '--'}</p>
                 </div>
             </div>
-
-            <div className="getActiveGrandCntn">
-                <div>
-                    <h3><i className="icofont-notification"></i> Kwiva is going <span>premium+</span></h3>
-                    <h2>You aren&apos;t <span>active</span> yet <i className="icofont-police-badge"></i></h2>
-                </div>
-                    <p>Get <b>active</b> with just {!isPioneer ? (<span>₦1,500</span>) : (<><del>₦1,500</del> <span>₦500</span></>)} and earn up to <span>₦5M</span> at the end of the month. Get into the groove and start making your millions with Kwiva. Just click on the button, it&apos;s free for now - we are just running tests.</p>
-                <PaystackButton {...componentProps}></PaystackButton>
-            </div>
+            {
+                !isActive && (
+                    <div className="getActiveGrandCntn">
+                        <div>
+                            <h3><i className="icofont-notification"></i> Kwiva is going <span>premium+</span></h3>
+                            <h2>You aren&apos;t <span>active</span> yet <i className="icofont-police-badge"></i></h2>
+                        </div>
+                            <p>Get <b>active</b> with just {!isPioneer ? (<span>₦1,500</span>) : (<><del>₦1,500</del> <span>₦500</span></>)} and earn up to <span>₦5M</span> at the end of the month. Get into the groove and start making your millions with Kwiva. Just click on the button, it&apos;s free for now - we are just running tests.</p>
+                        <PaystackButton {...componentProps}></PaystackButton>
+                    </div>
+                )
+            }
 
             <div className="profileLinksGrandCntn">
                 <div className="profileLinksCntn">
