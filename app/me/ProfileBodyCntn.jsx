@@ -419,7 +419,7 @@ const ProfileBodyCntn = () => {
 
     };
 
-    const isPartOfWinners = preview.findIndex((elem) => elem?.user_id === user?.id);
+    const isPartOfWinners = preview?.findIndex((elem) => elem?.user_id === user?.id);
     const pointfromFirst = parseInt(preview[0].points) - parseInt(monthlyPoints);
     const pointfromTopWinners = parseInt(preview[0].points) - parseInt(monthlyPoints)
 
