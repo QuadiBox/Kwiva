@@ -294,7 +294,7 @@ const ProfileBodyCntn = () => {
                 const finalObject = {
                     top_10,
                     listing,
-                    expiryTime: Date.now() + 1000 * 60 * 60 * 0.1, // 2 hours
+                    expiryTime: Date.now() + 1000 * 60 * 60 * 2, // 2 hours
                 };
 
                 // Save to Firestore
