@@ -419,6 +419,10 @@ const ProfileBodyCntn = () => {
 
     };
 
+    const isPartOfWinners = preview.findIndex((elem) => elem?.user_id === user?.id);
+    const pointfromFirst = parseInt(preview[0].points) - parseInt(monthlyPoints);
+    const pointfromTopWinners = parseInt(preview[0].points) - parseInt(monthlyPoints)
+
     return (
         <div className="profileBodyCntn">
             <div className="theprofileDetail">
@@ -438,7 +442,7 @@ const ProfileBodyCntn = () => {
                             <h3><i className="icofont-notification"></i> Kwiva is going <span>premium+</span></h3>
                             <h2>You aren&apos;t <span>active</span> yet <i className="icofont-police-badge"></i></h2>
                         </div>
-                        <p>Get <b>active</b> with just {!isPioneer ? (<span>₦1,500</span>) : (<><del>₦1,500</del> <span>₦500</span></>)} and earn up to <span>₦5M</span> at the end of the month. Get into the groove and start making your millions with Kwiva. Just click on the button, it&apos;s free for now - we are just running tests.</p>
+                        <p>Get <b>active</b> with just {!isPioneer ? (<span>₦1,500</span>) : (<><del>₦1,500</del> <span>₦500</span></>)} and earn up to <span>₦2M</span> at the end of the month. Get into the groove and start making your millions with Kwiva. Just click on the button, it&apos;s free for now - we are just running tests.</p>
                         <PaystackButton {...componentProps}></PaystackButton>
                     </div>
                 )
@@ -469,6 +473,17 @@ const ProfileBodyCntn = () => {
                 </div>
             </div>
 
+            <div className="lastMonthData">
+                {isPartOfWinners >= 0 ? (
+                    <p>
+                        You are only <b>{pointfromFirst.toLocaleString()} points</b> away from being <b>#1</b> and winning <b>#2M</b>
+                    </p>
+                ) : (
+                    <p>
+                        You are only <b>{pointfromTopWinners.toLocaleString()} points</b> away from being top 10 and winning <b>#1M. C&apos;mon, you can do this⚡⚡</b>
+                    </p>
+                )}
+            </div>
             <div className="lastMonthData">
                 {userData?.last_month_position != null ? (
                     <p>
