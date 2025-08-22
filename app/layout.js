@@ -56,6 +56,8 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <head>
+          {/* ✅ Monetag Ads verification script */}
+          <script src="https://fpyf8.com/88/tag.min.js" data-zone="165384" async data-cfasync="false"></script>
           {/* ✅ Google AdSense verification script */}
           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9336754318917790"
      crossorigin="anonymous"></script>
