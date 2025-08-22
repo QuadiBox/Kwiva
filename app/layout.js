@@ -15,7 +15,7 @@ import "../icofont/icofont.min.css"
 
 import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "./homeComponent/Navbar";
-
+import { Analytics } from '@vercel/analytics/next';
 
 const aleg = Alegreya_Sans({ subsets: ["latin"], weight: ['100', '300', '400', '500', '800', '700', '900'], variable: "--font-b" })
 const play = Playfair_Display({ subsets: ["latin"], weight: ['400', '500', '800', '700'], variable: "--font-p" })
@@ -63,6 +63,7 @@ export default function RootLayout({ children }) {
         <body className={`${aleg.variable} ${cinzel.variable} ${play.variable}`}>
           {children}
           <Navbar></Navbar>
+          <Analytics />
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=G-1FGMSYZ8PG`}
             strategy="afterInteractive"
