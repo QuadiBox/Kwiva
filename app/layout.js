@@ -57,7 +57,7 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <head>
           {/* ✅ Monetag Ads verification script */}
-          <script src="https://fpyf8.com/88/tag.min.js" data-zone="165384" async data-cfasync="false"></script>
+          {/* <script src="https://fpyf8.com/88/tag.min.js" data-zone="165384" async data-cfasync="false"></script> */}
           <Script id="monetag-short" strategy="afterInteractive">
             {`(function(d,z,s){
             s.src='https://'+d+'/400/'+z;
@@ -66,6 +66,10 @@ export default function RootLayout({ children }) {
             }catch(e){}
           })('vemtoutcheeg.com',9758405,document.createElement('script'))`}
           </Script>
+          <Script id="monetag-interstitial" strategy="afterInteractive">
+            {`<script>(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('groleegni.net',9758426,document.createElement('script'))</script>`}
+          </Script>
+          
 
           {/* ✅ Google AdSense verification script */}
           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9336754318917790"
