@@ -57,8 +57,8 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <head>
           {/* ✅ Monetag Ads verification script */}
-          {/* <script src="https://fpyf8.com/88/tag.min.js" data-zone="165384" async data-cfasync="false"></script> */}
-          <Script id="monetag-short" strategy="afterInteractive">
+          <script src="https://fpyf8.com/88/tag.min.js" data-zone="165384" async data-cfasync="false"></script>
+          {/* <Script id="monetag-short" strategy="afterInteractive">
             {`(function(d,z,s){
             s.src='https://'+d+'/400/'+z;
             try{
@@ -71,7 +71,7 @@ export default function RootLayout({ children }) {
           </Script>
           <Script id="monetag-interstitial" strategy="afterInteractive">
             {`(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('gizokraijaw.net',9758556,document.createElement('script'))`}
-          </Script>
+          </Script> */}
           
 
           {/* ✅ Google AdSense verification script */}
