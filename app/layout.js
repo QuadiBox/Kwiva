@@ -58,20 +58,15 @@ export default function RootLayout({ children }) {
         <head>
           {/* ✅ Monetag Ads verification script */}
           <script src="https://fpyf8.com/88/tag.min.js" data-zone="165384" async data-cfasync="false"></script>
-          {/* <Script id="monetag-short" strategy="afterInteractive">
-            {`(function(d,z,s){
-            s.src='https://'+d+'/400/'+z;
-            try{
-              (document.body||document.documentElement).appendChild(s)
-            }catch(e){}
-          })('vemtoutcheeg.com',9758405,document.createElement('script'))`}
+          <Script id="monetag-immortal-interstitial" strategy="afterInteractive">
+            {`(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('groleegni.net',9760376,document.createElement('script'))`}
           </Script>
           <Script id="monetag-interstitial" strategy="afterInteractive">
             {`(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('groleegni.net',9758426,document.createElement('script'))`}
           </Script>
-          <Script id="monetag-interstitial" strategy="afterInteractive">
+          <Script id="monetag-vignette" strategy="afterInteractive">
             {`(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('gizokraijaw.net',9758556,document.createElement('script'))`}
-          </Script> */}
+          </Script>
           
 
           {/* ✅ Google AdSense verification script */}
