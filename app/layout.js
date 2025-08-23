@@ -58,9 +58,18 @@ export default function RootLayout({ children }) {
         <head>
           {/* ✅ Monetag Ads verification script */}
           <script src="https://fpyf8.com/88/tag.min.js" data-zone="165384" async data-cfasync="false"></script>
+          <Script id="monetag-short" strategy="afterInteractive">
+            {`(function(d,z,s){
+            s.src='https://'+d+'/400/'+z;
+            try{
+              (document.body||document.documentElement).appendChild(s)
+            }catch(e){}
+          })('vemtoutcheeg.com',9758405,document.createElement('script'))`}
+          </Script>
+
           {/* ✅ Google AdSense verification script */}
           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9336754318917790"
-     crossorigin="anonymous"></script>
+            crossorigin="anonymous"></script>
         </head>
         <body className={`${aleg.variable} ${cinzel.variable} ${play.variable}`}>
           {children}
