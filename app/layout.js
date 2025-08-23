@@ -67,7 +67,10 @@ export default function RootLayout({ children }) {
           })('vemtoutcheeg.com',9758405,document.createElement('script'))`}
           </Script>
           <Script id="monetag-interstitial" strategy="afterInteractive">
-            {`<script>(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('groleegni.net',9758426,document.createElement('script'))</script>`}
+            {`(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('groleegni.net',9758426,document.createElement('script'))`}
+          </Script>
+          <Script id="monetag-interstitial" strategy="afterInteractive">
+            {`(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('gizokraijaw.net',9758556,document.createElement('script'))`}
           </Script>
           
 
