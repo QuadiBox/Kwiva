@@ -76,12 +76,12 @@
 }
 
 /* Hide links initially */
-.sticky-bar.closed .desktopDisplay a {
+.sticky-bar.closed .desktopDisplay .Linkers {
   opacity: 1;
   pointer-events: none;
 }
 
-.sticky-bar .desktopDisplay a {
+.sticky-bar .desktopDisplay .Linkers {
     position: absolute;
     width: 50px;
     height: 50px;
@@ -170,29 +170,29 @@
 }
 
 /* When menu is opened, fly out nav items */
-.sticky-bar.opened .desktopDisplay a {
+.sticky-bar.opened .desktopDisplay .Linkers {
   pointer-events: auto;
   opacity: 1;
 }
 
 /* Positions for flyout (5 items) */
-.sticky-bar.opened .desktopDisplay a[data-label="Histories"] {
+.sticky-bar.opened .desktopDisplay .Linkers[data-label="Histories"] {
   transform: translateY(-80px); /* Top */
 }
-.sticky-bar.opened .desktopDisplay a[data-label="Blogs"] {
+.sticky-bar.opened .desktopDisplay .Linkers[data-label="Blogs"] {
   transform: translate(-65px, -60px); 
 }
-.sticky-bar.opened .desktopDisplay a[data-label="Quizzez"] {
+.sticky-bar.opened .desktopDisplay .Linkers[data-label="Quizzez"] {
   transform: translateX(-95px); 
 }
-.sticky-bar.opened .desktopDisplay a[data-label="Invite"] {
+.sticky-bar.opened .desktopDisplay .Linkers[data-label="Invite"] {
   transform: translate(-65px, 60px); 
 }
-.sticky-bar.opened .desktopDisplay a[data-label="Me"] {
+.sticky-bar.opened .desktopDisplay .Linkers[data-label="Me"] {
   transform: translateY(80px); 
 }
 
-.desktopDisplay a::after {
+.desktopDisplay .Linkers::after {
     content: attr(data-label);
     position: absolute;
     white-space: nowrap;
@@ -207,14 +207,14 @@
     pointer-events: none;
 }
 
-.desktopDisplay a:hover::after {
+.desktopDisplay .Linkers:hover::after {
   opacity: 1;
 }
 
-.desktopDisplay a[data-label="Meme Bank"]::after {
+.desktopDisplay .Linkers[data-label="Meme Bank"]::after {
   left: -160%; 
 }
-.desktopDisplay a[data-label="Invite"]::after {
+.desktopDisplay .Linkers[data-label="Invite"]::after {
   left: -100%; 
 }
 

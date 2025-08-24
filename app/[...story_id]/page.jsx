@@ -66,6 +66,8 @@ export async function generateMetadata({ params }) {
     };
 }
 
+
+
 export default async function Page({ params }) {
     const { story_id } = params;
     const story = await getStoryByContentId(story_id[0]);

@@ -88,21 +88,52 @@ const Navbar = () => {
         router.back();
     };
 
+    const handleLinking = (vlad) => {        
+        window.location.href = vlad;
+    }
+
     return (
         <div className={`sticky-bar ${openMenu ? 'opened' : "closed"}`}>
             <div className="desktopDisplay">
                 <button type="button" data-label={`${openMenu ? "Close" : "Menu"}`} className='menuToggleBtn' onClick={() => { setOpenMenu(prev => !prev) }}>
                     <i className="icofont-plus"></i>
                 </button>
-                <Link href={"/"} data-label="Histories"><i className="icofont-education"></i></Link>
-                <Link href={"/blogs"} data-label="Blogs"><i className="icofont-paper"></i></Link>
-                <Link href={"/quizzez"} data-label="Quizzez"><i className="icofont-electron"></i></Link>
-                <Link href={"/invite"} data-label="Invite"><i className="icofont-users-alt-5"></i></Link>
-                <Link href={"/me"} data-label="Me"><i className="icofont-ui-user"></i></Link>
+                <span href={"/"} role='link' onClick={() => {handleLinking("/")}} className='Linkers' data-label="Histories"><i className="icofont-education"></i></span>
+
+                <span href={"/blogs"} role='link' onClick={() => {handleLinking("/blogs")}} className='Linkers' data-label="Blogs"><i className="icofont-paper"></i></span>
+                <span href={"/quizzez"} role='link' onClick={() => {handleLinking("/quizzez")}} className='Linkers' data-label="Quizzez"><i className="icofont-electron"></i></span>
+                <span href={"/invite"} role='link' onClick={() => {handleLinking("/invite")}} className='Linkers' data-label="Invite"><i className="icofont-users-alt-5"></i></span>
+                <span href={"/me"} role='link' onClick={() => {handleLinking("/me")}} className='Linkers' data-label="Me"><i className="icofont-ui-user"></i></span>
+
+                {/* <Link href={"/blogs"} className='Linkers' data-label="Blogs"><i className="icofont-paper"></i></Link>
+                <Link href={"/quizzez"} className='Linkers' data-label="Quizzez"><i className="icofont-electron"></i></Link>
+                <Link href={"/invite"} className='Linkers' data-label="Invite"><i className="icofont-users-alt-5"></i></Link>
+                <Link href={"/me"} className='Linkers' data-label="Me"><i className="icofont-ui-user"></i></Link> */}
             </div>
 
             <div className="mobileDisplay">
-                <Link href={"/"} className="unitNavLink _h">
+                <span href={"/"} role='link' onClick={() => {handleLinking("/")}} className="unitNavLink _h">
+                    <i className="icofont-education"></i>
+                    <span>Histories</span>
+                </span>
+                <span href={"/blogs"} role='link' onClick={() => {handleLinking("/blogs")}} className="unitNavLink _hh" data-label="Blogs">
+                    <i className="icofont-paper"></i>
+                    <span>Blogs</span>
+                </span>
+                <span href={"/quizzez"} role='link' onClick={() => {handleLinking("/quizzez")}} className="unitNavLink _hhh" data-label="Quizzez">
+                    <i className="icofont-electron"></i>
+                    <span>Quizzez</span>
+                </span>
+                <span href={"/invite"} role='link' onClick={() => {handleLinking("/invite")}} className="unitNavLink _hhhh" data-label="Invite">
+                    <i className="icofont-users-alt-5"></i>
+                    <span>Invite</span>
+                </span>
+                <span href={"/me"} role='link' onClick={() => {handleLinking("/me")}} className="unitNavLink _hhhhh" data-label="Me">
+                    <i className="icofont-ui-user"></i>
+                    <span>Me</span>
+                </span>
+
+                {/* <Link href={"/"} className="unitNavLink _h">
                     <i className="icofont-education"></i>
                     <span>Histories</span>
                 </Link>
@@ -121,7 +152,7 @@ const Navbar = () => {
                 <Link href={"/me"} className="unitNavLink _hhhhh" data-label="Me">
                     <i className="icofont-ui-user"></i>
                     <span>Me</span>
-                </Link>
+                </Link> */}
             </div>
 
             {showModal && (
