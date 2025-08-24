@@ -68,7 +68,7 @@ export default function RootLayout({ children }) {
           <Script id="monetag-vignette" strategy="afterInteractive">
             {`(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('gizokraijaw.net',9758556,document.createElement('script'))`}
           </Script> */}
-          
+
 
           {/* ✅ Google AdSense verification script */}
           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9336754318917790"
@@ -92,7 +92,18 @@ export default function RootLayout({ children }) {
             });
           `}
           </Script>
-          <script type="text/javascript"> var infolinks_pid = 3439488; var infolinks_wsid = 0; </script> <script type="text/javascript" src="//resources.infolinks.com/js/infolinks_main.js"></script>
+          <Script id="infolinks-config" strategy="afterInteractive">
+            {`
+              var infolinks_pid = 3439488;
+              var infolinks_wsid = 0;
+            `}
+          </Script>
+
+          {/* Infolinks External Script */}
+          <Script
+            src="//resources.infolinks.com/js/infolinks_main.js"
+            strategy="afterInteractive"
+          />
         </body>
       </html>
     </ClerkProvider>
