@@ -364,7 +364,7 @@ const ProfileBodyCntn = () => {
     const withinDateRange = date >= 25 && date <= 30;
     const hasEnoughPoints = monthlyPoints >= 1050;
     const hasReward = reward > 0;
-    const canClaim = withinDateRange && isWinner && hasEnoughPoints;
+    const canClaim = withinDateRange && isWinner;
 
     //paystack widget configuration
     const config = {
