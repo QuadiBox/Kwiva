@@ -94,7 +94,7 @@ export default function RootLayout({ children }) {
           </Script>
           <Script id="infolinks-config" strategy="afterInteractive">
             {`
-              var infolinks_pid = 3439488;
+              var infolinks_pid = 3439547;
               var infolinks_wsid = 0;
             `}
           </Script>
@@ -104,6 +104,7 @@ export default function RootLayout({ children }) {
             src="//resources.infolinks.com/js/infolinks_main.js"
             strategy="afterInteractive"
           />
+
         </body>
       </html>
     </ClerkProvider>
