@@ -57,11 +57,11 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <head>
           {/* ✅ Monetag Ads verification script */}
-          <script src="https://fpyf8.com/88/tag.min.js" data-zone="165384" async data-cfasync="false"></script>
+          {/* <script src="https://fpyf8.com/88/tag.min.js" data-zone="165384" async data-cfasync="false"></script>
           <script src="https://fpyf8.com/88/tag.min.js" data-zone="165852" async data-cfasync="false"></script>
           <Script id="monetag-immortal-interstitial" strategy="afterInteractive">
             {`(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('groleegni.net',9760376,document.createElement('script'))`}
-          </Script>
+          </Script> */}
           {/* <Script id="monetag-interstitial" strategy="afterInteractive">
             {`(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('groleegni.net',9758426,document.createElement('script'))`}
           </Script>
