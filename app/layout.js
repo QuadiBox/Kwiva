@@ -56,6 +56,17 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <head>
+          {/**EZOIC AD VERIFICATION SCRIPTS***/}
+          <script src="https://cmp.gatekeeperconsent.com/min.js" data-cfasync="false"></script>
+          <script src="https://the.gatekeeperconsent.com/cmp.min.js" data-cfasync="false"></script>
+          <script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
+          <script>
+              window.ezstandalone = window.ezstandalone || {};
+              ezstandalone.cmd = ezstandalone.cmd || [];
+          </script>
+
+
+
           {/* ✅ Monetag Ads verification script */}
           {/* <script src="https://fpyf8.com/88/tag.min.js" data-zone="165384" async data-cfasync="false"></script>
           <script src="https://fpyf8.com/88/tag.min.js" data-zone="165852" async data-cfasync="false"></script>
@@ -69,10 +80,10 @@ export default function RootLayout({ children }) {
             {`(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('gizokraijaw.net',9758556,document.createElement('script'))`}
           </Script> */}
 
-
-          {/* ✅ Google AdSense verification script */}
+            {/* ✅ Google AdSense verification script */}
           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9336754318917790"
             crossorigin="anonymous"></script>
+          
         </head>
         <body className={`${aleg.variable} ${cinzel.variable} ${play.variable}`}>
           {children}
