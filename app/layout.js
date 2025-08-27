@@ -57,23 +57,41 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <head>
           {/**EZOIC AD VERIFICATION SCRIPTS***/}
-          <script src="https://cmp.gatekeeperconsent.com/min.js" data-cfasync="false"></script>
-          <script src="https://the.gatekeeperconsent.com/cmp.min.js" data-cfasync="false"></script>
-          <script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
-          <script>
-              window.ezstandalone = window.ezstandalone || {};
-              ezstandalone.cmd = ezstandalone.cmd || [];
-          </script>
+          {/* Privacy/CMP scripts FIRST */}
+          <Script
+            src="https://cmp.gatekeeperconsent.com/min.js"
+            strategy="beforeInteractive"
+            data-cfasync="false"
+          />
+          <Script
+            src="https://the.gatekeeperconsent.com/cmp.min.js"
+            strategy="beforeInteractive"
+            data-cfasync="false"
+          />
+
+          {/* Ezoic header script AFTER CMP */}
+          <Script
+            src="//www.ezojs.com/ezoic/sa.min.js"
+            strategy="beforeInteractive"
+            async
+          />
+
+          {/* Inline setup script */}
+          <Script id="ez-standalone" strategy="beforeInteractive">
+            {`
+            window.ezstandalone = window.ezstandalone || {};
+            ezstandalone.cmd = ezstandalone.cmd || [];
+          `}
+          </Script>
 
 
-
-          {/* ✅ Monetag Ads verification script */}
-          {/* <script src="https://fpyf8.com/88/tag.min.js" data-zone="165384" async data-cfasync="false"></script>
+            {/* ✅ Monetag Ads verification script */}
+            {/* <script src="https://fpyf8.com/88/tag.min.js" data-zone="165384" async data-cfasync="false"></script>
           <script src="https://fpyf8.com/88/tag.min.js" data-zone="165852" async data-cfasync="false"></script>
           <Script id="monetag-immortal-interstitial" strategy="afterInteractive">
             {`(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('groleegni.net',9760376,document.createElement('script'))`}
           </Script> */}
-          {/* <Script id="monetag-interstitial" strategy="afterInteractive">
+            {/* <Script id="monetag-interstitial" strategy="afterInteractive">
             {`(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('groleegni.net',9758426,document.createElement('script'))`}
           </Script>
           <Script id="monetag-vignette" strategy="afterInteractive">
@@ -81,9 +99,9 @@ export default function RootLayout({ children }) {
           </Script> */}
 
             {/* ✅ Google AdSense verification script */}
-          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9336754318917790"
-            crossorigin="anonymous"></script>
-          
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9336754318917790"
+              crossorigin="anonymous"></script>
+
         </head>
         <body className={`${aleg.variable} ${cinzel.variable} ${play.variable}`}>
           {children}
