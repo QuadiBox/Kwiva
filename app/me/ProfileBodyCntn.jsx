@@ -442,7 +442,7 @@ const ProfileBodyCntn = () => {
                             <h3><i className="icofont-notification"></i> Kwiva is going <span>premium+</span></h3>
                             <h2>You aren&apos;t <span>active</span> yet <i className="icofont-police-badge"></i></h2>
                         </div>
-                        <p>Get <b>active</b> with just {!isPioneer ? (<span>₦1,500</span>) : (<><del>₦1,500</del> <span>₦500</span></>)} and start earning points. Click on the button, it&apos;s working for real now and you'll be charged.</p>
+                        <p>Get <b>active</b> with just {!isPioneer ? (<span>₦1,500</span>) : (<><del>₦1,500</del> <span>₦500</span></>)} and start earning points. Click on the button, it&apos;s working for real now and you&apos;ll be charged.</p>
                         <PaystackButton {...componentProps}></PaystackButton>
                     </div>
                 )
