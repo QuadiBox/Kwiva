@@ -7,7 +7,7 @@ import DoughnutChart from './doughnut'
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from '../db/FirebaseConfig'
 // import { PaystackButton } from 'react-paystack'
-// import LoveOverlay from './LoveOverlay'
+import LoveOverlay from './LoveOverlay'
 import { updateDocument } from '../db/firestoreService'
 
 const DoughnutCntn = () => {
@@ -16,7 +16,7 @@ const DoughnutCntn = () => {
     const [raised, setRaised] = useState(0)
     const [target, setTarget] = useState(130000)
     const [amount, setAmount] = useState('')
-    const [showBubbles, setShowBubbles] = useState(false)
+    const [showBubbles, setShowBubbles] = useState(true)
 
 
     useEffect(() => {
@@ -118,7 +118,7 @@ const DoughnutCntn = () => {
                 bgColor="#fff"
                 animationDuration={1800}
             />
-            {/* <div className='donationForm'>
+            <div className='donationForm'>
                 <h2>Donate here with love💖👇 </h2>
                 <div className="amountInputCntn">
                     <label htmlFor="donationAmount"><b>Donation Amount:</b></label>
@@ -133,9 +133,9 @@ const DoughnutCntn = () => {
                         className={"donationAmountInput"}
                     />
                 </div>
-                <PaystackButton {...componentProps}></PaystackButton>
+                {/* <PaystackButton {...componentProps}></PaystackButton> */}
             </div>
-            <LoveOverlay showBubbles={showBubbles}></LoveOverlay> */}
+            <LoveOverlay showBubbles={showBubbles}></LoveOverlay>
         </div>
     )
 }
