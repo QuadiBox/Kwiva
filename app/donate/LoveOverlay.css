@@ -64,6 +64,10 @@
         font-size: 1.25rem;
         color: gray;
     }
+
+    .love-thankyou.theSecond .love-thankyou-text{
+        font-size: 0.9rem;
+    }
 }
 
 @keyframes rise {
