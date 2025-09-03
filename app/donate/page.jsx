@@ -7,6 +7,11 @@ export const metadata = {
     title: 'Donate To Kwiva',
     description:
         "Kwiva is stuck!, we need your help to keep us going. Kindly drop any token you can spare and we'll appreciate it immensely.",
+    robots: {
+      index: true,
+      follow: true,
+      nocache: false,
+    },
     openGraph: {
         title: 'Donate To Kwiva',
         description: 'Kwiva is stuck!, we need your help to keep us going. Kindly donate any token you can spare and we\'ll appreciate it immensely. Thanks🙏.',
@@ -31,10 +36,6 @@ export const metadata = {
             }
         ]
     },
-    robots: {
-        index: true,
-        follow: true,
-    }
 };
 
 const Page = () => {
