@@ -101,7 +101,7 @@ const DoughnutCntn = () => {
                 animationDuration={1800}
             />
             <div className='donationForm'>
-                <h2>Donate here with love💖👇 </h2>
+                <h2>Donate here with love🖤👇 </h2>
                 <div className="amountInputCntn">
                     <label htmlFor="donationAmount"><b>Donation Amount:</b></label>
                     <input
