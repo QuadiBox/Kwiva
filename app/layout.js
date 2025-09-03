@@ -27,6 +27,11 @@ const cinzel = Cinzel({ subsets: ["latin"], weight: ['400', '500', '800', '700']
 export const metadata = {
   title: 'Kwiva',
   description: "Welcome to QuadBox's Kwiva",
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+  },
   openGraph: {
     type: "website",
     url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
