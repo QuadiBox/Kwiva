@@ -1,5 +1,6 @@
 import Footer from "../homeComponent/Footer"
 import ProfileHeaderSect from "../me/ProfileHeaderSect"
+import DoughnutCntn from "./doughnutCntn"
 
 export async function generateMetadata() {
 
@@ -38,6 +39,7 @@ const Page = () => {
     return (
         <div className="storyGrandCntn histories">
             <ProfileHeaderSect></ProfileHeaderSect>
+            <DoughnutCntn></DoughnutCntn>
             <Footer></Footer>
         </div>
     )

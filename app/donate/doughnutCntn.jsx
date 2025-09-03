@@ -6,8 +6,8 @@ import DoughnutChart from './doughnut'
 // Firebase imports (adjust based on your setup)
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from '../db/FirebaseConfig'
-import { PaystackButton } from 'react-paystack'
-import LoveOverlay from './LoveOverlay'
+// import { PaystackButton } from 'react-paystack'
+// import LoveOverlay from './LoveOverlay'
 import { updateDocument } from '../db/firestoreService'
 
 const DoughnutCntn = () => {
@@ -118,7 +118,7 @@ const DoughnutCntn = () => {
                 bgColor="#fff"
                 animationDuration={1800}
             />
-            <div className='donationForm'>
+            {/* <div className='donationForm'>
                 <h2>Donate here with love💖👇 </h2>
                 <div className="amountInputCntn">
                     <label htmlFor="donationAmount"><b>Donation Amount:</b></label>
@@ -133,9 +133,9 @@ const DoughnutCntn = () => {
                         className={"donationAmountInput"}
                     />
                 </div>
-                {/* <PaystackButton {...componentProps}></PaystackButton> */}
+                <PaystackButton {...componentProps}></PaystackButton>
             </div>
-            <LoveOverlay showBubbles={showBubbles}></LoveOverlay>
+            <LoveOverlay showBubbles={showBubbles}></LoveOverlay> */}
         </div>
     )
 }
