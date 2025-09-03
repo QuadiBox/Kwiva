@@ -1,0 +1,127 @@
+.container {
+  width: 100%;
+  text-align: center;
+  user-select: none;
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+
+.chart {
+  position: absolute;
+  top: 0;
+  left: 0;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  border-radius: 50%;
+  background: conic-gradient(#00aaff 0%, #e0e0e0 0%);
+  transition: background 0.5s ease;
+}
+
+.inner {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.4em;
+  transition: all 0.3s ease;
+  color: #333;
+}
+
+.cap {
+  position: absolute;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.percentage {
+  font-size: 1.3em;
+  color: #333;
+}
+
+.labels {
+  margin-top: 1.2em;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.amounts {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  font-size: 1.1em;
+  color: #222;
+  cursor: default;
+}
+
+.amounts strong {
+  font-weight: 700;
+  position: relative;
+  line-height: 1;
+}
+
+/* Tooltip container */
+.amounts strong:hover + .tooltipText,
+.amounts strong:focus + .tooltipText {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Tooltip text */
+.tooltipText {
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #222;
+  color: white;
+  padding: 0.3em 0.5em;
+  border-radius: 0.3em;
+  font-size: 0.8em;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+  user-select: none;
+  z-index: 10;
+}
+
+/* Position tooltips */
+.tooltipTarget {
+  position: relative;
+}
+
+.tooltipRaised {
+  position: relative;
+  margin-top: 0.6em;
+}
+
+/* Mobile-first layout: stack labels vertically */
+@media (max-width: 480px) {
+  .labels {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+/* Additional progress text below */
+.progressText {
+  margin-top: 0.8em;
+  font-size: 1em;
+  color: #555;
+  font-weight: 600;
+}

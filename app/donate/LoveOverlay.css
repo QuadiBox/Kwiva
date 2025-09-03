@@ -1,0 +1,66 @@
+/* LoveOverlay.css */
+
+.love-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.love-icon {
+  position: absolute;
+  bottom: 0;
+  animation-name: rise;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.love-thankyou {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-200%);
+  font-size: 7em;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation-name: rise;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.love-thankyou.theSecond{
+    left: 20%;
+    font-size: 6em;
+}
+
+.love-thankyou-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.love-thankyou-text {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: gray;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120vh) scale(0.8);
+    opacity: 0;
+  }
+}

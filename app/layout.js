@@ -11,6 +11,7 @@ import "./footer.css";
 import "./invite.css";
 import "./contact.css";
 import "./me.css";
+import "./doughnut.css";
 import "../icofont/icofont.min.css"
 
 import { ClerkProvider } from "@clerk/nextjs";
@@ -56,33 +57,6 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <head>
-          {/**EZOIC AD VERIFICATION SCRIPTS***/}
-          {/* Privacy/CMP scripts FIRST */}
-          <Script
-            src="https://cmp.gatekeeperconsent.com/min.js"
-            strategy="beforeInteractive"
-            data-cfasync="false"
-          />
-          <Script
-            src="https://the.gatekeeperconsent.com/cmp.min.js"
-            strategy="beforeInteractive"
-            data-cfasync="false"
-          />
-
-          {/* Ezoic header script AFTER CMP */}
-          <Script
-            src="//www.ezojs.com/ezoic/sa.min.js"
-            strategy="beforeInteractive"
-            async
-          />
-
-          {/* Inline setup script */}
-          <Script id="ez-standalone" strategy="beforeInteractive">
-            {`
-            window.ezstandalone = window.ezstandalone || {};
-            ezstandalone.cmd = ezstandalone.cmd || [];
-          `}
-          </Script>
 
 
             {/* ✅ Monetag Ads verification script */}
