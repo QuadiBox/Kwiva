@@ -216,7 +216,7 @@
 }
 
 .amountInputCntn input{
-    font-size: 1.1em;
+    font-size: 16px !important;
     font-weight: 400;
     color: var(--sec-hue-1);
     height: 40px;

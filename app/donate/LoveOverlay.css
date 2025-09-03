@@ -52,6 +52,18 @@
   font-size: 1.3rem;
   font-weight: 600;
   color: gray;
+  min-width: max-content;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+    .love-thankyou {
+        font-size: 10em;
+    }
+    .love-thankyou-text {
+        font-size: 1.25rem;
+        color: gray;
+    }
 }
 
 @keyframes rise {

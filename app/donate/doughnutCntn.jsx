@@ -67,7 +67,8 @@ const DoughnutCntn = () => {
         reference: (new Date()).getTime().toString(),
         email: `kwivaonline@gmail.com`,
         amount: parseInt(amount || 0) * 100, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
-        publicKey: 'pk_live_b4ad860c0e165c9aed219483f3f7aa528f537234',
+        publicKey: 'pk_test_680463a03d8cd455d731195ceb8835ce288d94e9',
+        // publicKey: 'pk_live_b4ad860c0e165c9aed219483f3f7aa528f537234',
     };
 
     //action for when the paystack widget payment goes through successfully
@@ -94,7 +95,7 @@ const DoughnutCntn = () => {
 
         try {
             setShowBubbles(true);
-            updateDocument("winners", "donations", {raised: raised + parseInt(amount)})
+            // updateDocument("winners", "donations", {raised: raised + parseInt(amount)})
             setRaised(prev => prev + parseInt(amount));
             setAmount("");
             setTimeout(() => {
