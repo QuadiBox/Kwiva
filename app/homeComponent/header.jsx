@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import DonateToKwivaComp from './DonateToKwivaComp';
 
 export default function HomeHeader({ headerTitle, headerSubTitle, headerImgSrc, headerText, headerImgType }) {
     const topTopRef = useRef(null);
@@ -125,6 +126,7 @@ export default function HomeHeader({ headerTitle, headerSubTitle, headerImgSrc, 
                     )
                 }
             </div>
+            <DonateToKwivaComp></DonateToKwivaComp>
         </header>
     );
 }

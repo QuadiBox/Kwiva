@@ -37,7 +37,7 @@
 
 .storyGrandCntn header {
   padding-top: var(--small-header-height);
-  padding-bottom: calc(var(--nav-height) + 0em);
+  padding-bottom: calc(var(--nav-height) - 1em);
   background: linear-gradient(
     to bottom,
     var(--gray-hue-3),
@@ -1588,3 +1588,98 @@ body:has(.noOverflow) {
   color: var(--primary-clr-1);
   border: 1px dashed var(--sec-hue-1);
 }
+
+
+.donateToKwivaGrandCntn{
+  width: 100%;
+  border: 1px dashed;
+  border-radius: 10px;
+  padding-inline: 20px;
+  padding-block: 20px 30px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.donateToKwiva{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.donationDetails h2{
+  font-size: 2em;
+  font-weight: 400;
+  color: var(--sec-hue-1);
+  font-family: var(--font-p);
+  text-transform: capitalize;
+}
+
+.donationDetails p{
+  font-size: 1.1em;
+  font-weight: 500;
+  color: var(--sec-hue-2);
+  width: 100%;
+  max-width: 700px;
+  margin-top: 7px;
+}
+
+.donationCTAs{
+  --cta-height: 40px;
+  height: 100%;
+  width: 100%;
+  max-width: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-block: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .donationDetails h2{
+    font-size: 1.8em;
+  }
+  .donateToKwiva{
+    display: flex;
+    flex-direction: column;
+  }
+  .donateToKwivaGrandCntn{
+    padding-inline: 12px;
+    padding-block: 18px 25px;
+  }
+
+  .donationCTAs{
+    --cta-height: 35px;
+  }
+}
+
+.donationCTAs a{
+  background-color: var(--sec-hue-1);
+  border-radius: 5px;
+  font-size: 1.02em;
+  font-weight: 500;
+  color: var(--primary-clr-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: var(--cta-height);
+  padding-inline: 1.2em;
+  width: max-content;
+}
+
+.donationCTAs button{
+  height: var(--cta-height);
+  aspect-ratio: 1;
+  border-radius: 5px;
+  border: 1px dashed var(--sec-hue-1);
+  background-color: transparent;
+  font-size: 1.5em;
+  color: var(--sec-hue-1);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+

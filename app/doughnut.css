@@ -198,6 +198,10 @@
         color: var(--sec-hue-1);
         margin-bottom: 0.9em;
     }
+
+  .amounts strong {
+    font-size: 1.5em;
+  }
 }
 
 .amountInputCntn{

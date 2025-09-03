@@ -85,7 +85,7 @@ export default function DoughnutChart({
                             height: innerSize,
                         }}
                     >
-                        <span className={"percentage"}>{`${Math.round(animatedProgress)}%`}</span>
+                        <span className={"percentage"}>{`${parseFloat(animatedProgress).toFixed(1)}%`}</span>
                     </div>
                 </div>
             </div>

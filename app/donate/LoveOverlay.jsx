@@ -14,7 +14,7 @@ export default function LoveOverlay({ showBubbles }) {
     const MAX_BLUR = 3; // max blur px
     const MIN_SIZE = 18; // px
     const MAX_SIZE = 40; // px
-    const OVERLAY_BG = "rgba(181, 181, 181, 0.1)"; // transparent dark background
+    const OVERLAY_BG = "rgba(197, 197, 197, 0.1)"; // transparent dark background
 
     const [icons, setIcons] = useState([]);
 
