@@ -10,8 +10,11 @@ const isProtectedRoute = createRouteMatcher([
 
 export default clerkMiddleware((auth, req) => {
   if (isProtectedRoute(req)) {
-    auth().protect()
-  } 
+    auth().protect();
+  }
+}, {
+  // 👇 Make donate publicly accessible
+  publicRoutes: ["/donate"]
 });
 
 export const config = {
