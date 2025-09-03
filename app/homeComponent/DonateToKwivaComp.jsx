@@ -24,7 +24,7 @@ const DonateToKwivaComp = () => {
             <div className="donateToKwiva">
                 <div className="donationDetails">
                     <h2>Donate To Kwiva 🖤</h2>
-                    <p>Kwiva is stalling🥶!, we need your help to keep us going and reach more audience. Kindly donate any token you can spare and we'll appreciate it immensely. Thanks🙏.</p>
+                    <p>Kwiva is stalling🥶!, we need your help to keep us going and reach more audience. Kindly donate any token you can spare and we&apos;ll appreciate it immensely. Thanks🙏.</p>
                 </div>
                 <div className="donationCTAs">
                     <Link href={"/donate"}>Donate <i className="icofont-love"></i></Link>
