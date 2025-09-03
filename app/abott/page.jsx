@@ -1,0 +1,45 @@
+import Footer from "../homeComponent/Footer"
+
+export async function generateMetadata() {
+
+    return {
+        title: 'Donate To Kwiva',
+        description:
+            "Kwiva is stuck!, we need your help to keep us going. Kindly drop any token you can spare and we'll appreciate it immensely.",
+        openGraph: {
+            title: 'Donate To Kwiva',
+            description: 'Kwiva is stuck!, we need your help to keep us going. Kindly donate any token you can spare and we\'ll appreciate it immensely. Thanks🙏.',
+            url: "https://kwiva.online/donate",
+            type: 'website',
+            images: [
+                {
+                    url: "https://kwiva.online/donate.png"
+                }
+            ]
+        },
+        twitter: {
+            title: 'Donate To Kwiva',
+            creator: "@QuadVox",
+            description:
+                'Kwiva is stuck!, we need your help to keep us going. Kindly drop any token you can spare and we\'ll appreciate it immensely. Thanks🙏.',
+            card: 'summary_large_image',
+            url: "https://kwiva.online/donate",
+            images: [
+                {
+                    url: "https://kwiva.online/donate.png"
+                }
+            ]
+        },
+    }
+}
+
+const Page = () => {
+    return (
+        <div className="storyGrandCntn histories">
+            <h1>This is an Abbott page</h1>
+            <Footer></Footer>
+        </div>
+    )
+}
+
+export default Page
