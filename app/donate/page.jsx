@@ -1,7 +1,5 @@
-import React from 'react'
-import ProfileHeaderSect from '../me/ProfileHeaderSect'
-import Footer from '../homeComponent/Footer'
-import DoughnutCntn from './doughnutCntn'
+import Footer from "../homeComponent/Footer"
+import ProfileHeaderSect from "../me/ProfileHeaderSect"
 
 export async function generateMetadata() {
 
@@ -9,11 +7,6 @@ export async function generateMetadata() {
         title: 'Donate To Kwiva',
         description:
             "Kwiva is stuck!, we need your help to keep us going. Kindly drop any token you can spare and we'll appreciate it immensely.",
-        robots: {
-            index: true,
-            follow: true,
-            nocache: false,
-        },
         openGraph: {
             title: 'Donate To Kwiva',
             description: 'Kwiva is stuck!, we need your help to keep us going. Kindly donate any token you can spare and we\'ll appreciate it immensely. Thanks🙏.',
@@ -45,7 +38,6 @@ const Page = () => {
     return (
         <div className="storyGrandCntn histories">
             <ProfileHeaderSect></ProfileHeaderSect>
-            <DoughnutCntn></DoughnutCntn>
             <Footer></Footer>
         </div>
     )
