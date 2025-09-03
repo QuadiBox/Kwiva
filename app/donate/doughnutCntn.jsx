@@ -6,7 +6,7 @@ import DoughnutChart from './doughnut'
 // Firebase imports (adjust based on your setup)
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from '../db/FirebaseConfig'
-// import { PaystackButton } from 'react-paystack'
+import { PaystackButton } from 'react-paystack'
 import LoveOverlay from './LoveOverlay'
 import { updateDocument } from '../db/firestoreService'
 
@@ -133,7 +133,7 @@ const DoughnutCntn = () => {
                         className={"donationAmountInput"}
                     />
                 </div>
-                {/* <PaystackButton {...componentProps}></PaystackButton> */}
+                <PaystackButton {...componentProps}></PaystackButton>
             </div>
             <LoveOverlay showBubbles={showBubbles}></LoveOverlay>
         </div>
