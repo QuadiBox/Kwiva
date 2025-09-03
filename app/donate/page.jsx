@@ -10,7 +10,7 @@ export async function generateMetadata() {
             "Kwiva is stuck!, we need your help to keep us going. Kindly drop any token you can spare and we'll appreciate it immensely.",
         openGraph: {
             title: 'Donate To Kwiva',
-            description: 'Kwiva is stuck!, we need your help to keep us going. Kindly donate any token you can spare and we\'ll appreciate it immensely. Thanks🙏.',
+            description: 'Kwiva is stuck🥶!, we need your help to keep us going. Kindly donate any token you can spare and we\'ll appreciate it immensely. Thanks🙏.',
             url: "https://kwiva.online/donate",
             type: 'website',
             images: [
@@ -23,7 +23,7 @@ export async function generateMetadata() {
             title: 'Donate To Kwiva',
             creator: "@QuadVox",
             description:
-                'Kwiva is stuck!, we need your help to keep us going. Kindly drop any token you can spare and we\'ll appreciate it immensely. Thanks🙏.',
+                'Kwiva is stuck🥶!, we need your help to keep us going. Kindly drop any token you can spare and we\'ll appreciate it immensely. Thanks🙏.',
             card: 'summary_large_image',
             url: "https://kwiva.online/donate",
             images: [

@@ -7,8 +7,15 @@ import DoughnutChart from './doughnut'
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from '../db/FirebaseConfig'
 // import { PaystackButton } from 'react-paystack'
+import dynamic from 'next/dynamic';
 import LoveOverlay from './LoveOverlay'
 import { updateDocument } from '../db/firestoreService'
+
+// Dynamically import PaystackButton
+const PaystackButton = dynamic(
+    () => import("react-paystack").then((mod) => mod.PaystackButton),
+    { ssr: false }
+);
 
 const DoughnutCntn = () => {
     const [size, setSize] = useState(140)
@@ -16,7 +23,7 @@ const DoughnutCntn = () => {
     const [raised, setRaised] = useState(0)
     const [target, setTarget] = useState(130000)
     const [amount, setAmount] = useState('')
-    const [showBubbles, setShowBubbles] = useState(true)
+    const [showBubbles, setShowBubbles] = useState(false)
 
 
     useEffect(() => {
@@ -63,48 +70,23 @@ const DoughnutCntn = () => {
 
 
     //paystack widget configuration
+
     const config = {
-        reference: (new Date()).getTime().toString(),
+        reference: new Date().getTime().toString(),
         email: `kwivaonline@gmail.com`,
-        amount: parseInt(amount || 0) * 100, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
-        // publicKey: 'pk_test_680463a03d8cd455d731195ceb8835ce288d94e9',
-        publicKey: 'pk_live_b4ad860c0e165c9aed219483f3f7aa528f537234',
-    };
-
-    //action for when the paystack widget payment goes through successfully
-    const handlePaystackSuccessAction = async (reference) => {
-        // Implementation for whatever you want to do with reference and after success call.
-        await handleRequestProcessAfterPayment();
-    };
-
-    // you can call this function anything
-    const handlePaystackCloseAction = () => {
-        // implementation for  whatever you want to do when the Paystack dialog closed.
-        console.log('closed')
-    }
-
-    const componentProps = {
-        ...config,
-        text: 'Donate',
-        onSuccess: (reference) => handlePaystackSuccessAction(reference),
-        onClose: handlePaystackCloseAction,
+        amount: parseInt(amount || 0) * 100,
+        publicKey: "pk_live_b4ad860c0e165c9aed219483f3f7aa528f537234",
     };
 
 
-    const handleRequestProcessAfterPayment = async () => {
-
-        try {
-            setShowBubbles(true);
-            updateDocument("winners", "donations", {raised: raised + parseInt(amount)})
-            setRaised(prev => prev + parseInt(amount));
-            setAmount("");
-            setTimeout(() => {
-                setShowBubbles(false);
-            }, 25000);
-        } catch (err) {
-            console.error(err)
-        }
-
+    const handlePaystackSuccessAction = async () => {
+        setShowBubbles(true);
+        await updateDocument("winners", "donations", {
+            raised: raised + parseInt(amount),
+        });
+        setRaised((prev) => prev + parseInt(amount));
+        setAmount("");
+        setTimeout(() => setShowBubbles(false), 25000);
     };
 
     return (
@@ -133,7 +115,12 @@ const DoughnutCntn = () => {
                         className={"donationAmountInput"}
                     />
                 </div>
-                {/* <PaystackButton {...componentProps}></PaystackButton> */}
+                <PaystackButton
+                    {...config}
+                    text="Donate"
+                    onSuccess={handlePaystackSuccessAction}
+                    onClose={() => console.log("closed")}
+                />
             </div>
             <LoveOverlay showBubbles={showBubbles}></LoveOverlay>
         </div>
