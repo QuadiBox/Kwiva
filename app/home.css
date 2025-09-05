@@ -1683,3 +1683,16 @@ body:has(.noOverflow) {
   place-items: center;
 }
 
+
+/***2-B-DELETED**/
+.sendPioneerMailBtn{
+  min-height: 40px;
+  background-color: black;
+  color: white;
+  padding-inline: 1.2em;
+  border-radius: 5px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  width: max-content;
+}

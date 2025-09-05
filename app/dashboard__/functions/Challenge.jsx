@@ -10,6 +10,9 @@ import {
     writeBatch,
 } from 'firebase/firestore';
 import { useUser } from "@clerk/nextjs";
+import SendWelcomeButton from "./mailPioneerBtn";
+import { sendWelcomeEmail } from "@/app/email";
+import { getPioneerEmailHTML } from "../utilFunctions";
 
 const Challenge = () => {
     const [formData, setFormData] = useState({
@@ -69,15 +72,25 @@ const Challenge = () => {
 
     };
 
+    const handleSendMail = () => {
+        console.log("start sending mail");
+        
+        const html = `${getPioneerEmailHTML("Oladoja Damilola")}`
+        sendWelcomeEmail("<noreply@kwiva.online>", "oladojaabdquadridamilola@gmail.com", "Text for Pioneer Members", "Text for Pioneer Members", html)
+        
+        alert("Mail sent!!!")
+    }
+
     console.log(user?.publicMetadata?.premium_month);
     
 
     return (
         <section className='unitFunctionSect'>
             <h2>Create New Challenge</h2>
-            <button type="submit" onClick={handleSetPremium} className="textEditorSubmitBtn">
+            <button type="submit" onClick={handleSendMail} className="textEditorSubmitBtn">
                 Set Premium
             </button>
+            <SendWelcomeButton></SendWelcomeButton>
             <form className="textEditorForm challengeEdition">
                 <div className="UnitInputCntn">
                     <label className="block font-semibold">Title:</label>
