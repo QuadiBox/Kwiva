@@ -370,7 +370,7 @@ const ProfileBodyCntn = () => {
     const config = {
         reference: (new Date()).getTime().toString(),
         email: `${user?.emailAddresses[user?.emailAddresses.length - 1].emailAddress}`,
-        amount: (isPioneer ? 500 : 1500) * 100, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
+        amount: 1200 * 100, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
         publicKey: 'pk_live_b4ad860c0e165c9aed219483f3f7aa528f537234',
     };
 
@@ -442,7 +442,7 @@ const ProfileBodyCntn = () => {
                             <h3><i className="icofont-notification"></i> Kwiva is going <span>premium+</span></h3>
                             <h2>You aren&apos;t <span>active</span> yet <i className="icofont-police-badge"></i></h2>
                         </div>
-                        <p>Get <b>active</b> with just {!isPioneer ? (<span>₦1,500</span>) : (<><del>₦1,500</del> <span>₦500</span></>)} and start earning points. Click on the button, it&apos;s working for real now and you&apos;ll be charged.</p>
+                        <p>Get <b>active</b> with just {!isPioneer ? (<span>₦1,200</span>) : (<><del>₦1,500</del> <span>₦1,200</span></>)} and start earning points. Click on the button, it&apos;s working for real now and you&apos;ll be charged.</p>
                         <PaystackButton {...componentProps}></PaystackButton>
                     </div>
                 )

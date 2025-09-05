@@ -87,7 +87,7 @@ const Challenge = () => {
     return (
         <section className='unitFunctionSect'>
             <h2>Create New Challenge</h2>
-            <button type="submit" onClick={handleSendMail} className="textEditorSubmitBtn">
+            <button type="submit" onClick={handleSetPremium} className="textEditorSubmitBtn">
                 Set Premium
             </button>
             <SendWelcomeButton></SendWelcomeButton>
